@@ -12,6 +12,7 @@
 
 .product-box {
   border: 3px solid ; /* 3px border around each product */
+  border-radius: 10px;
   padding: 10px; /* Add padding for spacing inside the box */
   text-align: center;
   margin-left: 3px;
@@ -32,7 +33,7 @@
   font-size: x-large;
 }
 .product h3{
-  font-size:x-large ;
+  font-size:large ;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 /* Media query to change the layout on larger screens */
@@ -65,7 +66,7 @@
 .order-button {
  background-color: aqua;
  border-radius: 20px;
- font-family:cursive;
+ font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
 .order-button i {
