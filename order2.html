@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>EB Shoes</title>
+		<link rel="icon" href="Logo/Logo2.png">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/order.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+
+<body>
+
+
+    <button id="backButton" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+
+
+
+    <form id="orderForm">
+        <img id="productImage" alt="Product Image">
+        <h3 id="productName">Product Name</h3>
+        <p id="priceContainer">
+            <span class="old-price" id="oldPrice">Old Price </span>
+            <span class="new-price" id="productPrice">Product Price</span>
+          </p>
+          
+       
+
+
+        <label for="shoeSize">Shoe Size:</label>
+        <select id="shoeSize" name="shoeSize">
+            <option value="36">36</option>
+            <option value="37">37</option>
+            <option value="38">38</option>
+            <option value="39">39</option>
+            <option value="40">40</option>
+            <option value="41">41</option>
+            <option value="42">42</option>
+            <option value="43">43</option>
+            <option value="44">44</option>
+            <option value="45">45</option>
+            <!-- Options for shoe sizes -->
+        </select>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="city">City:</label>
+        <select id="city" name="city">
+            <option value="Tirana">Tirana</option>
+            <option value="Durrës">Durrës</option>
+            <option value="Vlorë">Vlorë</option>
+            <option value="Shkodër">Shkodër</option>
+            <option value="Elbasan">Elbasan</option>
+            <option value="Fier">Fier</option>
+            <option value="Korçë">Korçë</option>
+            <option value="Berat">Berat</option>
+            <option value="Lushnjë">Lushnjë</option>
+            <option value="Pogradec">Pogradec</option>
+            <!-- Options for cities in Albania -->
+        </select>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+        <!-- Add other form fields as needed -->
+        <!-- ... -->
+
+        <button type="button" onclick="placeOrder()">Place Order</button>
+    </form>
+
+ 
+
+    <script>
+        // Retrieve product information from local storage
+        const storedProductInfo = localStorage.getItem('productInfo');
+        if (storedProductInfo) {
+            const productInfo = JSON.parse(storedProductInfo);
+            document.getElementById('productImage').src = productInfo.imageSrc;
+            document.getElementById('productName').textContent = productInfo.productName;
+            document.getElementById('productPrice').textContent = productInfo.productPrice;
+            document.getElementById('oldPrice').textContent = productInfo.oldPrice;
+        }
+
+        function placeOrder() {
+            // You can add logic here to handle the form submission, e.g., sending data to a server.
+            alert('Order placed successfully!');
+        }
+
+        function goBack() {
+            // Navigate back to the previous page
+            window.history.back();
+        }
+
+    </script>
+
+</body>
+</html>

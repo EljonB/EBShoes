@@ -1,0 +1,95 @@
+#main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.product {
+  flex: 0 1 calc(33.33% - 20px); /* Adjust the width as needed, minus margin */
+  margin-bottom: 20px; /* Adjust the margin between products */
+  position: relative;
+}
+
+.product-box {
+  border: 3px solid ; /* 3px border around each product */
+  padding: 10px; /* Add padding for spacing inside the box */
+  text-align: center;
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.product img {
+  max-width: 100%; /* Limit the image width to the container */
+  height: auto;
+}
+
+/* You can further style the product titles and prices as needed */
+.product h3, .product p {
+  margin: 10px 0;
+
+}
+.product p{
+  font-size: x-large;
+}
+.product h3{
+  font-size:x-large ;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+/* Media query to change the layout on larger screens */
+@media (min-width: 1024px) {
+  .product {
+    flex: 0 1 calc(33.33% - 20px); /* Display three products per row on larger screens */
+  }
+}
+
+.new-price{
+  font-size: 25px;
+  margin-left: 10px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: red;
+  font-size: 25px;
+}
+
+.product button{
+  margin-bottom: 20px;
+}
+
+.inner{
+  margin-left: 10px;
+  font-size: large;
+}
+
+.order-button {
+ background-color: aqua;
+ border-radius: 20px;
+ font-family:cursive;
+}
+
+.order-button i {
+  margin-left: 8px; /* Add some space between text and icon */
+}
+
+
+.order-button:hover {
+  background-color:rgb(23, 138, 138);
+}
+	
+
+@media screen and (max-width: 1680px) {
+
+  body, input, select, textarea {
+    font-size: 14pt;
+  }
+
+}
+
+@media screen and (max-width: 1280px) {
+
+  body, input, select, textarea {
+    font-size: 12pt;
+  }
+
+}

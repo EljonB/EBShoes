@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+}
+
+h3{
+    text-align: left;
+    color: #333;
+    font-size: larger;
+}
+
+p{
+    text-align: left;
+    margin-top: 0px;
+    color: #333;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: large;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+img#productImage {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+img#productImage:hover {
+    transform: scale(1.2);
+}
+
+button {
+    background-color: aqua;
+    border-radius: 20px;
+    font-family:cursive;
+
+}
+
+button:hover {
+    background-color:rgb(190, 190, 190);
+}
+
+button#backButton {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 30%;
+    padding: 8px;
+    cursor: pointer;
+}
+
+button#backButton:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+
+.new-price{
+    font-size: 25px;
+    margin-left: 10px;
+  }
+  
+  .old-price {
+    text-decoration: line-through;
+    color: red;
+    font-size: 25px;
+  }
+  
