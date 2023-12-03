@@ -22,6 +22,7 @@
 .product img {
   max-width: 100%; /* Limit the image width to the container */
   height: auto;
+  border-radius: 10px;
 }
 
 /* You can further style the product titles and prices as needed */
