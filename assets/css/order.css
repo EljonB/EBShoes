@@ -14,7 +14,7 @@ p{
     text-align: left;
     margin-top: 0px;
     color: #333;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family:Arial,;
     font-size: large;
 }
 
@@ -51,16 +51,17 @@ img#productImage:hover {
     transform: scale(1.2);
 }
 
-button {
-    background-color: aqua;
-    border-radius: 20px;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
-
-}
-
-button:hover {
-    background-color:rgb(190, 190, 190);
-}
+.order-button { 
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+   }
+   
+  
+   
+   .order-button:hover {
+      background-color: rgb(56, 197, 56);
+      
+   }
 
 button#backButton {
     position: fixed;

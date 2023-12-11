@@ -5,9 +5,10 @@
 		<link rel="icon" href="Logo/Logo2.png">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/main.css">
 		<link rel="stylesheet" href="assets/css/men.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	
+	
 
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
@@ -52,6 +53,7 @@
 					<div class="product">
 						<div class="product-box">
 							<img id="productImage1" src="Images1/Men1.jpg" alt="Product Image">
+					         
 							<h3 id="productName1">Nike Air Force 1</h3>
 							<p id="productPrice1">5000 Lek</p>
 							<button class="order-button" onclick="redirectToOrderPage('productImage1', 'productName1','productPrice1')">Order Now</button>
@@ -123,7 +125,7 @@
 			</section> 
 			
 			<script>
-				function redirectToOrderPage(imageId, nameId , priceId) {
+				function redirectToOrderPage(imageId, nameId, priceId) {
 					// Store product information in local storage
 					const productInfo = {
 						imageSrc: document.getElementById(imageId).src,
@@ -137,6 +139,7 @@
 					window.location.href = 'order2.html';
 				}
 			</script>
+			
 				<!-- Footer -->
 				<footer id="footer">
 					<div class="inner">
