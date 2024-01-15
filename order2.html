@@ -31,7 +31,7 @@
 
 
         <label for="shoeSize">Shoe Size:</label>
-        <select id="shoeSize" name="shoeSize">
+        <select id="shoeSize" name="shoeSize" required>
             <option value="36">36</option>
             <option value="37">37</option>
             <option value="38">38</option>
@@ -49,7 +49,7 @@
         <input type="text" id="name" name="name" required>
 
         <label for="city">City:</label>
-        <select id="city" name="city">
+        <select id="city" name="city" required>
             <option value="Tirana">Tirana</option>
             <option value="Durrës">Durrës</option>
             <option value="Vlorë">Vlorë</option>
@@ -72,7 +72,7 @@
         <!-- Add other form fields as needed -->
         <!-- ... -->
 
-        <button class="order-button" type="button" onclick="placeOrder()">Place Order</button>
+        <button class="order-button" type="submit" onclick="placeOrder()">Place Order</button>
     </form>
 
  
@@ -89,9 +89,28 @@
         }
 
         function placeOrder() {
-            // You can add logic here to handle the form submission, e.g., sending data to a server.
-            alert('Order placed successfully!');
-        }
+        // Collect form data
+        const shoeSize = document.getElementById("shoeSize").value;
+        const name = document.getElementById("name").value;
+        const city = document.getElementById("city").value;
+        const address = document.getElementById("address").value;
+        const phone = document.getElementById("phone").value;
+
+        // Construct the message
+        const message = 
+        
+                        `Name: ${name}
+                         Address: ${address} 
+                         Shoe Size: ${shoeSize} 
+                         City: ${city} 
+                         Phone: ${phone}`;
+
+        // Create a WhatsApp link
+        const whatsappLink = `https://wa.me/+355686694729?text=${encodeURIComponent(message)}`;
+
+        // Open the link in a new window (replace this with your actual integration)
+        window.open(whatsappLink, '_blank');
+    }
 
         function goBack() {
             // Navigate back to the previous page
