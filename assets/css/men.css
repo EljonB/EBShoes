@@ -104,3 +104,8 @@ span.title{
   }
 
 }
+
+.switch-buttons{
+  position: relative;
+  margin-left: 120px;
+}
