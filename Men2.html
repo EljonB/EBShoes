@@ -1,187 +1,124 @@
 <!DOCTYPE HTML>
-<html>
-	<head>
-		<title>EBOSS BRAND</title>
-		<link rel="icon" href="Logo/Logo2.png">
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css">
-		<link rel="stylesheet" href="assets/css/men.css">
-	
-	
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Men's Shoes - EBOSS BRAND</title>
+    <link rel="icon" href="Logo/Logo2.png">
+    <link rel="stylesheet" href="sale.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
 
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-		
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="Logo/Logo2.png" alt="Logo">
+                <span>Men's Shoes</span>
+            </a>
 
-				<!-- Header -->
-					<header id="header">
-						<div class="inner">
+            <!-- Hamburger Menu -->
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
 
-							<!-- Logo -->
-								<a href="index.html" class="logo">
-									<span class="symbol"><img src="Logo/Logo1.png" alt="" /></span><span class="title">Men's Shoes</span>
-								</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="indexmen.html">Men</a></li>
+                    <li><a href="womenindex.html">Women</a></li>
+                    <li><a href="Sale.html">Sale</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-							<!-- Nav -->
-								<nav>
-									<ul>
-										<li><a href="#menu">Menu</a></li>
-									</ul>
-								</nav>
+    <!-- Product Section -->
+    <section class="products">
+        <div class="product-box">
+            <img src="Images1/Men4.jpg" alt="New Balance">
+            <h3>New Balance</h3>
+            <p class="price">5000 Lek</p>
+            <button onclick="redirectToOrderPage('Images1/Men4.jpg', 'New Balance', '5000 Lek')">Order Now</button>
+        </div>
 
-						</div>
-					</header>
+        <div class="product-box">
+            <img src="Images1/Men5.jpg" alt="Balenciaga">
+            <h3>Balenciaga</h3>
+            <p class="price">6000 Lek</p>
+            <button onclick="redirectToOrderPage('Images1/Men5.jpg', 'Balenciaga', '6000 Lek')">Order Now</button>
+        </div>
 
-				<!-- Menu -->
-				<nav id="menu">
-					<h2>Menu</h2>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="indexmen.html">Men</a></li>
-						<li><a href="womenindex.html">Women</a></li>
-						<li><a href="Sale.html">Sale</a></li>
-						
-				</nav>
-				<!-- Main -->
-			
-			</div>
-			<section class="tiles">
+        <div class="product-box">
+            <img src="Images1/Men6.jpg" alt="Adidas Yeezy">
+            <h3>Adidas Yeezy</h3>
+            <p class="price">5000 Lek</p>
+            <button onclick="redirectToOrderPage('Images1/Men6.jpg', 'Adidas Yeezy', '5000 Lek')">Order Now</button>
+        </div>
 
-			
+        <div class="product-box">
+            <img src="Images1/Men10.jpg" alt="Nike Air Max 720">
+            <h3>Nike Air Max 720</h3>
+            <p class="price">6000 Lek</p>
+            <button onclick="redirectToOrderPage('Images1/Men10.jpg', 'Nike Air Max 720', '6000 Lek')">Order Now</button>
+        </div>
 
-				<article class="style1">
-					<div class="product">
-						<div class="product-box">
-							<img id="productImage4" src="Images1/Men4.jpg" alt="Product Image">
-							<h3 id="productName4">New Balance</h3>
-							<p id="productPrice4">5000 Lek</p>
-							<button class="order-button" onclick="redirectToOrderPage('productImage4', 'productName4', 'productPrice4')">Order Now</button>
-						</div>
-					</div>
-				</article>
-			
-			
-					<article class="style2">
-				<div class="product">
-					<div class="product-box">
-						<img id="productImage5" src="Images1/Men5.jpg" alt="Product Image">
-						<h3 id="productName5">Balenciaga</h3>
-						<p id="productPrice5">6000 Lek</p>
-						<button class="order-button" onclick="redirectToOrderPage('productImage5', 'productName5', 'productPrice5')">Order Now</button>
-					</div>
-				</div>
-					</article>
+        <div class="product-box">
+            <img src="Images1/Women11.jpg" alt="Alexander McQueen">
+            <h3>Alexander McQueen</h3>
+            <p class="price">6000 Lek</p>
+            <button onclick="redirectToOrderPage('Images1/Women11.jpg', 'Alexander McQueen', '6000 Lek')">Order Now</button>
+        </div>
 
+        <div class="product-box">
+            <img src="Images1/Men11.jpg" alt="Yeezy Slide">
+            <h3>Yeezy Slide</h3>
+            <p class="price">3000 Lek</p>
+            <button onclick="redirectToOrderPage('Images1/Men11.jpg', 'Yeezy Slide', '3000 Lek')">Order Now</button>
+        </div>
+    </section>
 
-					<article class="style4">
-						<div class="product">
-							<div class="product-box">
-								<img id="productImage6" src="Images1/Men6.jpg" alt="Product Image">
-								<h3 id="productName6">Adidas Yeezy</h3>
-								<p id="productPrice6">5000 Lek</p>
-								<button class="order-button" onclick="redirectToOrderPage('productImage6', 'productName6','productPrice6')">Order Now</button>
-							</div>
-						</div>
-					</article>
-					
+    <!-- Pagination Switch -->
+    <div class="switch-buttons">
+        <button class="switch-button" onclick="redirectToFirstPage()">1</button>
+        <button class="active-button" disabled>2</button>
+        <button class="switch-button" onclick="redirectToThirdPage()">3</button>
+    </div>
 
-					<article class="style1">
-						<div class="product">
-							<div class="product-box">
-								<img id="productImage10" src="Images1/Men10.jpg" alt="Product Image">
-								<h3 id="productName10">Nike Air Max 720</h3>
-								<p id="productPrice10">6000 Lek</p>
-								<button class="order-button" onclick="redirectToOrderPage('productImage10', 'productName10', 'productPrice10')">Order Now</button>
-							</div>
-						</div>
-					</article>
-				
-				
-						<article class="style2">
-					<div class="product">
-						<div class="product-box">
-							<img id="productImage12" src="Images1/Women11.jpg" alt="Product Image">
-							<h3 id="productName12">Alexander McQueen</h3>
-							<p id="productPrice12">6000 Lek</p>
-							<button class="order-button" onclick="redirectToOrderPage('productImage12', 'productName12', 'productPrice12')">Order Now</button>
-						</div>
-					</div>
-						</article>
-	
-	
-						<article class="style4">
-							<div class="product">
-								<div class="product-box">
-									<img id="productImage11" src="Images1/Men11.jpg" alt="Product Image">
-									<h3 id="productName11">Yeezy Slide</h3>
-									<p id="productPrice11">3000 Lek</p>
-									<button class="order-button" onclick="redirectToOrderPage('productImage11', 'productName11','productPrice11')">Order Now</button>
-								</div>
-							</div>
-						</article>
-<br><br>
-                        <div class="switch-buttons">
-                            <button class="switch-button" onclick="redirectToFirstPage()">1</button>
-                            <button class="active-button" disabled>2</button>
-							<button class="switch-button" onclick="redirectToThirdPage()">3</button>
-                        </div>
+    <br><br><br>
 
-<!-- Repeat the structure for additional products -->
-			</section> 
-			
-			<script>
-				function redirectToOrderPage(imageId, nameId, priceId) {
-					// Store product information in local storage
-					const productInfo = {
-						imageSrc: document.getElementById(imageId).src,
-						productName: document.getElementById(nameId).textContent,
-						productPrice: document.getElementById(priceId).textContent
-					};
-			
-					localStorage.setItem('productInfo', JSON.stringify(productInfo));
-			
-					// Redirect to the order page
-					window.location.href = 'order2.html';
-				}
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.instagram.com/eb_shoes2/" class="fa-brands fa-instagram"></a>
+            <a href="https://www.tiktok.com/@eb_shoes_2" class="fa-brands fa-tiktok"></a>
+            <a href="https://wa.me/+355682126033" class="fa-brands fa-whatsapp"></a>
+            <a href="#" class="fa-brands fa-facebook"></a>
+        </div>
+    </footer>
 
-                function redirectToFirstPage() {
-        // Redirect to the second page
-        window.location.href = 'Men.html';
-    }
-	function redirectToThirdPage() {
-        // Redirect to the second page
-        window.location.href = 'Men3.html';
-    }
-			</script>
-			
-				<!-- Footer -->
-				<footer id="footer">
-					<div class="inner">
-					
-						<section>
-							<h2>Follow</h2>
-							<ul class="icons">
-								<li><a href="https://www.instagram.com/eb_shoes2/" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="https://www.tiktok.com/@eb_shoes_2" class="icon brands style2 fa-tiktok"><span class="label">Tik Tok</span></a></li>
-								<li><a href="https://wa.me/+355682126033" class="icon brands style2 fa-whatsapp">	<span class="label">Whatsapp</span></a></li>
-								<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
-							
-								
-							</ul>
-						</section>
-						
-				</footer>
+    <!-- JavaScript -->
+    <script>
+        function redirectToOrderPage(imageSrc, name, price) {
+            const productInfo = { imageSrc, productName: name, productPrice: price };
+            localStorage.setItem('productInfo', JSON.stringify(productInfo));
+            window.location.href = 'order2.html';
+        }
 
-		</div>
+        function redirectToFirstPage() {
+            window.location.href = 'Men.html';
+        }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        function redirectToThirdPage() {
+            window.location.href = 'Men3.html';
+        }
 
-	</body>
+        function toggleMenu() {
+            const navLinks = document.querySelector(".nav-links");
+            navLinks.classList.toggle("active");
+        }
+    </script>
+
+</body>
 </html>

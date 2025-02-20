@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
-    <title>EBOSS BRAND</title>
-    <link rel="icon" href="Logo/Logo2.png">
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>EBOSS BRAND - Order</title>
+    <link rel="icon" href="Logo/Logo2.png">
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/order.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -12,13 +12,12 @@
 </head>
 
 <body>
-
     <button id="backButton" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
 
-    <form id="orderForm">
-        <img id="productImage" alt="Product Image"><br><br>
-        <h3 id="productName" name="tittle">Product Name</h3>
-        <p id="priceContainer">
+    <form id="orderForm" class="order-form">
+        <img id="productImage" alt="Product Image" class="product-image"><br><br>
+        <h3 id="productName" class="product-name">Product Name</h3>
+        <p id="priceContainer" class="price-container">
             <span class="old-price" id="oldPrice">Old Price</span>
             <span class="new-price" id="productPrice">Product Price</span>
         </p>
@@ -69,6 +68,7 @@
             const city = document.getElementById("city").value;
             const address = document.getElementById("address").value;
             const phone = document.getElementById("phone").value;
+            const productPrice = document.getElementById("productPrice").textContent; // Correct this line to retrieve the price
 
             // Validate form fields
             if (!name || !city || !address || !phone) {
@@ -77,7 +77,7 @@
             }
 
             // Construct the message
-            const message = ` ${tittle}\nName: ${name}\nPhone: ${phone}\nCity: ${city}\nAddress: ${address}\nTransport Fee: 300 ALL`;
+            const message = `${tittle}\nName: ${name}\nPhone: ${phone}\nCity: ${city}\nAddress: ${address}\nPrice: ${productPrice}\nTransport Fee: 300 ALL`;
 
             // Create a WhatsApp link
             const whatsappLink = `https://wa.me/+355686694729?text=${encodeURIComponent(message)}`;
@@ -90,6 +90,5 @@
             window.history.back();
         }
     </script>
-
 </body>
 </html>
