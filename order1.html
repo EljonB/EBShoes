@@ -1,34 +1,27 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>EBOSS BRAND</title>
-		<link rel="icon" href="Logo/Logo2.png">
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/order.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
+<head>
+    <title>EBOSS BRAND</title>
+    <link rel="icon" href="Logo/Logo2.png">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/order.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
 
 <body>
 
-
     <button id="backButton" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
-
-
 
     <form id="orderForm">
         <img id="productImage" alt="Product Image"><br><br>
         <h3 id="productName" name="tittle">Product Name</h3>
         <p id="priceContainer">
-            <span class="old-price" id="oldPrice">Old Price </span>
+            <span class="old-price" id="oldPrice">Old Price</span>
             <span class="new-price" id="productPrice">Product Price</span>
-          </p>
-          
-       
-
+        </p>
 
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
@@ -45,7 +38,6 @@
             <option value="Berat">Berat</option>
             <option value="Lushnjë">Lushnjë</option>
             <option value="Pogradec">Pogradec</option>
-            <!-- Options for cities in Albania -->
         </select>
 
         <label for="address">Address:</label>
@@ -54,50 +46,49 @@
         <label for="phone">Phone Number:</label>
         <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
 
-        <!-- Add other form fields as needed -->
-        <!-- ... -->
-
-        <button class="order-button" type="submit" onclick="placeOrder()">Place Order</button>
+        <button class="order-button" type="button" onclick="placeOrder(event)">Place Order</button>
     </form>
-
- 
 
     <script>
         // Retrieve product information from local storage
         const storedProductInfo = localStorage.getItem('productInfo');
         if (storedProductInfo) {
             const productInfo = JSON.parse(storedProductInfo);
-
             document.getElementById('productImage').src = productInfo.imageSrc;
             document.getElementById('productName').textContent = productInfo.productName;
             document.getElementById('productPrice').textContent = productInfo.productPrice;
             document.getElementById('oldPrice').textContent = productInfo.oldPrice;
         }
 
-        function placeOrder() {
-        // Collect form data
-        const tittle = document.getElementById("productName").textContent;
-        const shoeSize = document.getElementById("shoeSize").value;
-        const name = document.getElementById("name").value;
-        const city = document.getElementById("city").value;
-        const address = document.getElementById("address").value;
-        const phone = document.getElementById("phone").value;
+        function placeOrder(event) {
+            event.preventDefault(); // Prevent default form submission
 
-        // Construct the message
-        const message =  ` ${tittle}\nName: ${name}\nPhone: ${phone}\nShoe Size: ${shoeSize}\nCity: ${city}\nAddress: ${address}\nTransport Fee:300All`;
+            // Collect form data
+            const tittle = document.getElementById("productName").textContent;
+            const name = document.getElementById("name").value;
+            const city = document.getElementById("city").value;
+            const address = document.getElementById("address").value;
+            const phone = document.getElementById("phone").value;
 
-        // Create a WhatsApp link
-        const whatsappLink = `https://wa.me/+355686694729?text=${encodeURIComponent(message)}`;
+            // Validate form fields
+            if (!name || !city || !address || !phone) {
+                alert("Please fill in all the required fields.");
+                return;
+            }
 
-        // Open the link in a new window (replace this with your actual integration)
-        window.open(whatsappLink, '_blank');
-    }
+            // Construct the message
+            const message = ` ${tittle}\nName: ${name}\nPhone: ${phone}\nCity: ${city}\nAddress: ${address}\nTransport Fee: 300 ALL`;
 
-        function goBack() {
-            // Navigate back to the previous page
-            window.history.back();
+            // Create a WhatsApp link
+            const whatsappLink = `https://wa.me/+355686694729?text=${encodeURIComponent(message)}`;
+
+            // Open the link in a new window
+            window.open(whatsappLink, '_blank');
         }
 
+        function goBack() {
+            window.history.back();
+        }
     </script>
 
 </body>
