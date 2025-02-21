@@ -11,7 +11,7 @@
         /* Cart Section Styles */
         .cart {
             display: none; /* Hidden by default */
-            position: absolute;
+            position: fixed;
             top: 60px; /* Adjust based on header height */
             right: 20px;
             background-color: #fff;
@@ -125,7 +125,7 @@
             <h3>New Balance</h3>
             <p class="price">5000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men4.jpg', 'New Balance', '5000 Lek')">Order Now</button>
-            <button onclick="addToCart('Images1/Men4.jpg', 'New Balance', '5000 Lek')">Add to Cart</button>
+            <button onclick="addToCart('Images1/Men4.jpg', 'New Balance', '5000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
         </div>
 
         <div class="product-box">
@@ -133,7 +133,7 @@
             <h3>Balenciaga</h3>
             <p class="price">6000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men5.jpg', 'Balenciaga', '6000 Lek')">Order Now</button>
-            <button onclick="addToCart('Images1/Men5.jpg', 'Balenciaga', '6000 Lek')">Add to Cart</button>
+            <button onclick="addToCart('Images1/Men5.jpg', 'Balenciaga', '6000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
         </div>
 
         <div class="product-box">
@@ -141,7 +141,7 @@
             <h3>Adidas Yeezy</h3>
             <p class="price">5000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men6.jpg', 'Adidas Yeezy', '5000 Lek')">Order Now</button>
-            <button onclick="addToCart('Images1/Men6.jpg', 'Adidas Yeezy', '5000 Lek')">Add to Cart</button>
+            <button onclick="addToCart('Images1/Men6.jpg', 'Adidas Yeezy', '5000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
         </div>
 
         <div class="product-box">
@@ -149,7 +149,7 @@
             <h3>Nike Air Max 720</h3>
             <p class="price">6000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men10.jpg', 'Nike Air Max 720', '6000 Lek')">Order Now</button>
-            <button onclick="addToCart('Images1/Men10.jpg', 'Nike Air Max 720', '6000 Lek')">Add to Cart</button>
+            <button onclick="addToCart('Images1/Men10.jpg', 'Nike Air Max 720', '6000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
         </div>
 
         <div class="product-box">
@@ -157,7 +157,7 @@
             <h3>Alexander McQueen</h3>
             <p class="price">6000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Women11.jpg', 'Alexander McQueen', '6000 Lek')">Order Now</button>
-            <button onclick="addToCart('Images1/Women11.jpg', 'Alexander McQueen', '6000 Lek')">Add to Cart</button>
+            <button onclick="addToCart('Images1/Women11.jpg', 'Alexander McQueen', '6000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
         </div>
 
         <div class="product-box">
@@ -165,9 +165,19 @@
             <h3>Yeezy Slide</h3>
             <p class="price">3000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men11.jpg', 'Yeezy Slide', '3000 Lek')">Order Now</button>
-            <button onclick="addToCart('Images1/Men11.jpg', 'Yeezy Slide', '3000 Lek')">Add to Cart</button>
+            <button onclick="addToCart('Images1/Men11.jpg', 'Yeezy Slide', '3000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
         </div>
     </section>
+    <!-- Cart Section -->
+    <section class="cart" id="cartSection">
+        <h2>Your Cart</h2>
+        <div class="cart-items" id="cartItems">
+            <!-- Dynamically added cart items will appear here -->
+        </div>
+        <button class="order-button" onclick="window.location.href='checkout.html'">Checkout  <i class="fas fa-shopping-cart"></i></button>
+
+    </section>
+
 
     <!-- Pagination Switch -->
     <div class="switch-buttons">
@@ -190,78 +200,92 @@
 
     <!-- JavaScript -->
     <script>
-        // Add product to the cart
-        function addToCart(imageSrc, name, price) {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const product = { imageSrc, productName: name, productPrice: price };
-            cart.push(product);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-        }
+     // Add product to the cart
+function addToCart(imageSrc, name, price) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const product = { imageSrc, productName: name, productPrice: price };
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+}
 
-        // Update the cart display
-        function updateCart() {
-            const cartItemsContainer = document.getElementById('cartItems');
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+// Update the cart display (for cart page or when cart is opened)
+function updateCart() {
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            cartItemsContainer.innerHTML = '';
-            cart.forEach((item, index) => {
-                const cartItem = document.createElement('div');
-                cartItem.classList.add('cart-item');
-                cartItem.innerHTML = `
-                    <img src="${item.imageSrc}" alt="${item.productName}">
-                    <h4>${item.productName}</h4>
-                    <p>${item.productPrice}</p>
-                    <button onclick="removeFromCart(${index})">Remove</button>
-                `;
-                cartItemsContainer.appendChild(cartItem);
-            });
+    cartItemsContainer.innerHTML = '';  // Clear the cart container first
 
-            // Update cart icon count
-            const cartIcon = document.querySelector('.cart-icon');
-            cartIcon.setAttribute('data-count', cart.length);
-        }
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <img src="${item.imageSrc}" alt="${item.productName}">
+            <h4>${item.productName}</h4>
+            <p>${item.productPrice}</p>
+            <button onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button> <!-- Bin icon -->
+        `;
+        cartItemsContainer.appendChild(cartItem);
+    });
 
-        // Remove product from the cart
-        function removeFromCart(index) {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.splice(index, 1);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-        }
+    // Update cart icon count
+    updateCartCount();
+}
 
-        // Show or hide the cart
-        function toggleCart() {
-            const cart = document.querySelector('.cart');
-            cart.style.display = cart.style.display === 'block' ? 'none' : 'block';
-            updateCart();
-        }
+// Remove product from the cart
+function removeFromCart(index) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Remove the item at the given index
+    cart.splice(index, 1);
+    
+    // Update the cart in localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Immediately update the cart display
+    updateCart();
+}
 
-        function redirectToOrderPage(imageSrc, name, price) {
-            const productInfo = { imageSrc, productName: name, productPrice: price };
-            localStorage.setItem('productInfo', JSON.stringify(productInfo));
-            window.location.href = 'order2.html';
-        }
+// Update cart icon count
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = cart.length;
+    const cartIcon = document.querySelector('.cart-icon');
+    cartIcon.setAttribute('data-count', cartCount);
+}
 
-        function redirectToFirstPage() {
-            window.location.href = 'Men.html';
-        }
+// Toggle the cart section visibility
+function toggleCart() {
+    const cartSection = document.getElementById('cartSection');
+    cartSection.style.display = (cartSection.style.display === 'none' || cartSection.style.display === '') ? 'block' : 'none';
+}
 
-        function redirectToThirdPage() {
-            window.location.href = 'Men3.html';
-        }
+// Redirect to order page
+function redirectToOrderPage(imageSrc, name, price) {
+    const productInfo = { imageSrc, productName: name, productPrice: price };
+    localStorage.setItem('productInfo', JSON.stringify(productInfo));
+    window.location.href = 'order2.html';
+}
 
-        function toggleMenu() {
-            const navLinks = document.querySelector(".nav-links");
-            navLinks.classList.toggle("active");
-        }
-    </script>
+// Redirect to second and third pages
+function redirectToFirstPage() {
+    window.location.href = 'Men.html';
+}
 
-    <!-- Cart Modal -->
-    <div class="cart">
-        <h2>Your Cart</h2>
-        <div id="cartItems" class="cart-items"></div>
-        <button class="order-button" onclick="window.location.href='checkout.html'">Checkout</button>
+function redirectToThirdPage() {
+    window.location.href = 'Men3.html';
+}
+
+// Toggle the navigation menu
+function toggleMenu() {
+    const navLinks = document.querySelector(".nav-links");
+    navLinks.classList.toggle("active");
+}
+
+// Call updateCart when the page loads to show cart contents
+document.addEventListener('DOMContentLoaded', updateCart);
+
+</script>
     </div>
 
 </body>

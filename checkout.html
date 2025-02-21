@@ -7,14 +7,83 @@
     <link rel="icon" href="Logo/Logo2.png">
     <link rel="stylesheet" href="sale.css">
     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Header with Logo and Title */
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 40px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-container h1 {
+            font-size: 30px;
+            color: #333;
+            margin-right: 20px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .header-container img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        /* Back Button with Arrow Icon */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #4CAF50;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 22px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .back-button:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .back-button i {
+            font-size: 22px; /* Larger arrow icon */
+        }
+
+        h2{
+            text-align: center;
+        }
+
+        .total-price {
+            text-align: end;
+        }
+        /* Checkout Container */
         .checkout-container {
             max-width: 900px;
             margin: 30px auto;
             padding: 20px;
-            background-color: #f4f4f4;
+            background-color: #fff;
             border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
+        /* Cart Item Styling */
         .cart-item {
             display: flex;
             align-items: center;
@@ -23,6 +92,7 @@
             padding: 10px;
             background-color: #fff;
             border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .cart-item img {
@@ -40,6 +110,7 @@
             margin: 0;
         }
 
+        /* Cart Summary */
         .cart-summary {
             padding: 20px;
             background-color: #fff;
@@ -52,6 +123,7 @@
             font-weight: bold;
         }
 
+        /* Checkout Form Styling */
         .checkout-form input, .checkout-form select, .checkout-form button {
             width: 100%;
             padding: 12px;
@@ -70,47 +142,59 @@
         .checkout-form button:hover {
             background-color: #45a049;
         }
+
+        /* Add some padding to ensure the button is not too close to the form */
+        .checkout-form {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="checkout-container">
+    <!-- Header with Logo and Checkout Title -->
+    <div class="header-container">
         <h1>Checkout</h1>
-        <div class="cart-summary">
-            <h2>Your Cart</h2>
-            <div id="cartItems" class="cart-items"></div>
-            <p class="total-price">Total Price: <span id="totalPrice">0 Lek</span></p>
-        </div>
+        <img src="Logo/Logo1.png" alt="Logo">
+    </div>
+
+    <!-- Back Button with Arrow Icon -->
+    <button class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <div class="checkout-container">
+        <h2>Your Cart <i class="fas fa-shopping-cart"></i></h2>
+        <div id="cartItems" class="cart-items"></div>
+        <p class="total-price">Total Price: <span id="totalPrice">0 Lek</span></p>
 
         <div class="checkout-form">
             <h2>Enter Your Information</h2>
-            <form id="checkoutForm" action="thankyou.html" method="POST">
-                <form id="orderForm" class="order-form">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-            
-                    <label for="city">City:</label>
-                    <select id="city" name="city" required>
-                        <option value="Tirana">Tirana</option>
-                        <option value="Durrës">Durrës</option>
-                        <option value="Vlorë">Vlorë</option>
-                        <option value="Shkodër">Shkodër</option>
-                        <option value="Elbasan">Elbasan</option>
-                        <option value="Fier">Fier</option>
-                        <option value="Korçë">Korçë</option>
-                        <option value="Berat">Berat</option>
-                        <option value="Lushnjë">Lushnjë</option>
-                        <option value="Pogradec">Pogradec</option>
-                    </select>
-            
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" required>
-            
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
-            </form>
-            
-                <button type="submit">Complete Checkout</button>
+
+            <form id="orderForm" class="order-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="city">City:</label>
+                <select id="city" name="city" required>
+                    <option value="Tirana">Tirana</option>
+                    <option value="Durrës">Durrës</option>
+                    <option value="Vlorë">Vlorë</option>
+                    <option value="Shkodër">Shkodër</option>
+                    <option value="Elbasan">Elbasan</option>
+                    <option value="Fier">Fier</option>
+                    <option value="Korçë">Korçë</option>
+                    <option value="Berat">Berat</option>
+                    <option value="Lushnjë">Lushnjë</option>
+                    <option value="Pogradec">Pogradec</option>
+                </select>
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+                <button type="button" onclick="placeOrder(event)">Complete Checkout <i class="fas fa-shopping-cart"></i></button>
             </form>
         </div>
     </div>
@@ -122,6 +206,7 @@
             const cartItemsContainer = document.getElementById('cartItems');
             const totalPriceElement = document.getElementById('totalPrice');
             let totalPrice = 0;
+            let cartSummary = "";
 
             cartItemsContainer.innerHTML = '';  // Clear any existing cart items
 
@@ -139,14 +224,76 @@
                 // Convert the price to a number and sum up the total price
                 const price = parseFloat(item.productPrice.replace(' Lek', '').replace(',', '.'));
                 totalPrice += price;
+
+                // Add product information to the cart summary
+                cartSummary += `${item.productName}: ${item.productPrice}\n`;
             });
+
+            // Add the total price and transport fee to the cart summary
+            const transportFee = 300;
+            totalPrice += transportFee;
+            cartSummary += `\nTotal Price: ${totalPrice.toFixed(2)} Lek\nTransport Fee: 300 Lek`;
 
             // Update the total price in the page
             totalPriceElement.textContent = `${totalPrice.toFixed(2)} Lek`;
+
+            // Store the cart summary to be included in the message
+            document.getElementById('cartSummary').textContent = cartSummary;
         }
 
         // Call loadCartItems function when the page loads
         window.onload = loadCartItems;
+
+        function placeOrder(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Collect form data
+            const name = document.getElementById("name").value;
+            const city = document.getElementById("city").value;
+            const address = document.getElementById("address").value;
+            const phone = document.getElementById("phone").value;
+
+            // Validate form fields
+            if (!name || !city || !address || !phone) {
+                alert("Please fill in all the required fields.");
+                return;
+            }
+
+            // Collect cart information for the message
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartSummary = "";
+            let totalPrice = 0;
+            cartItems.forEach(item => {
+                cartSummary += `${item.productName}: ${item.productPrice}\n`;
+                totalPrice += parseFloat(item.productPrice.replace(' Lek', '').replace(',', '.'));
+            });
+
+            const transportFee = 300;
+            totalPrice += transportFee;
+
+            // Construct the message
+            const message = `
+                  Name: ${name}
+                Phone: ${phone}
+                City: ${city}
+                Address: ${address}
+
+                  ${cartSummary}
+                
+                Total Price: ${totalPrice.toFixed(2)} Lek
+                Transport Fee: 300 Lek
+            `;
+
+            // Create a WhatsApp link
+            const whatsappLink = `https://wa.me/+355686694729?text=${encodeURIComponent(message)}`;
+
+            // Open the link in a new window
+            window.open(whatsappLink, '_blank');
+        }
+
+        function goBack() {
+            window.history.back();
+        }
     </script>
 
 </body>

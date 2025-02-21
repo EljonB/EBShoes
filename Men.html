@@ -11,7 +11,7 @@
         /* Cart Section Styles */
         .cart {
             display: none; /* Hidden by default */
-            position: absolute;
+            position: fixed;
             top: 60px; /* Adjust based on header height */
             right: 20px;
             background-color: #fff;
@@ -126,7 +126,7 @@
             <h3>Nike Air Force 1</h3>
             <p class="price">5000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men1.jpg', 'Nike Air Force 1', '5000 Lek')">Order Now</button>
-            <button onclick="addToCart('Images1/Men1.jpg', 'Nike Air Force 1', '5000 Lek')">Add to Cart</button>
+            <button onclick="addToCart('Images1/Men1.jpg', 'Nike Air Force 1', '5000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
         </div>
 
         <div class="product-box">
@@ -134,7 +134,7 @@
             <h3>Air Jordan 4</h3>
             <p class="price">6500 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men7.jpg', 'Air Jordan 4', '6500 Lek')">Order Now</button>
-            <button onclick="addToCart('Images1/Men7.jpg', 'Air Jordan 4', '6500 Lek')">Add to Cart</button>
+            <button onclick="addToCart('Images1/Men7.jpg', 'Air Jordan 4', '6500 Lek')"> <i class="fas fa-shopping-cart"></i></button>
         </div>
 
         <div class="product-box">
@@ -142,7 +142,7 @@
             <h3>Nike Air More</h3>
             <p class="price">7000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men8.jpg', 'Nike Air More', '7000 Lek')">Order Now</button>
-            <button onclick="addToCart('Images1/Men8.jpg', 'Nike Air More', '7000 Lek')">Add to Cart</button>
+            <button onclick="addToCart('Images1/Men8.jpg', 'Nike Air More', '7000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
         </div>
     </section>
 
@@ -160,7 +160,7 @@
         <div class="cart-items" id="cartItems">
             <!-- Dynamically added cart items will appear here -->
         </div>
-        <button class="order-button" onclick="window.location.href='checkout.html'">Checkout</button>
+        <button class="order-button" onclick="window.location.href='checkout.html'">Checkout  <i class="fas fa-shopping-cart"></i></button>
 
     </section>
 
@@ -175,93 +175,91 @@
     </footer>
 
     <script>
-        // Add product to the cart
-        function addToCart(imageSrc, name, price) {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const product = { imageSrc, productName: name, productPrice: price };
-            cart.push(product);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-        }
+       // Add product to the cart
+function addToCart(imageSrc, name, price) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const product = { imageSrc, productName: name, productPrice: price };
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+}
 
-        // Update the cart display
+// Update the cart display (for cart page or when cart is opened)
+function updateCart() {
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+    cartItemsContainer.innerHTML = '';  // Clear the cart container first
 
-        function updateCart() {
-            const cartItemsContainer = document.getElementById('cartItems');
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <img src="${item.imageSrc}" alt="${item.productName}">
+            <h4>${item.productName}</h4>
+            <p>${item.productPrice}</p>
+            <button onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button> <!-- Bin icon -->
+        `;
+        cartItemsContainer.appendChild(cartItem);
+    });
 
-            cartItemsContainer.innerHTML = '';
-            cart.forEach((item, index) => {
-                const cartItem = document.createElement('div');
-                cartItem.classList.add('cart-item');
-                cartItem.innerHTML = `
-                    <img src="${item.imageSrc}" alt="${item.productName}">
-                    <h4>${item.productName}</h4>
-                    <p>${item.productPrice}</p>
-                    <button onclick="removeFromCart(${index})">Remove</button>
-                `;
-                cartItemsContainer.appendChild(cartItem);
-            });
+    // Update cart icon count
+    updateCartCount();
+}
 
-            // Update cart icon count
-            const cartCount = cart.length;
-            const cartIcon = document.querySelector('.cart-icon');
-            cartIcon.setAttribute('data-count', cartCount);
-        }
+// Remove product from the cart
+function removeFromCart(index) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Remove the item at the given index
+    cart.splice(index, 1);
+    
+    // Update the cart in localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Immediately update the cart display
+    updateCart();
+}
 
-        // Remove product from the cart
-        function removeFromCart(index) {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.splice(index, 1);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-        }
+// Update cart icon count
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = cart.length;
+    const cartIcon = document.querySelector('.cart-icon');
+    cartIcon.setAttribute('data-count', cartCount);
+}
 
-        // Order the cart products
-        function orderCart() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            if (cart.length === 0) {
-                alert('Your cart is empty!');
-                return;
-            }
+// Toggle the cart section visibility
+function toggleCart() {
+    const cartSection = document.getElementById('cartSection');
+    cartSection.style.display = (cartSection.style.display === 'none' || cartSection.style.display === '') ? 'block' : 'none';
+}
 
-            // You can process the order here, e.g., redirect to an order confirmation page.
-            localStorage.removeItem('cart'); // Clear cart after order
-            alert('Order placed successfully!');
-            updateCart();
-        }
+// Redirect to order page
+function redirectToOrderPage(imageSrc, name, price) {
+    const productInfo = { imageSrc, productName: name, productPrice: price };
+    localStorage.setItem('productInfo', JSON.stringify(productInfo));
+    window.location.href = 'order2.html';
+}
 
-        // Toggle the cart section visibility
-        function toggleCart() {
-            const cartSection = document.getElementById('cartSection');
-            cartSection.style.display = (cartSection.style.display === 'none' || cartSection.style.display === '') ? 'block' : 'none';
-        }
+// Redirect to second and third pages
+function redirectToSecondPage() {
+    window.location.href = 'Men2.html';
+}
 
-        // Redirect to order page
-        function redirectToOrderPage(imageSrc, name, price) {
-            const productInfo = { imageSrc, productName: name, productPrice: price };
-            localStorage.setItem('productInfo', JSON.stringify(productInfo));
-            window.location.href = 'order2.html';
-        }
+function redirectToThirdPage() {
+    window.location.href = 'Men3.html';
+}
 
-        // Redirect to second and third pages
-        function redirectToSecondPage() {
-            window.location.href = 'Men2.html';
-        }
+// Toggle the navigation menu
+function toggleMenu() {
+    const navLinks = document.querySelector(".nav-links");
+    navLinks.classList.toggle("active");
+}
 
-        function redirectToThirdPage() {
-            window.location.href = 'Men3.html';
-        }
+// Call updateCart when the page loads to show cart contents
+document.addEventListener('DOMContentLoaded', updateCart);
 
-        // Toggle the navigation menu
-        function toggleMenu() {
-            const navLinks = document.querySelector(".nav-links");
-            navLinks.classList.toggle("active");
-        }
-
-        // Call updateCart when the page loads to show cart contents
-        document.addEventListener('DOMContentLoaded', updateCart);
     </script>
 
 </body>
