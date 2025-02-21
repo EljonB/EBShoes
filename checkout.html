@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Checkout - EBOSS BRAND</title>
+    <link rel="icon" href="Logo/Logo2.png">
+    <link rel="stylesheet" href="sale.css">
+    <style>
+        .checkout-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+
+        .cart-item h4 {
+            margin: 0;
+            flex: 1;
+        }
+
+        .cart-item p {
+            margin: 0;
+        }
+
+        .cart-summary {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .checkout-form input, .checkout-form select, .checkout-form button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .checkout-form button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .checkout-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-container">
+        <h1>Checkout</h1>
+        <div class="cart-summary">
+            <h2>Your Cart</h2>
+            <div id="cartItems" class="cart-items"></div>
+            <p class="total-price">Total Price: <span id="totalPrice">0 Lek</span></p>
+        </div>
+
+        <div class="checkout-form">
+            <h2>Enter Your Information</h2>
+            <form id="checkoutForm" action="thankyou.html" method="POST">
+                <form id="orderForm" class="order-form">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+            
+                    <label for="city">City:</label>
+                    <select id="city" name="city" required>
+                        <option value="Tirana">Tirana</option>
+                        <option value="Durrës">Durrës</option>
+                        <option value="Vlorë">Vlorë</option>
+                        <option value="Shkodër">Shkodër</option>
+                        <option value="Elbasan">Elbasan</option>
+                        <option value="Fier">Fier</option>
+                        <option value="Korçë">Korçë</option>
+                        <option value="Berat">Berat</option>
+                        <option value="Lushnjë">Lushnjë</option>
+                        <option value="Pogradec">Pogradec</option>
+                    </select>
+            
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" required>
+            
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+            </form>
+            
+                <button type="submit">Complete Checkout</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to load the cart items from localStorage and display them
+        function loadCartItems() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cartItems');
+            const totalPriceElement = document.getElementById('totalPrice');
+            let totalPrice = 0;
+
+            cartItemsContainer.innerHTML = '';  // Clear any existing cart items
+
+            // Loop through cart items and create HTML elements for each product
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${item.imageSrc}" alt="${item.productName}">
+                    <h4>${item.productName}</h4>
+                    <p>${item.productPrice}</p>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+
+                // Convert the price to a number and sum up the total price
+                const price = parseFloat(item.productPrice.replace(' Lek', '').replace(',', '.'));
+                totalPrice += price;
+            });
+
+            // Update the total price in the page
+            totalPriceElement.textContent = `${totalPrice.toFixed(2)} Lek`;
+        }
+
+        // Call loadCartItems function when the page loads
+        window.onload = loadCartItems;
+    </script>
+
+</body>
+</html>

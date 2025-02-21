@@ -7,6 +7,85 @@
     <link rel="icon" href="Logo/Logo2.png">
     <link rel="stylesheet" href="sale.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Cart Section Styles */
+        .cart {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 60px; /* Adjust based on header height */
+            right: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .cart h2 {
+            margin-bottom: 20px;
+        }
+
+        .cart-items {
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+
+        .cart-item h4 {
+            margin: 0;
+            flex: 1;
+        }
+
+        .cart-item button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .order-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Cart Icon */
+        .cart-icon {
+            font-size: 24px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .cart-icon::after {
+            content: attr(data-count);
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            padding: 2px 5px;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
 
@@ -31,6 +110,11 @@
                     <li><a href="Sale.html">Sale</a></li>
                 </ul>
             </nav>
+
+            <!-- Cart Icon (Shopping Trolley) -->
+            <div class="cart-icon" onclick="toggleCart()" data-count="0">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
         </div>
     </header>
 
@@ -41,6 +125,7 @@
             <h3>New Balance</h3>
             <p class="price">5000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men4.jpg', 'New Balance', '5000 Lek')">Order Now</button>
+            <button onclick="addToCart('Images1/Men4.jpg', 'New Balance', '5000 Lek')">Add to Cart</button>
         </div>
 
         <div class="product-box">
@@ -48,6 +133,7 @@
             <h3>Balenciaga</h3>
             <p class="price">6000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men5.jpg', 'Balenciaga', '6000 Lek')">Order Now</button>
+            <button onclick="addToCart('Images1/Men5.jpg', 'Balenciaga', '6000 Lek')">Add to Cart</button>
         </div>
 
         <div class="product-box">
@@ -55,6 +141,7 @@
             <h3>Adidas Yeezy</h3>
             <p class="price">5000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men6.jpg', 'Adidas Yeezy', '5000 Lek')">Order Now</button>
+            <button onclick="addToCart('Images1/Men6.jpg', 'Adidas Yeezy', '5000 Lek')">Add to Cart</button>
         </div>
 
         <div class="product-box">
@@ -62,6 +149,7 @@
             <h3>Nike Air Max 720</h3>
             <p class="price">6000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men10.jpg', 'Nike Air Max 720', '6000 Lek')">Order Now</button>
+            <button onclick="addToCart('Images1/Men10.jpg', 'Nike Air Max 720', '6000 Lek')">Add to Cart</button>
         </div>
 
         <div class="product-box">
@@ -69,6 +157,7 @@
             <h3>Alexander McQueen</h3>
             <p class="price">6000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Women11.jpg', 'Alexander McQueen', '6000 Lek')">Order Now</button>
+            <button onclick="addToCart('Images1/Women11.jpg', 'Alexander McQueen', '6000 Lek')">Add to Cart</button>
         </div>
 
         <div class="product-box">
@@ -76,6 +165,7 @@
             <h3>Yeezy Slide</h3>
             <p class="price">3000 Lek</p>
             <button onclick="redirectToOrderPage('Images1/Men11.jpg', 'Yeezy Slide', '3000 Lek')">Order Now</button>
+            <button onclick="addToCart('Images1/Men11.jpg', 'Yeezy Slide', '3000 Lek')">Add to Cart</button>
         </div>
     </section>
 
@@ -100,6 +190,53 @@
 
     <!-- JavaScript -->
     <script>
+        // Add product to the cart
+        function addToCart(imageSrc, name, price) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const product = { imageSrc, productName: name, productPrice: price };
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart();
+        }
+
+        // Update the cart display
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            cartItemsContainer.innerHTML = '';
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${item.imageSrc}" alt="${item.productName}">
+                    <h4>${item.productName}</h4>
+                    <p>${item.productPrice}</p>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+            });
+
+            // Update cart icon count
+            const cartIcon = document.querySelector('.cart-icon');
+            cartIcon.setAttribute('data-count', cart.length);
+        }
+
+        // Remove product from the cart
+        function removeFromCart(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart();
+        }
+
+        // Show or hide the cart
+        function toggleCart() {
+            const cart = document.querySelector('.cart');
+            cart.style.display = cart.style.display === 'block' ? 'none' : 'block';
+            updateCart();
+        }
+
         function redirectToOrderPage(imageSrc, name, price) {
             const productInfo = { imageSrc, productName: name, productPrice: price };
             localStorage.setItem('productInfo', JSON.stringify(productInfo));
@@ -119,6 +256,13 @@
             navLinks.classList.toggle("active");
         }
     </script>
+
+    <!-- Cart Modal -->
+    <div class="cart">
+        <h2>Your Cart</h2>
+        <div id="cartItems" class="cart-items"></div>
+        <button class="order-button" onclick="window.location.href='checkout.html'">Checkout</button>
+    </div>
 
 </body>
 </html>
