@@ -10,31 +10,117 @@
 	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="is-preload">
+<style>
+    /* Cart Section Styles */
+    .cart {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 60px; /* Adjust based on header height */
+        right: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 20px;
+        width: 300px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <a href="index.html" class="logo">
-                <img src="Logo/Logo2.png" alt="Logo">
-                <span>Women's Accessories</span>
-            </a>
+    .cart h2 {
+        margin-bottom: 20px;
+    }
 
-            <!-- Hamburger Menu -->
-            <div class="hamburger" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
+    .cart-items {
+        margin-bottom: 20px;
+    }
 
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="indexmen.html">Men</a></li>
-                    <li><a href="womenindex.html">Women</a></li>
-                    <li><a href="Sale.html">Sale</a></li>
-                </ul>
-            </nav>
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+
+    .cart-item img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+
+    .cart-item h4 {
+        margin: 0;
+        flex: 1;
+    }
+
+    .cart-item button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .order-button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Cart Icon */
+    .cart-icon {
+        font-size: 24px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .cart-icon::after {
+        content: attr(data-count);
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        padding: 2px 5px;
+        border-radius: 50%;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="index.html" class="logo">
+            <img src="Logo/Logo2.png" alt="Logo">
+            <span>Women's accessories</span>
+        </a>
+
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
         </div>
-    </header>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="indexmen.html">Men</a></li>
+                <li><a href="womenindex.html">Women</a></li>
+                <li><a href="Sale.html">Sale</a></li>
+            </ul>
+        </nav>
+
+        <!-- Cart Icon (Shopping Trolley) -->
+        <div class="cart-icon" onclick="toggleCart()" data-count="0">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+    </div>
+</header>
 
     <!-- Product Section -->
     <section class="products">
@@ -43,64 +129,74 @@
             <h3 id="productName1">Kulete YSL</h3>
             <p id="productPrice1">1500 Lek</p>
             <button onclick="redirectToOrderPage('productImage1', 'productName1', 'productPrice1')">Order Now</button>
+            <button onclick="addToCart('WACC Images/bag.10.jpeg', 'Kulete YSL', '1500 Lek')">Add to Cart</button>
         </div>
-
+    
         <div class="product-box">
             <img id="productImage2" src="WACC Images/hat.1.jpeg" alt="Kapele Chanel">
             <h3 id="productName2">Kapele Chanel</h3>
             <p id="productPrice2">2500 Lek</p>
             <button onclick="redirectToOrderPage('productImage2', 'productName2', 'productPrice2')">Order Now</button>
+            <button onclick="addToCart('WACC Images/hat.1.jpeg', 'Kapele Chanel', '2500 Lek')">Add to Cart</button>
         </div>
-
+    
         <div class="product-box">
             <img id="productImage3" src="WACC Images/hat.2.jpeg" alt="Kapele NY">
             <h3 id="productName3">Kapele NY</h3>
             <p id="productPrice3">2500 Lek</p>
             <button onclick="redirectToOrderPage('productImage3', 'productName3', 'productPrice3')">Order Now</button>
+            <button onclick="addToCart('WACC Images/hat.2.jpeg', 'Kapele NY', '2500 Lek')">Add to Cart</button>
         </div>
-
+    
         <div class="product-box">
             <img id="productImage4" src="WACC Images/acc.1.jpeg" alt="Vathe Van Cleef">
             <h3 id="productName4">Vathe Van Cleef</h3>
             <p id="productPrice4">1500 Lek</p>
             <button onclick="redirectToOrderPage('productImage4', 'productName4', 'productPrice4')">Order Now</button>
+            <button onclick="addToCart('WACC Images/acc.1.jpeg', 'Vathe Van Cleef', '1500 Lek')">Add to Cart</button>
         </div>
-
+    
         <div class="product-box">
             <img id="productImage9" src="WACC Images/acc.2.jpeg" alt="Byzykyj Van Cleef">
             <h3 id="productName9">Byzykyj Van Cleef</h3>
             <p id="productPrice9">2000 Lek</p>
             <button onclick="redirectToOrderPage('productImage9', 'productName9', 'productPrice9')">Order Now</button>
+            <button onclick="addToCart('WACC Images/acc.2.jpeg', 'Byzykyj Van Cleef', '2000 Lek')">Add to Cart</button>
         </div>
-
+    
         <div class="product-box">
             <img id="productImage5" src="WACC Images/glass.1.jpeg" alt="Syze LV">
             <h3 id="productName5">Syze LV</h3>
             <p id="productPrice5">4000 Lek</p>
             <button onclick="redirectToOrderPage('productImage5', 'productName5', 'productPrice5')">Order Now</button>
+            <button onclick="addToCart('WACC Images/glass.1.jpeg', 'Syze LV', '4000 Lek')">Add to Cart</button>
         </div>
-
+    
         <div class="product-box">
             <img id="productImage6" src="WACC Images/glass.2.jpeg" alt="Syze Valentino">
             <h3 id="productName6">Syze Valentino</h3>
             <p id="productPrice6">3500 Lek</p>
             <button onclick="redirectToOrderPage('productImage6', 'productName6', 'productPrice6')">Order Now</button>
+            <button onclick="addToCart('WACC Images/glass.2.jpeg', 'Syze Valentino', '3500 Lek')">Add to Cart</button>
         </div>
-
+    
         <div class="product-box">
             <img id="productImage7" src="WACC Images/glass.3.jpeg" alt="Syze DG">
             <h3 id="productName7">Syze DG</h3>
             <p id="productPrice7">4000 Lek</p>
             <button onclick="redirectToOrderPage('productImage7', 'productName7', 'productPrice7')">Order Now</button>
+            <button onclick="addToCart('WACC Images/glass.3.jpeg', 'Syze DG', '4000 Lek')">Add to Cart</button>
         </div>
-
+    
         <div class="product-box">
             <img id="productImage8" src="WACC Images/glass.4.jpeg" alt="Syze Balenciaga">
             <h3 id="productName8">Syze Balenciaga</h3>
             <p id="productPrice8">4000 Lek</p>
             <button onclick="redirectToOrderPage('productImage8', 'productName8', 'productPrice8')">Order Now</button>
+            <button onclick="addToCart('WACC Images/glass.4.jpeg', 'Syze Balenciaga', '4000 Lek')">Add to Cart</button>
         </div>
     </section>
+    
 
     <!-- Pagination Section -->
     <div class="switch-buttons">
@@ -110,37 +206,136 @@
 
 	<br><br>
 
+     <!-- Cart Section -->
+     <section class="cart" id="cartSection">
+        <h2>Your Cart</h2>
+        <div class="cart-items" id="cartItems">
+            <!-- Dynamically added cart items will appear here -->
+        </div>
+        <button class="order-button" onclick="window.location.href='checkout.html'">Checkout  <i class="fas fa-shopping-cart"></i></button>
+    
+    </section>
+    
     <!-- Footer -->
     <footer>
         <div class="social-links">
-            <a href="https://www.instagram.com/eb_shoes2/" class="fa-brands fa-instagram"></a>
-            <a href="https://www.tiktok.com/@eb_shoes_2" class="fa-brands fa-tiktok"></a>
-            <a href="https://wa.me/+355682126033" class="fa-brands fa-whatsapp"></a>
+            <a href="https://www.instagram.com/eboss_brand_al/" class="fa-brands fa-instagram"></a>
+            <a href="https://www.tiktok.com/@eboss_brand_al" class="fa-brands fa-tiktok"></a>
+            <a href="https://wa.me/+355686694729" class="fa-brands fa-whatsapp"></a>
             <a href="#" class="fa-brands fa-facebook"></a>
         </div>
     </footer>
-
+    
     <script>
-        function redirectToOrderPage(imageId, nameId, priceId) {
-            // Store product information in local storage
-            const productInfo = {
-                imageSrc: document.getElementById(imageId).src,
-                productName: document.getElementById(nameId).textContent,
-                productPrice: document.getElementById(priceId).textContent
-            };
-            localStorage.setItem('productInfo', JSON.stringify(productInfo));
-            window.location.href = 'order1.html';
+    // Add product to the cart
+    function addToCart(imageSrc, name, price) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const product = { imageSrc, productName: name, productPrice: price };
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCart();
+    }
+    
+    // Update the cart display (for cart page or when cart is opened)
+    function updateCart() {
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        cartItemsContainer.innerHTML = '';  // Clear the cart container first
+    
+        cart.forEach((item, index) => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${item.imageSrc}" alt="${item.productName}">
+                <h4>${item.productName}</h4>
+                <p>${item.productPrice}</p>
+                <button class="remove-btn" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button> <!-- Bin icon -->
+            `;
+            cartItemsContainer.appendChild(cartItem);
+        });
+    
+        // Update cart icon count
+        updateCartCount();
+    }
+    
+    // Remove product from the cart
+    function removeFromCart(index) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        // Remove the item at the given index
+        cart.splice(index, 1);
+    
+        // Update the cart in localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+    
+        // Immediately update the cart display
+        updateCart();
+    }
+    
+    // Update cart icon count
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCount = cart.length;
+        const cartIcon = document.querySelector('.cart-icon');
+        cartIcon.setAttribute('data-count', cartCount);
+    }
+    
+    // Toggle the cart section visibility when clicking the cart icon
+    function toggleCart(event) {
+        let cartSection = document.getElementById("cartSection");
+    
+        cartSection.style.display = (cartSection.style.display === 'none' || cartSection.style.display === '') ? 'block' : 'none';
+    
+        // Stop propagation to prevent closing when clicking the cart icon
+        event.stopPropagation();
+    }
+    
+    // Ensure clicking outside the cart closes it, but clicking inside keeps it open
+    document.addEventListener("click", function (event) {
+        let cart = document.getElementById("cartSection"); // The cart container
+        let cartIcon = document.querySelector(".cart-icon"); // The cart icon button
+    
+        // Check if the clicked element is NOT inside the cart and is NOT the cart icon
+        if (!cart.contains(event.target) && !cartIcon.contains(event.target)) {
+            cart.style.display = "none";
         }
-
-        function redirectToFirstPage() {
-            window.location.href = 'accw.html';
-        }
-
-        function toggleMenu() {
-            const navLinks = document.querySelector(".nav-links");
-            navLinks.classList.toggle("active");
-        }
+    });
+    
+    // Prevent closing the cart when clicking inside it
+    document.getElementById("cartSection").addEventListener("click", function (event) {
+        event.stopPropagation(); // Stops the event from reaching the document click listener
+    });
+    
+    // Redirect to order page
+    function redirectToOrderPage(imageSrc, name, price) {
+        const productInfo = { imageSrc, productName: name, productPrice: price };
+        localStorage.setItem('productInfo', JSON.stringify(productInfo));
+        window.location.href = 'order2.html';
+    }
+    
+    // Redirect to second and third pages
+    function redirectToFirstPage() {
+        window.location.href = 'accw.html';
+    }
+    
+    
+    
+    // Toggle the navigation menu
+    function toggleMenu() {
+        const navLinks = document.querySelector(".nav-links");
+        navLinks.classList.toggle("active");
+    }
+    
+    // Call updateCart when the page loads to show cart contents
+    document.addEventListener('DOMContentLoaded', updateCart);
+    
+    
+    
     </script>
-
-</body>
-</html>
+    
+    </body>
+    </html>
+    
+    
+      

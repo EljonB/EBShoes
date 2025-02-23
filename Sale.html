@@ -200,103 +200,132 @@ border-radius: 50%;
 
 </section>
 
+  <!-- Cart Section -->
+  <section class="cart" id="cartSection">
+    <h2>Your Cart</h2>
+    <div class="cart-items" id="cartItems">
+        <!-- Dynamically added cart items will appear here -->
+    </div>
+    <button class="order-button" onclick="window.location.href='checkout.html'">Checkout  <i class="fas fa-shopping-cart"></i></button>
+
+</section>
+
 <!-- Footer -->
 <footer>
     <div class="social-links">
-        <a href="https://www.instagram.com/eb_shoes2/" class="fa-brands fa-instagram"></a>
-        <a href="https://www.tiktok.com/@eb_shoes_2" class="fa-brands fa-tiktok"></a>
-        <a href="https://wa.me/+355682126033" class="fa-brands fa-whatsapp"></a>
+        <a href="https://www.instagram.com/eboss_brand_al/" class="fa-brands fa-instagram"></a>
+        <a href="https://www.tiktok.com/@eboss_brand_al" class="fa-brands fa-tiktok"></a>
+        <a href="https://wa.me/+355686694729" class="fa-brands fa-whatsapp"></a>
         <a href="#" class="fa-brands fa-facebook"></a>
     </div>
 </footer>
 
 <script>
-   // Add product to the cart
+// Add product to the cart
 function addToCart(imageSrc, name, price) {
-const cart = JSON.parse(localStorage.getItem('cart')) || [];
-const product = { imageSrc, productName: name, productPrice: price };
-cart.push(product);
-localStorage.setItem('cart', JSON.stringify(cart));
-updateCart();
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const product = { imageSrc, productName: name, productPrice: price };
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
 }
 
 // Update the cart display (for cart page or when cart is opened)
 function updateCart() {
-const cartItemsContainer = document.getElementById('cartItems');
-const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-cartItemsContainer.innerHTML = '';  // Clear the cart container first
+    cartItemsContainer.innerHTML = '';  // Clear the cart container first
 
-cart.forEach((item, index) => {
-    const cartItem = document.createElement('div');
-    cartItem.classList.add('cart-item');
-    cartItem.innerHTML = `
-        <img src="${item.imageSrc}" alt="${item.productName}">
-        <h4>${item.productName}</h4>
-        <p>${item.productPrice}</p>
-        <button onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button> <!-- Bin icon -->
-    `;
-    cartItemsContainer.appendChild(cartItem);
-});
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <img src="${item.imageSrc}" alt="${item.productName}">
+            <h4>${item.productName}</h4>
+            <p>${item.productPrice}</p>
+            <button class="remove-btn" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button> <!-- Bin icon -->
+        `;
+        cartItemsContainer.appendChild(cartItem);
+    });
 
-// Update cart icon count
-updateCartCount();
+    // Update cart icon count
+    updateCartCount();
 }
 
 // Remove product from the cart
 function removeFromCart(index) {
-const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// Remove the item at the given index
-cart.splice(index, 1);
+    // Remove the item at the given index
+    cart.splice(index, 1);
 
-// Update the cart in localStorage
-localStorage.setItem('cart', JSON.stringify(cart));
+    // Update the cart in localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
 
-// Immediately update the cart display
-updateCart();
+    // Immediately update the cart display
+    updateCart();
 }
 
 // Update cart icon count
 function updateCartCount() {
-const cart = JSON.parse(localStorage.getItem('cart')) || [];
-const cartCount = cart.length;
-const cartIcon = document.querySelector('.cart-icon');
-cartIcon.setAttribute('data-count', cartCount);
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = cart.length;
+    const cartIcon = document.querySelector('.cart-icon');
+    cartIcon.setAttribute('data-count', cartCount);
 }
 
-// Toggle the cart section visibility
-function toggleCart() {
-const cartSection = document.getElementById('cartSection');
-cartSection.style.display = (cartSection.style.display === 'none' || cartSection.style.display === '') ? 'block' : 'none';
+// Toggle the cart section visibility when clicking the cart icon
+function toggleCart(event) {
+    let cartSection = document.getElementById("cartSection");
+
+    cartSection.style.display = (cartSection.style.display === 'none' || cartSection.style.display === '') ? 'block' : 'none';
+
+    // Stop propagation to prevent closing when clicking the cart icon
+    event.stopPropagation();
 }
+
+// Ensure clicking outside the cart closes it, but clicking inside keeps it open
+document.addEventListener("click", function (event) {
+    let cart = document.getElementById("cartSection"); // The cart container
+    let cartIcon = document.querySelector(".cart-icon"); // The cart icon button
+
+    // Check if the clicked element is NOT inside the cart and is NOT the cart icon
+    if (!cart.contains(event.target) && !cartIcon.contains(event.target)) {
+        cart.style.display = "none";
+    }
+});
+
+// Prevent closing the cart when clicking inside it
+document.getElementById("cartSection").addEventListener("click", function (event) {
+    event.stopPropagation(); // Stops the event from reaching the document click listener
+});
 
 // Redirect to order page
 function redirectToOrderPage(imageSrc, name, price) {
-const productInfo = { imageSrc, productName: name, productPrice: price };
-localStorage.setItem('productInfo', JSON.stringify(productInfo));
-window.location.href = 'order2.html';
+    const productInfo = { imageSrc, productName: name, productPrice: price };
+    localStorage.setItem('productInfo', JSON.stringify(productInfo));
+    window.location.href = 'order2.html';
 }
 
-// Redirect to second and third pages
-function redirectToSecondPage() {
-window.location.href = 'Men2.html';
-}
 
-function redirectToThirdPage() {
-window.location.href = 'Men3.html';
-}
+
 
 // Toggle the navigation menu
 function toggleMenu() {
-const navLinks = document.querySelector(".nav-links");
-navLinks.classList.toggle("active");
+    const navLinks = document.querySelector(".nav-links");
+    navLinks.classList.toggle("active");
 }
 
 // Call updateCart when the page loads to show cart contents
 document.addEventListener('DOMContentLoaded', updateCart);
 
+
+
 </script>
 
 </body>
 </html>
+
+
+  
