@@ -1,0 +1,712 @@
+[
+  {
+    "id": 1,
+    "name": "Adidas Adilette",
+    "priceNew": 2500,
+    "priceOld": 6500,
+    "image": "Images1/Men17.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 2,
+    "name": "Adidas Adilette",
+    "priceNew": 2500,
+    "priceOld": 6500,
+    "image": "Images1/Men18.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 3,
+    "name": "Yeezy Slide",
+    "priceNew": 3000,
+    "priceOld": 7000,
+    "image": "Images1/Men11.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 4,
+    "name": "Yeezy Slide",
+    "priceNew": 3000,
+    "priceOld":7000,
+    "image": "Images1/Men19.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 5,
+    "name": "Adidas Yeezy",
+    "priceNew": 12000,
+    "priceOld": "",
+    "image": "Images1/Men6.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 6,
+    "name": "Adidas Yeezy",
+    "priceNew": 12000,
+    "priceOld": 19000,
+    "image": "Images1/Men20.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 7,
+    "name": "Adidas Yeezy",
+    "priceNew": 12000,
+    "priceOld":19000,
+    "image": "Images1/Men21.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 8,
+    "name": "Nike Air Force 1",
+    "priceNew": 8000,
+    "priceOld": "",
+    "image": "Images1/Men1.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 9,
+    "name": "New Balance",
+    "priceNew": 11000,
+    "priceOld": 19000,
+    "image": "Images1/Men4.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 10,
+    "name": "Balenciaga",
+    "priceNew": 14000,
+    "priceOld": 28000,
+    "image": "Images1/Men5.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 11,
+    "name": "Nike Air Max 720",
+    "priceNew": 7500,
+    "priceOld": "",
+    "image": "Images1/Men10.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 12,
+    "name": "Alexander McQueen",
+    "priceNew": 12000,
+    "priceOld": 20000,
+    "image": "Images1/Women11.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 13,
+    "name": "Air Jordan 4",
+    "priceNew": 6500,
+    "priceOld": "",
+    "image": "Images1/Men7.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 14,
+    "name": "Nike Air More",
+    "priceNew": 7000,
+    "priceOld": "",
+    "image": "Images1/Men8.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 15,
+    "name": "Nike Air Max TN",
+    "priceNew": 5000,
+    "priceOld": 9000,
+    "image": "Images1/Women2.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 16,
+    "name": "Air Jordan One",
+    "priceNew": 6000,
+    "priceOld": "",
+    "image": "Images1/Men12.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 17,
+    "name": "Nike Air Force",
+    "priceNew": 7500,
+    "priceOld": "",
+    "image": "Images1/Men13.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 18,
+    "name": "Nike Air More",
+    "priceNew": 6000,
+    "priceOld": "",
+    "image": "Images1/Men14.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 19,
+    "name": "Air Jordan One",
+    "priceNew": 6000,
+    "priceOld": "",
+    "image": "Images1/Men15.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 20,
+    "name": "Air Jordan Low",
+    "priceNew": 4000,
+    "priceOld": 8000,
+    "image": "Images1/Men16.jpg",
+    "category": "mens-sneakers"
+  },
+  {
+    "id": 21,
+    "name": "UGGs",
+    "priceNew": 13000,
+    "priceOld": 19000,
+    "image": "Images1/Women12.jpeg",
+    "category": "women-sneakers"
+  },
+  {
+    "id": 22,
+    "name": "UGGs",
+    "priceNew": 9000,
+    "priceOld": 12000,
+    "image": "Images1/Women13.jpeg",
+    "category": "women-sneakers"
+  },
+  {
+    "id": 23,
+    "name": "UGGs",
+    "priceNew": 11000,
+    "priceOld": 16000,
+    "image": "Images1/Women14.jpeg",
+    "category": "women-sneakers"
+  },
+  {
+    "id": 24,
+    "name": "UGGs",
+    "priceNew": 9000,
+    "priceOld": "12000",
+    "image": "Images1/Women15.jpeg",
+    "category": "women-sneakers"
+  },
+  {
+    "id": 25,
+    "name": "Saint Glam Heels",
+    "priceNew": 3500,
+    "priceOld": "",
+    "image": "Images1/Women16.jpg",
+    "category": "women-sneakers"
+  },
+  {
+    "id": 26,
+    "name": "Saint Glam Heels",
+    "priceNew": 3500,
+    "priceOld": "",
+    "image": "Images1/Women17.jpg",
+    "category": "women-sneakers"
+  },
+  {
+    "id": 27,
+    "name": "UGGs",
+    "priceNew": 9000,
+    "priceOld": "12000",
+    "image": "Images1/Women1.jpg",
+    "category": "women-sneakers"
+  },
+  {
+    "id": 28,
+    "name": "UGGs",
+    "priceNew": 9000,
+    "priceOld": "12000",
+    "image": "Images1/Women3.jpg",
+    "category": "women-sneakers"
+  },
+  {
+    "id": 29,
+    "name": "Adidas Yeezy",
+    "priceNew": 9000,
+    "priceOld": "18000",
+    "image":"Images1/Men21.jpg",
+    "category": "women-sneakers"
+  },
+  {
+  "id": 30,
+  "name": "Adidas Yeezy",
+  "priceNew": 9000,
+  "priceOld": 18000,
+  "image": "Images1/Men6.jpg",
+  "category": "women-sneakers"
+},
+{
+  "id": 31,
+  "name": "New Balance",
+  "priceNew": 6000,
+  "priceOld": 9000,
+  "image": "Images1/women18.jpg",
+  "category": "women-sneakers"
+},
+{
+  "id": 32,
+  "name": "New Balance",
+  "priceNew": 6000,
+  "priceOld": 9000,
+  "image": "Images1/women19.jpg",
+  "category": "women-sneakers"
+},
+{
+  "id": 33,
+  "name": "New Balance",
+  "priceNew": 6000,
+  "priceOld": 9000,
+  "image": "Images1/women20.jpg",
+  "category": "women-sneakers"
+},
+{
+  "id": 34,
+  "name": "New Balance",
+  "priceNew": 6000,
+  "priceOld": 9000,
+  "image": "Images1/women21.jpg",
+  "category": "women-sneakers"
+},
+{
+  "id": 35,
+  "name": "Nike Air Force",
+  "priceNew": 5000,
+  "priceOld": 12000,
+  "image": "Images1/women22.jpg",
+  "category": "women-sneakers"
+},
+{
+  "id": 36,
+  "name": "Nike Air Force",
+  "priceNew": 5000,
+  "priceOld": 12000,
+  "image": "Images1/women23.jpg",
+  "category": "women-sneakers"
+},
+{
+  "id": 37,
+  "name": "UGGs",
+  "priceNew": 9000,
+  "priceOld": 12000,
+  "image": "Images1/women8.jpg",
+  "category": "women-sneakers"
+},
+{
+  "id": 38,
+  "name": "UGGs",
+  "priceNew": 9000,
+  "priceOld": 12000,
+  "image": "Images1/women7.jpg",
+  "category": "women-sneakers"
+},
+{
+  "id": 39,
+  "name": "Adidas Spezial",
+  "priceNew": 6500,
+  "priceOld": 12000,
+  "image": "Images1/women24.jpg",
+  "category": "women-sneakers"
+},
+
+{
+  "id": 40,
+  "name": "Adidas Gazelle",
+  "priceNew": 4000,
+  "priceOld": 8000,
+  "image": "Images1/women25.jpg",
+  "category": "women-sneakers"
+},
+{
+  "id": 42,
+  "name": " Armani Exchange",
+  "priceNew": 8500,
+  "priceOld":"" ,
+  "image": "ACC images/acc1.jpeg",
+  "category": "men-acc"
+},
+{
+  "id": 43,
+  "name": "Karl Lagerfeld",
+  "priceNew": 6500,
+  "priceOld": "",
+  "image": "ACC images/acc2.jpeg",
+  "category": "men-acc"
+},
+{
+  "id": 44,
+  "name": "Hugo",
+  "priceNew": 7500,
+  "priceOld": "",
+  "image": "ACC images/acc3.jpeg",
+  "category": "men-acc"
+},
+{
+  "id": 41,
+  "name": "Guess",
+  "priceNew": 9500,
+  "priceOld": "",
+  "image": "ACC images/acc4.jpeg",
+  "category": "men-acc"
+},
+{
+  "id": 45,
+  "name": "Calvin Klein",
+  "priceNew": 11900,
+  "priceOld":"",
+  "image": "ACC images/acc5.jpeg",
+  "category": "men-acc"
+},
+{
+  "id": 46,
+  "name": "Hugo",
+  "priceNew": 9900,
+  "priceOld": "",
+  "image": "ACC images/acc6.jpeg",
+  "category": "men-acc"
+},
+{
+  "id": 47,
+  "name": "Michael Kors",
+  "priceNew": 7500,
+  "priceOld": "",
+  "image": "ACC images/acc7.jpeg",
+  "category": "men-acc"
+},
+{
+  "id": 48,
+  "name": "Alviero Martini",
+  "priceNew": 14900,
+  "priceOld": "",
+  "image": "ACC images/acc8.jpeg",
+  "category": "men-acc"
+},
+{
+  "id": 49,
+  "name": "Tommy Hilifiger",
+  "priceNew":8900,
+  "priceOld": "",
+  "image": "ACC images/acc9.jpeg",
+  "category": "men-acc"
+},
+{
+  "id": 50,
+  "name": "Karl Lagerfeld",
+  "priceNew": 23900,
+  "priceOld": "",
+  "image": "ACC images/acc10.jpeg",
+  "category": "men-acc"
+},
+{
+  "id": 51,
+  "name": "Hugo",
+  "priceNew": "10900",
+  "priceOld": "",
+  "image": "men-c-img/men18.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 52,
+  "name": "Hugo",
+  "priceNew": "17900",
+  "priceOld": "",
+  "image": "men-c-img/men2.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 53,
+  "name": "Hugo",
+  "priceNew": "6500",
+  "priceOld": "",
+  "image": "men-c-img/men3.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 54,
+  "name": "Hugo",
+  "priceNew": "6500",
+  "priceOld": "",
+  "image": "men-c-img/men4.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 55,
+  "name": "Antony Morato",
+  "priceNew": "9900",
+  "priceOld": "",
+  "image": "men-c-img/men5.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 56,
+  "name": " Armani Exchange",
+  "priceNew": "11500",
+  "priceOld": "",
+  "image": "men-c-img/men6.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 57,
+  "name": "Hugo",
+  "priceNew": "5900",
+  "priceOld": "",
+  "image": "men-c-img/men7.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 58,
+  "name": "Just Cavalli",
+  "priceNew": "7900",
+  "priceOld": "",
+  "image": "men-c-img/men8.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 59,
+  "name": "Tommy Hilifiger",
+
+  "priceNew": "10900",
+  "priceOld": "",
+  "image": "men-c-img/men9.jpeg",
+  "category": "men-clothes"
+},
+
+{
+  "id": 60,
+  "name": "Antony Morato",
+  "priceNew": "6500",
+  "priceOld": "",
+  "image": "men-c-img/men10.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 61,
+  "name": "Calvin Klein",
+  "priceNew": "7500",
+  "priceOld": "",
+  "image": "men-c-img/men11.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 62,
+  "name": "Diesel",
+  "priceNew": "9500",
+  "priceOld": "",
+  "image": "men-c-img/men12.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 63,
+  "name": " Armani Exchange",
+  "priceNew": "7500",
+  "priceOld": "",
+  "image": "men-c-img/men13.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 64,
+  "name": "Emporio Armani",
+  "priceNew": "16900",
+  "priceOld": "",
+  "image": "men-c-img/men14.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 65,
+  "name": "Emporio Armani",
+  "priceNew": "16900",
+  "priceOld": "",
+  "image": "men-c-img/men15.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 66,
+  "name": "Calvin Klein",
+  "priceNew": "13500",
+  "priceOld": "",
+  "image": "men-c-img/men16.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 67,
+  "name": "Siksilk",
+  "priceNew": "8000",
+  "priceOld": "",
+  "image": "men-c-img/men17.jpeg",
+  "category": "men-clothes"
+}
+,
+{
+  "id": 68,
+  "name": "Colmar",
+  "priceNew": "17900",
+  "priceOld": "",
+  "image": "men-c-img/men1.jpeg",
+  "category": "men-clothes"
+},
+{
+  "id": 69,
+  "name": "Pinko",
+  "priceNew": "10900",
+  "priceOld": "",
+  "image": "wacc-img/wacc1.jpeg",
+  "category": "women-acc"
+},
+{
+  "id": 70,
+  "name": "Pinko ",
+  "priceNew": "12000",
+  "priceOld": "",
+  "image": "wacc-img/wacc2.jpeg",
+  "category": "women-acc"
+},
+{
+  "id": 71,
+  "name": "Tommy Hilifiger",
+  "priceNew": "12000",
+  "priceOld": "",
+  "image": "wacc-img/wacc10.jpeg",
+  "category": "women-acc"
+},
+{
+  "id": 72,
+  "name": " Armani Exchange",
+  "priceNew": "12900",
+  "priceOld": "",
+  "image": "wacc-img/wacc4.jpeg",
+  "category": "women-acc"
+},
+{
+  "id": 73,
+  "name": "Valentino",
+  "priceNew": "10900",
+  "priceOld": "",
+  "image": "wacc-img/wacc5.jpeg",
+  "category": "women-acc"
+},
+{
+  "id": 74,
+  "name": "Valentino",
+  "priceNew": "10900",
+  "priceOld": "",
+  "image": "wacc-img/wacc6.jpeg",
+  "category": "women-acc"
+},
+{
+  "id": 75,
+  "name": "Karl Lagerfeld",
+  "priceNew": "9900",
+  "priceOld": "",
+  "image": "wacc-img/wacc7.jpeg",
+  "category": "women-acc"
+},
+{
+  "id": 76,
+  "name": " Armani Exchange",
+  "priceNew": "12900",
+  "priceOld": "",
+  "image": "wacc-img/wacc8.jpeg",
+  "category": "women-acc"
+},
+{
+  "id": 77,
+  "name": " Armani Exchange",
+  "priceNew": "12900",
+  "priceOld": "",
+  "image": "wacc-img/wacc9.jpeg",
+  "category": "women-acc"
+},
+{
+  "id": 78,
+  "name": "Calvin Klein",
+  "priceNew": "8000",
+  "priceOld": "",
+  "image": "wacc-img/wacc3.jpeg",
+  "category": "women-acc"
+},
+{
+  "id": 79,
+  "name": "Xhakete ARMANI",
+  "priceNew": "12000",
+  "priceOld": "",
+  "image": "women-c-img/wc1.jpeg",
+  "category": "women-clothes"
+},
+{
+  "id": 80,
+  "name": "Boohoo SET",
+  "priceNew": "8900",
+  "priceOld": "",
+  "image": "women-c-img/wc6.jpeg",
+  "category": "women-clothes"
+},
+{
+  "id": 81,
+  "name": "River Island",
+  "priceNew": "8900",
+  "priceOld": "",
+  "image": "women-c-img/wc3.jpeg",
+  "category": "women-clothes"
+},
+{
+  "id": 82,
+  "name": "River Island",
+  "priceNew": "9500",
+  "priceOld": "",
+  "image": "women-c-img/wc4.jpeg",
+  "category": "women-clothes"
+},
+{
+  "id": 83,
+  "name": "Karl Lagerfeld",
+  "priceNew": "8000",
+  "priceOld": "",
+  "image": "women-c-img/wc5.jpeg",
+  "category": "women-clothes"
+},
+{
+  "id": 84,
+  "name": "Xhakete ARMANI",
+  "priceNew": "12000",
+  "priceOld": "",
+  "image": "women-c-img/wc2.jpeg",
+  "category": "women-clothes"
+},
+{
+  "id": 85,
+  "name": "Fustan GUESS",
+  "priceNew": "9900",
+  "priceOld": "",
+  "image": "women-c-img/wc7.jpeg",
+  "category": "women-clothes"
+},
+{
+  "id": 86,
+  "name": "Guess SET",
+  "priceNew": "11900",
+  "priceOld": "",
+  "image": "women-c-img/wc8.jpeg",
+  "category": "women-clothes"
+},
+{
+  "id": 87,
+  "name": "Xhakete RALPH LAUREN",
+  "priceNew": "9900",
+  "priceOld": "",
+  "image": "women-c-img/wc9.jpeg",
+  "category": "women-clothes"
+},
+{
+  "id": 88,
+  "name": "Xhakete RALPH LAUREN",
+  "priceNew": "9900",
+  "priceOld": "",
+  "image": "women-c-img/wc10.jpeg",
+  "category": "women-clothes"
+}
+
+]
+

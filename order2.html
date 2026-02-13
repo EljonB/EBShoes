@@ -1,111 +1,420 @@
-<!DOCTYPE HTML>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="sq">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <title>EBOSS BRAND - Order</title>
-    <link rel="icon" href="Logo/Logo2.png">
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/order.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Order - EBOSS BRAND</title>
+
+<link rel="icon" href="Logo/Logo2.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:"Poppins",sans-serif;
+    }
+
+    body{
+        background:#fff;
+        padding-bottom:120px;
+    }
+
+    /* HEADER */
+    header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:15px 20px;
+        border-bottom:1px solid #eee;
+        position:relative;
+        z-index:10;
+    }
+
+    .menu-icon{ font-size:26px; cursor:pointer; }
+    .logo{ font-size:28px; font-weight:700; }
+
+    .cart-icon{
+        font-size:22px;
+        position:relative;
+        cursor:pointer;
+    }
+    .cart-icon::after{
+        content:attr(data-count);
+        position:absolute;
+        top:-8px;
+        right:-10px;
+        background:red;
+        color:#fff;
+        width:18px;
+        height:18px;
+        font-size:11px;
+        border-radius:50%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+    .cart-icon:not([data-count])::after{ display:none; }
+
+    /* SIDE MENU */
+    .side-menu{
+        width:230px;
+        background:#222;
+        height:100%;
+        position:fixed;
+        left:-230px;
+        top:0;
+        padding-top:70px;
+        transition:0.3s;
+        z-index:9;
+    }
+    .side-menu.open{ left:0; }
+    .side-menu a{
+        color:#fff;
+        padding:15px 20px;
+        font-size:18px;
+        display:block;
+        text-decoration:none;
+    }
+    .side-menu a:hover{ background:#333; }
+
+    /* PRODUCT */
+    .product-container{
+        margin:25px;
+        background:#f6f6f6;
+        padding:15px;
+        border-radius:12px;
+        box-shadow:0 3px 6px rgba(0,0,0,0.08);
+    }
+    .product-container img{
+        width:100%;
+        border-radius:10px;
+    }
+    .product-name{
+        font-size:20px;
+        margin-top:10px;
+        font-weight:600;
+    }
+
+    .price-box{
+        margin-top:5px;
+        font-size:18px;
+    }
+    .old-price{
+        text-decoration:line-through;
+        color:#777;
+        margin-right:8px;
+    }
+    .new-price{
+        color:#e53935;
+        font-weight:700;
+    }
+
+    .transport{
+        font-size:16px;
+        margin-top:8px;
+        color:#444;
+        font-weight:600;
+    }
+
+    .final-total{
+        font-size:18px;
+        margin-top:5px;
+        color:#000;
+        font-weight:700;
+    }
+
+    /* FORM */
+    form{
+        margin:25px;
+        background:#f6f6f6;
+        padding:15px;
+        border-radius:12px;
+        box-shadow:0 3px 6px rgba(0,0,0,0.08);
+    }
+    form label{
+        font-weight:600;
+        margin-top:10px;
+        display:block;
+    }
+    form input, form select{
+        width:100%;
+        padding:10px;
+        border:1px solid #ddd;
+        border-radius:6px;
+        margin-top:5px;
+        margin-bottom:10px;
+        font-size:15px;
+    }
+
+    .whatsapp-btn{
+        width:100%;
+        padding:12px;
+        background:#25D366;
+        border:none;
+        color:white;
+        font-size:18px;
+        border-radius:8px;
+        margin-top:10px;
+        cursor:pointer;
+        font-weight:600;
+    }
+
+    /* CART */
+    #cartSection{
+        position:fixed;
+        right:10px;
+        top:70px;
+        width:280px;
+        background:white;
+        border:1px solid #ddd;
+        border-radius:8px;
+        padding:10px;
+        box-shadow:0 3px 10px rgba(0,0,0,0.15);
+        display:none;
+        max-height:60vh;
+        overflow-y:auto;
+        z-index:20;
+    }
+    #cartItems img{
+        width:55px !important;
+        height:55px !important;
+        border-radius:6px;
+        object-fit:cover;
+    }
+    .cart-item{
+        display:grid;
+        grid-template-columns:55px 1fr auto;
+        gap:10px;
+        padding:6px 0;
+        border-bottom:1px solid #eee;
+    }
+    .checkout-btn{
+        margin-top:8px;
+        width:100%;
+        padding:10px 0;
+        border:none;
+        background:#111;
+        color:white;
+        border-radius:6px;
+        font-size:14px;
+    }
+
+    /* FOOTER */
+    footer{
+        background:#111;
+        color:#ccc;
+        text-align:center;
+        padding:20px 10px;
+        margin-top:40px;
+    }
+    footer .icons{
+        list-style:none;
+        display:flex;
+        justify-content:center;
+        gap:15px;
+    }
+    footer .icons li a{
+        color:#ccc;
+        font-size:22px;
+        text-decoration:none;
+    }
+    .logo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+</style>
 </head>
 
 <body>
-    <button id="backButton" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
 
-    <form id="orderForm" class="order-form">
-        <img id="productImage" alt="Product Image" class="product-image"><br><br>
-        <h3 id="productName" class="product-name">Product Name</h3>
-        <p id="priceContainer" class="price-container">
-            <span class="old-price" id="oldPrice">Old Price</span>
-            <span class="new-price" id="productPrice">Product Price</span>
-        </p>
+<!-- HEADER -->
+<header>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    <a href="index.html" class="logo-link">
+    <div class="logo">eBOSS</div>
+</a>
 
-        <!-- Shoe Size Selection -->
-        <label for="shoeSize">Shoe Size:</label>
-        <select id="shoeSize" name="shoeSize" required>
-            <option value="" disabled selected>Select Size</option>
-            <option value="36">36</option>
-            <option value="37">37</option>
-            <option value="38">38</option>
-            <option value="39">39</option>
-            <option value="40">40</option>
-            <option value="41">41</option>
-            <option value="42">42</option>
-            <option value="43">43</option>
-            <option value="44">44</option>
-            <option value="45">45</option>
-        </select>
+    <div class="cart-icon" onclick="toggleCart(event)"><i class="fas fa-shopping-cart"></i></div>
+</header>
 
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+    <a href="index.html">Home</a>
+    <a href="index1men.html">Meshkuj</a>
+    <a href="index2women.html">Femra</a>
+    <a href="Sale.html">Sale</a>
+</div>
 
-        <label for="city">City:</label>
-        <select id="city" name="city" required>
-            <option value="Tirana">Tirana</option>
-            <option value="Durrës">Durrës</option>
-            <option value="Vlorë">Vlorë</option>
-            <option value="Shkodër">Shkodër</option>
-            <option value="Elbasan">Elbasan</option>
-            <option value="Fier">Fier</option>
-            <option value="Korçë">Korçë</option>
-            <option value="Berat">Berat</option>
-            <option value="Lushnjë">Lushnjë</option>
-            <option value="Pogradec">Pogradec</option>
-        </select>
+<!-- PRODUCT INFO -->
+<div class="product-container">
+    <img id="productImage" src="">
+    <h2 id="productName" class="product-name"></h2>
 
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" required>
+    <div class="price-box">
+        <span id="oldPrice" class="old-price"></span>
+        <span id="newPrice" class="new-price"></span>
+    </div>
 
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+    <p class="transport">📦 Transporti: <strong>300 Lek</strong></p>
+    <p class="final-total">Totali: <span id="totalPrice"></span></p>
+</div>
 
-        <button class="order-button" type="button" onclick="placeOrder(event)">Place Order</button>
-    </form>
+<!-- ORDER FORM -->
+<form id="orderForm">
 
-    <script>
-        // Retrieve product information from local storage
-        const storedProductInfo = localStorage.getItem('productInfo');
-        if (storedProductInfo) {
-            const productInfo = JSON.parse(storedProductInfo);
-            document.getElementById('productImage').src = productInfo.imageSrc;
-            document.getElementById('productName').textContent = productInfo.productName;
-            document.getElementById('productPrice').textContent = productInfo.productPrice;
-            document.getElementById('oldPrice').textContent = productInfo.oldPrice;
-        }
 
-        function placeOrder(event) {
-            event.preventDefault(); // Prevent default form submission
+    <label>Emri</label>
+    <input type="text" id="customerName" required>
 
-            // Collect form data
-            const shoeSize = document.getElementById("shoeSize").value;
-            const tittle = document.getElementById("productName").textContent;
-            const name = document.getElementById("name").value;
-            const city = document.getElementById("city").value;
-            const address = document.getElementById("address").value;
-            const phone = document.getElementById("phone").value;
-            const productPrice = document.getElementById("productPrice").textContent; // Correct this line to retrieve the price
+    <label>Adresa</label>
+    <input type="text" id="customerAddress" required>
 
-            // Validate form fields
-            if (!name || !city || !address || !phone || !shoeSize) {
-                alert("Please fill in all the required fields.");
-                return;
-            }
+    <label>Telefoni</label>
+    <input type="text" id="customerPhone" required>
 
-            // Construct the message
-            const message = `${tittle}\nShoe Size: ${shoeSize}\nName: ${name}\nPhone: ${phone}\nCity: ${city}\nAddress: ${address}\nPrice: ${productPrice}\nTransport Fee: 300 ALL`;
+    <button type="button" class="whatsapp-btn" onclick="sendWhatsAppOrder()">
+        <i class="fab fa-whatsapp"></i> Porosit Tani
+    </button>
+</form>
 
-            // Create a WhatsApp link
-            const whatsappLink = `https://wa.me/+355686694729?text=${encodeURIComponent(message)}`;
+<!-- CART -->
+<div id="cartSection">
+    <h3>Your Cart</h3>
+    <div id="cartItems"></div>
+    <button class="checkout-btn" onclick="window.location.href='checkout.html'">Checkout</button>
+</div>
 
-            // Open the link in a new window
-            window.open(whatsappLink, '_blank');
-        }
+<!-- FOOTER -->
+<footer>
+    <ul class="icons">
+        <li><a href="https://www.instagram.com/eboss_brand_al/" class="fab fa-instagram"></a></li>
+        <li><a href="https://www.tiktok.com/@eboss_brand_al" class="fab fa-tiktok"></a></li>
+        <li><a href="https://wa.me/+355686694729" class="fab fa-whatsapp"></a></li>
+        <li><a href="#" class="fab fa-facebook-f"></a></li>
+    </ul>
+    <p>&copy; 2025 EBOSS BRAND. All rights reserved.</p>
+</footer>
 
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+<script>
+/* LOAD PRODUCT DATA */
+document.addEventListener("DOMContentLoaded", () => {
+    let p = JSON.parse(localStorage.getItem("productInfo"));
+
+    if (!p) return;
+
+    document.getElementById("productImage").src = p.imageSrc;
+    document.getElementById("productName").textContent = p.productName;
+    document.getElementById("oldPrice").textContent = p.oldPrice;
+    document.getElementById("newPrice").textContent = p.productPrice;
+
+    let cleanNewPrice = Number(p.productPrice.replace(" Lek", "").trim());
+    let total = cleanNewPrice + 300;
+
+    document.getElementById("totalPrice").textContent = total + " Lek";
+
+    updateCart();
+});
+
+/* SEND ORDER VIA WHATSAPP */
+function sendWhatsAppOrder(){
+    let name = document.getElementById("customerName").value;
+    let address = document.getElementById("customerAddress").value;
+    let phone = document.getElementById("customerPhone").value;
+    let size = document.getElementById("shoeSize").value;
+
+    if (!name || !address || !phone || !size){
+        alert("Ju lutem plotësoni të gjitha të dhënat!");
+        return;
+    }
+
+    let p = JSON.parse(localStorage.getItem("productInfo"));
+    let cleanPrice = Number(p.productPrice.replace(" Lek","").trim());
+    let total = cleanPrice + 300;
+
+    let message =
+`👟 POROSI E RE EBOSS
+
+📦 Produkti:
+${p.productName}
+Madhësia: ${size}
+Cmimi: ${p.productPrice}
+Transporti: 300 Lek
+Totali: ${total} Lek
+
+👤 Klienti:
+Emri: ${name}
+Adresa: ${address}
+Telefoni: ${phone}
+
+Dërgesë me korrier.`;
+
+    window.open("https://wa.me/355686694729?text=" + encodeURIComponent(message), "_blank");
+}
+/* ---------------------- MENU ---------------------- */
+function toggleMenu(){
+    document.getElementById("sideMenu").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e){
+    const menu = document.getElementById("sideMenu");
+    const icon = document.querySelector(".menu-icon");
+    if (!menu.contains(e.target) && !icon.contains(e.target)) {
+        menu.classList.remove("open");
+    }
+});
+
+
+/* CART FUNCTIONS */
+function updateCart(){
+    let cartItems = document.getElementById('cartItems');
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartIcon = document.querySelector('.cart-icon');
+
+    cartItems.innerHTML = "";
+
+    cart.forEach((item, index)=>{
+        cartItems.innerHTML += `
+        <div class="cart-item">
+            <img src="${item.imageSrc}">
+            <div>
+                <h4>${item.productName}</h4>
+                <p>${item.productPrice}</p>
+            </div>
+            <button onclick="removeFromCart(${index})">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>`;
+    });
+
+    if (cart.length === 0) cartIcon.removeAttribute("data-count");
+    else cartIcon.setAttribute("data-count", cart.length);
+}
+
+function removeFromCart(index){
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+}
+
+function toggleCart(e){
+    let cart = document.getElementById("cartSection");
+    cart.style.display = cart.style.display === "block" ? "none" : "block";
+    e.stopPropagation();
+}
+
+document.addEventListener("click", function(event){
+    let cart = document.getElementById("cartSection");
+    let icon = document.querySelector(".cart-icon");
+    if (!cart.contains(event.target) && !icon.contains(event.target)){
+        cart.style.display = "none";
+    }
+});
+</script>
+
 </body>
 </html>

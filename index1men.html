@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eBOSS</title>
+
+    <link rel="icon" href="Logo/Logo2.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+body{
+    background:#fff;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* HEADER */
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 25px;
+}
+
+.menu-icon{
+    font-size:26px;
+    cursor:pointer;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.logo-link{
+    text-decoration:none;
+    color:black;
+}
+
+.cart-icon{
+    position:relative;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.cart-icon::after{
+    content:attr(data-count);
+    position:absolute;
+    top:-8px;
+    right:-10px;
+    background:red;
+    color:#fff;
+    font-size:11px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.cart-icon:not([data-count])::after{
+    display:none;
+}
+
+/* SIDE MENU */
+.side-menu{
+    width:230px;
+    background:#111;
+    height:100%;
+    position:fixed;
+    left:-230px;
+    top:0;
+    padding-top:70px;
+    transition:0.3s;
+    z-index:10;
+}
+
+.side-menu.open{
+    left:0;
+}
+
+.side-menu a{
+    display:block;
+    color:#fff;
+    padding:15px 20px;
+    font-size:18px;
+    text-decoration:none;
+}
+
+.side-menu a:hover{
+    background:#222;
+}
+
+/* CATEGORY SECTION */
+.category-wrapper{
+    padding:30px 20px 100px;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+/* CATEGORY CARD */
+.category-card{
+    position:relative;
+    height:220px;
+    border-radius:15px;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+.category-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:0.5s ease;
+}
+
+.category-card:hover img{
+    transform:scale(1.1);
+}
+
+/* OVERLAY */
+.category-overlay{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    padding:20px;
+    background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color:white;
+}
+
+.category-overlay h2{
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.category-overlay span{
+    font-size:14px;
+    opacity:0.8;
+}
+
+/* CART DROPDOWN */
+.cart-section{
+    position:fixed;
+    right:10px;
+    top:70px;
+    width:280px;
+    max-height:60vh;
+    background:#fff;
+    border:1px solid #ddd;
+    border-radius:8px;
+    box-shadow:0 0 10px rgba(0,0,0,0.15);
+    padding:10px;
+    overflow-y:auto;
+    z-index:11;
+    display:none;
+}
+
+.cart-item{
+    display:grid;
+    grid-template-columns:60px 1fr auto;
+    gap:8px;
+    align-items:center;
+    padding:6px 0;
+    border-bottom:1px solid #eee;
+}
+
+.cart-item img{
+    width:60px;
+    height:60px;
+    object-fit:cover;
+    border-radius:4px;
+}
+
+.remove-btn{
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    font-size:16px;
+    color:#e74c3c;
+}
+
+.checkout-btn{
+    margin-top:10px;
+    width:100%;
+    padding:10px;
+    background:black;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+    margin-top:auto;
+    background:#111;
+    color:#ccc;
+    text-align:center;
+    padding:20px 10px;
+}
+
+footer .icons{
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+}
+
+footer .icons li a{
+    color:#ccc;
+    font-size:22px;
+    text-decoration:none;
+}
+
+
+    /* TABS */
+    .tabs {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 15px;
+    }
+
+    .tab {
+        padding: 12px 40px;
+        border-radius: 4px;
+        border: 2px solid black;
+        background: #fff;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .tab.active {
+        background: black;
+        color: white;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+
+<a href="index.html" class="logo-link">
+<div class="logo">eBOSS</div>
+</a>
+
+<div class="cart-icon" onclick="toggleCart(event)">
+<i class="fas fa-shopping-cart"></i>
+</div>
+</header>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+<a href="index.html">Home</a>
+<a href="meshkuj.html">Meshkuj</a>
+<a href="index2women.html">Femra</a>
+<a href="Sale.html">Oferta</a>
+</div>
+
+
+<!-- CATEGORY TABS -->
+<div class="tabs">
+    <button class="tab active" onclick="window.location.href='index1men.html'">MESHKUJ</button>
+    <button class="tab " onclick="window.location.href='index2women.html'">FEMRA</button>
+</div>
+
+<!-- 3 PREMIUM CATEGORY CARDS -->
+<div class="category-wrapper">
+
+<a href="men-sneakers.html" class="category-card">
+<img src="Logo/atlete.jpg">
+<div class="category-overlay">
+<h2>ATLETE</h2>
+<span>Shiko koleksionin →</span>
+</div>
+</a>
+
+<a href="men-clothes.html" class="category-card">
+<img src="Logo/bluza.jpg">
+<div class="category-overlay">
+<h2>VESHJE</h2>
+<span>Shiko koleksionin →</span>
+</div>
+</a>
+
+<a href="men-acc.html" class="category-card">
+<img src="Logo/aksesore.jpg">
+<div class="category-overlay">
+<h2>AKSESORE</h2>
+<span>Shiko koleksionin →</span>
+</div>
+</a>
+
+</div>
+
+<!-- CART -->
+<div id="cartSection" class="cart-section">
+<h3 style="text-align:center;">Shporta</h3>
+<div id="cartItems"></div>
+<button class="checkout-btn" onclick="window.location.href='checkout.html'">
+Checkout
+</button>
+</div>
+
+<footer>
+<ul class="icons">
+<li><a href="https://www.instagram.com/eboss_brand_al/" class="fab fa-instagram"></a></li>
+<li><a href="https://www.tiktok.com/@eboss_brand_al" class="fab fa-tiktok"></a></li>
+<li><a href="https://wa.me/+355686694729" class="fab fa-whatsapp"></a></li>
+<li><a href="#" class="fab fa-facebook-f"></a></li>
+</ul>
+<p style="margin-top:15px;font-size:14px;">&copy; 2025 EBOSS BRAND. All rights reserved.</p>
+</footer>
+
+<script>
+function toggleMenu(){
+document.getElementById("sideMenu").classList.toggle("open");
+}
+
+function toggleCart(e){
+const box=document.getElementById("cartSection");
+box.style.display=(box.style.display==="block")?"none":"block";
+e.stopPropagation();
+}
+
+document.addEventListener("click",function(e){
+const box=document.getElementById("cartSection");
+const icon=document.querySelector(".cart-icon");
+if(!box.contains(e.target)&&!icon.contains(e.target)){
+box.style.display="none";
+}
+});
+
+function updateCart(){
+const container=document.getElementById("cartItems");
+const cart=JSON.parse(localStorage.getItem("cart"))||[];
+container.innerHTML="";
+cart.forEach((item,index)=>{
+container.innerHTML+=`
+<div class="cart-item">
+<img src="${item.imageSrc}">
+<div>
+<h4>${item.productName}</h4>
+<p>${item.productPrice}</p>
+</div>
+<button class="remove-btn" onclick="removeFromCart(${index})">
+<i class="fas fa-trash"></i>
+</button>
+</div>`;
+});
+updateCartCount();
+}
+
+function removeFromCart(i){
+const cart=JSON.parse(localStorage.getItem("cart"))||[];
+cart.splice(i,1);
+localStorage.setItem("cart",JSON.stringify(cart));
+updateCart();
+}
+
+function updateCartCount(){
+const cart=JSON.parse(localStorage.getItem("cart"))||[];
+const icon=document.querySelector(".cart-icon");
+if(cart.length===0){
+icon.removeAttribute("data-count");
+}else{
+icon.setAttribute("data-count",cart.length);
+}
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+updateCart();
+});
+</script>
+
+</body>
+</html>

@@ -1,300 +1,334 @@
-<!DOCTYPE HTML>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="sq">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <title>Checkout - EBOSS BRAND</title>
-    <link rel="icon" href="Logo/Logo2.png">
-    <link rel="stylesheet" href="sale.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkout - EBOSS BRAND</title>
 
-        /* Header with Logo and Title */
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 40px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
-            top: 0;
-            z-index: 10;
-        }
+<link rel="icon" href="Logo/Logo2.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        .header-container h1 {
-            font-size: 30px;
-            color: #333;
-            margin-right: 20px;
-            flex: 1;
-            text-align: center;
-        }
+<style>
+    *{
+        margin:0; padding:0;
+        box-sizing:border-box;
+        font-family:"Poppins",sans-serif;
+    }
 
-        .header-container img {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-        }
+    body{ background:#fff; padding-bottom:120px; }
 
-        /* Back Button with Arrow Icon */
-        .back-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: #4CAF50;
-            border: none;
-            padding: 12px 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 22px;
-            color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            transition: opacity 0.3s, transform 0.3s;
-        }
+    /* HEADER */
+    header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:15px 20px;
+        border-bottom:1px solid #eee;
+    }
 
-        .back-button:hover {
-            opacity: 1;
-            transform: scale(1.1);
-        }
+    .menu-icon{ font-size:26px; cursor:pointer; }
+    .logo{ font-size:28px; font-weight:700; }
 
-        .back-button i {
-            font-size: 22px; /* Larger arrow icon */
-        }
+    .cart-icon{
+        font-size:22px; cursor:pointer; position:relative;
+    }
+    .cart-icon::after{
+        content:attr(data-count);
+        position:absolute;
+        top:-8px; right:-10px;
+        background:red; color:#fff;
+        width:18px; height:18px;
+        font-size:11px; border-radius:50%;
+        display:flex; justify-content:center; align-items:center;
+    }
+    .cart-icon:not([data-count])::after{ display:none; }
 
-        h2{
-            text-align: center;
-        }
+    /* SIDE MENU */
+    .side-menu{
+        width:230px; height:100%;
+        background:#222;
+        position:fixed; top:0; left:-230px;
+        padding-top:70px;
+        transition:0.3s;
+        z-index:10;
+    }
+    .side-menu.open{ left:0; }
+    .side-menu a{
+        color:white; text-decoration:none;
+        padding:15px 20px; display:block;
+        font-size:18px;
+    }
+    .side-menu a:hover{ background:#333; }
 
-        .total-price {
-            text-align: end;
-        }
-        /* Checkout Container */
-        .checkout-container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    /* CHECKOUT SECTION */
+    .checkout-container{
+        margin:25px;
+        background:#f6f6f6;
+        padding:20px;
+        border-radius:12px;
+        box-shadow:0 3px 8px rgba(0,0,0,0.08);
+    }
 
-        /* Cart Item Styling */
-        .cart-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    .checkout-title{
+        font-size:22px; font-weight:600;
+        margin-bottom:15px;
+    }
 
-        .cart-item img {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-        }
+    .cart-list .item{
+        display:grid;
+        grid-template-columns:60px 1fr auto;
+        gap:10px;
+        align-items:center;
+        background:white;
+        padding:10px;
+        border-radius:10px;
+        margin-bottom:10px;
+        box-shadow:0 2px 5px rgba(0,0,0,0.08);
+    }
 
-        .cart-item h4 {
-            margin: 0;
-            flex: 1;
-        }
+    .cart-list img{
+        width:60px; height:60px;
+        object-fit:cover; border-radius:8px;
+    }
 
-        .cart-item p {
-            margin: 0;
-        }
+    .remove{
+        background:none;
+        border:none;
+        font-size:18px;
+        color:#e53935;
+        cursor:pointer;
+    }
 
-        /* Cart Summary */
-        .cart-summary {
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
+    .summary{
+        margin-top:20px;
+        font-size:18px;
+    }
 
-        .total-price {
-            font-size: 20px;
-            font-weight: bold;
-        }
+    .summary p{
+        display:flex;
+        justify-content:space-between;
+        margin:5px 0;
+    }
 
-        /* Checkout Form Styling */
-        .checkout-form input, .checkout-form select, .checkout-form button {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+    .total{
+        font-weight:700;
+        font-size:20px;
+    }
 
-        .checkout-form button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+    /* FORM */
+    .form-box{
+        margin-top:25px;
+        padding:15px;
+        background:white;
+        border-radius:12px;
+        box-shadow:0 3px 8px rgba(0,0,0,0.08);
+    }
 
-        .checkout-form button:hover {
-            background-color: #45a049;
-        }
+    .form-box label{
+        display:block;
+        margin-top:10px;
+        font-weight:600;
+        font-size:16px;
+    }
 
-        /* Add some padding to ensure the button is not too close to the form */
-        .checkout-form {
-            margin-top: 20px;
-        }
-    </style>
+    .form-box input{
+        width:100%;
+        padding:12px;
+        font-size:16px;
+        margin-top:5px;
+        border:1px solid #ccc;
+        border-radius:8px;
+    }
+
+    .whatsapp-btn{
+        width:100%;
+        padding:15px;
+        background:#25D366;
+        color:white;
+        border:none;
+        font-size:18px;
+        border-radius:8px;
+        margin-top:20px;
+        cursor:pointer;
+        font-weight:600;
+    }
+
+    .empty{
+        text-align:center;
+        font-size:18px;
+        padding:30px;
+        color:#666;
+    }
+
+    /* FOOTER */
+    footer{
+        background:#111; color:#ccc;
+        text-align:center; padding:20px 10px;
+        margin-top:40px;
+    }
+    footer .icons{
+        list-style:none;
+        display:flex; justify-content:center;
+        gap:15px;
+    }
+    footer .icons li a{
+        color:#ccc; font-size:22px;
+        text-decoration:none;
+    }
+</style>
 </head>
+
 <body>
 
-    <!-- Header with Logo and Checkout Title -->
-    <div class="header-container">
-        <h1>Checkout</h1>
-        <img src="Logo/Logo1.png" alt="Logo">
+<!-- HEADER -->
+<header>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    <div class="logo">eBOSS</div>
+    <div class="cart-icon" onclick="toggleCart(event)"><i class="fas fa-shopping-cart"></i></div>
+</header>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+    <a href="index.html">Home</a>
+    <a href="index1men.html">Meshkuj</a>
+    <a href="index2women.html">Femra</a>
+    <a href="Sale.html">Sale</a>
+</div>
+
+<!-- CHECKOUT -->
+<div class="checkout-container">
+    <h2 class="checkout-title">Porosia Juaj</h2>
+
+    <div id="cartList" class="cart-list"></div>
+
+    <div id="emptyMessage" class="empty" style="display:none;">
+        Shporta juaj është bosh.
     </div>
 
-    <!-- Back Button with Arrow Icon -->
-    <button class="back-button" onclick="goBack()">
-        <i class="fas fa-arrow-left"></i>
+    <div class="summary">
+        <p><span>Nëntotali:</span><span id="subtotal">0 Lek</span></p>
+        <p><span>Transporti:</span><span>300 Lek</span></p>
+        <p class="total"><span>Totali:</span><span id="total">0 Lek</span></p>
+    </div>
+
+    <!-- FORM BOX -->
+    <div class="form-box">
+        <label>Emri</label>
+        <input type="text" id="customerName" required>
+
+        <label>Adresa</label>
+        <input type="text" id="customerAddress" required>
+
+        <label>Telefoni</label>
+        <input type="text" id="customerPhone" required>
+    </div>
+
+    <button class="whatsapp-btn" onclick="sendOrder()">
+        <i class="fab fa-whatsapp"></i> Përfundo Porosinë
     </button>
+</div>
 
-    <div class="checkout-container">
-        <h2>Your Cart <i class="fas fa-shopping-cart"></i></h2>
-        <div id="cartItems" class="cart-items"></div>
-        <p class="total-price">Total Price: <span id="totalPrice">0 Lek</span></p>
+<!-- FOOTER -->
+<footer>
+    <ul class="icons">
+        <li><a href="https://www.instagram.com/eboss_brand_al/" class="fab fa-instagram"></a></li>
+        <li><a href="https://www.tiktok.com/@eboss_brand_al" class="fab fa-tiktok"></a></li>
+        <li><a href="https://wa.me/+355686694729" class="fab fa-whatsapp"></a></li>
+        <li><a href="#" class="fab fa-facebook-f"></a></li>
+    </ul>
+    <p>&copy; 2025 EBOSS BRAND. All rights reserved.</p>
+</footer>
 
-        <div class="checkout-form">
-            <h2>Enter Your Information</h2>
+<script>
+/* SIDE MENU */
+function toggleMenu(){
+    document.getElementById("sideMenu").classList.toggle("open");
+}
 
-            <form id="orderForm" class="order-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+/* LOAD CHECKOUT CART */
+function loadCheckout(){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cartList = document.getElementById("cartList");
+    let emptyMsg = document.getElementById("emptyMessage");
 
-                <label for="city">City:</label>
-                <select id="city" name="city" required>
-                    <option value="Tirana">Tirana</option>
-                    <option value="Durrës">Durrës</option>
-                    <option value="Vlorë">Vlorë</option>
-                    <option value="Shkodër">Shkodër</option>
-                    <option value="Elbasan">Elbasan</option>
-                    <option value="Fier">Fier</option>
-                    <option value="Korçë">Korçë</option>
-                    <option value="Berat">Berat</option>
-                    <option value="Lushnjë">Lushnjë</option>
-                    <option value="Pogradec">Pogradec</option>
-                </select>
+    cartList.innerHTML = "";
 
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required>
+    if(cart.length === 0){
+        emptyMsg.style.display = "block";
+        document.getElementById("subtotal").textContent = "0 Lek";
+        document.getElementById("total").textContent = "0 Lek";
+        return;
+    }
 
-                <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+    emptyMsg.style.display = "none";
 
-                <button type="button" onclick="placeOrder(event)">Complete Checkout <i class="fas fa-shopping-cart"></i></button>
-            </form>
-        </div>
-    </div>
+    let subtotal = 0;
 
-    <script>
-        // Function to load the cart items from localStorage and display them
-        function loadCartItems() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const cartItemsContainer = document.getElementById('cartItems');
-            const totalPriceElement = document.getElementById('totalPrice');
-            let totalPrice = 0;
-            let cartSummary = "";
+    cart.forEach((item, index)=>{
+        let price = Number(item.productPrice.replace(" Lek","").trim());
+        subtotal += price;
 
-            cartItemsContainer.innerHTML = '';  // Clear any existing cart items
+        cartList.innerHTML += `
+            <div class="item">
+                <img src="${item.imageSrc}">
+                <div>
+                    <strong>${item.productName}</strong><br>
+                    ${item.productPrice}
+                </div>
+                <button class="remove" onclick="removeItem(${index})"><i class="fas fa-trash"></i></button>
+            </div>
+        `;
+    });
 
-            // Loop through cart items and create HTML elements for each product
-            cart.forEach(item => {
-                const cartItem = document.createElement('div');
-                cartItem.classList.add('cart-item');
-                cartItem.innerHTML = `
-                    <img src="${item.imageSrc}" alt="${item.productName}">
-                    <h4>${item.productName}</h4>
-                    <p>${item.productPrice}</p>
-                `;
-                cartItemsContainer.appendChild(cartItem);
+    document.getElementById("subtotal").textContent = subtotal + " Lek";
+    document.getElementById("total").textContent = (subtotal + 300) + " Lek";
+}
 
-                // Convert the price to a number and sum up the total price
-                const price = parseFloat(item.productPrice.replace(' Lek', '').replace(',', '.'));
-                totalPrice += price;
+function removeItem(index){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index,1);
+    localStorage.setItem("cart",JSON.stringify(cart));
+    loadCheckout();
+}
 
-                // Add product information to the cart summary
-                cartSummary += `${item.productName}: ${item.productPrice}\n`;
-            });
+/* SEND ORDER */
+function sendOrder(){
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            // Add the total price and transport fee to the cart summary
-            const transportFee = 300;
-            totalPrice += transportFee;
-            cartSummary += `\nTotal Price: ${totalPrice.toFixed(2)} Lek\nTransport Fee: 300 Lek`;
+    let name = document.getElementById("customerName").value.trim();
+    let address = document.getElementById("customerAddress").value.trim();
+    let phone = document.getElementById("customerPhone").value.trim();
 
-            // Update the total price in the page
-            totalPriceElement.textContent = `${totalPrice.toFixed(2)} Lek`;
+    if(!name || !address || !phone){
+        alert("Ju lutem plotësoni të gjitha fushat!");
+        return;
+    }
 
-            // Store the cart summary to be included in the message
-            document.getElementById('cartSummary').textContent = cartSummary;
-        }
+    let message = `🔥 POROSI E RE EBOSS 🔥
 
-        // Call loadCartItems function when the page loads
-        window.onload = loadCartItems;
+👤 Emri: ${name}
+📍 Adresa: ${address}
+📞 Telefoni: ${phone}
 
-        function placeOrder(event) {
-            event.preventDefault(); // Prevent default form submission
+🛍 Produktet:\n\n`;
 
-            // Collect form data
-            const name = document.getElementById("name").value;
-            const city = document.getElementById("city").value;
-            const address = document.getElementById("address").value;
-            const phone = document.getElementById("phone").value;
+    let total = 300;
 
-            // Validate form fields
-            if (!name || !city || !address || !phone) {
-                alert("Please fill in all the required fields.");
-                return;
-            }
+    cart.forEach(item=>{
+        let price = Number(item.productPrice.replace(" Lek",""));
+        total += price;
+        message += `• ${item.productName} - ${item.productPrice}\n`;
+    });
 
-            // Collect cart information for the message
-            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-            let cartSummary = "";
-            let totalPrice = 0;
-            cartItems.forEach(item => {
-                cartSummary += `${item.productName}: ${item.productPrice}\n`;
-                totalPrice += parseFloat(item.productPrice.replace(' Lek', '').replace(',', '.'));
-            });
+    message += `\n🚚 Transporti: 300 Lek
+💰 Totali Final: ${total} Lek`;
 
-            const transportFee = 300;
-            totalPrice += transportFee;
+    window.open("https://wa.me/356686694729?text=" + encodeURIComponent(message), "_blank");
+}
 
-            // Construct the message
-            const message = `
-                  Name: ${name}
-                Phone: ${phone}
-                City: ${city}
-                Address: ${address}
-
-                  ${cartSummary}
-                
-                Total Price: ${totalPrice.toFixed(2)} Lek
-                Transport Fee: 300 Lek
-            `;
-
-            // Create a WhatsApp link
-            const whatsappLink = `https://wa.me/+355686694729?text=${encodeURIComponent(message)}`;
-
-            // Open the link in a new window
-            window.open(whatsappLink, '_blank');
-        }
-
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+document.addEventListener("DOMContentLoaded", loadCheckout);
+</script>
 
 </body>
 </html>
