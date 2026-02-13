@@ -1,0 +1,335 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Women's Shoes - EBOSS BRAND</title>
+    <link rel="icon" href="Logo/Logo2.png">
+    <link rel="stylesheet" href="sale.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    /* Cart Section Styles */
+    .cart {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 60px; /* Adjust based on header height */
+        right: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 20px;
+        width: 300px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .cart h2 {
+        margin-bottom: 20px;
+    }
+
+    .cart-items {
+        margin-bottom: 20px;
+    }
+
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+
+    .cart-item img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+
+    .cart-item h4 {
+        margin: 0;
+        flex: 1;
+    }
+
+    .cart-item button {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .order-button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* Cart Icon */
+    .cart-icon {
+        font-size: 24px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .cart-icon::after {
+        content: attr(data-count);
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        padding: 2px 5px;
+        border-radius: 50%;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="container">
+        <a href="index.html" class="logo">
+            <img src="Logo/Logo2.png" alt="Logo">
+            <span>Women's Shoes</span>
+        </a>
+
+        <!-- Hamburger Menu -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="indexmen.html">Men</a></li>
+                <li><a href="womenindex.html">Women</a></li>
+                <li><a href="Sale.html">Sale</a></li>
+            </ul>
+        </nav>
+
+        <!-- Cart Icon (Shopping Trolley) -->
+        <div class="cart-icon" onclick="toggleCart()" data-count="0">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+    </div>
+</header>
+
+
+
+<!-- Product Section -->
+<section class="products">
+    <div class="product-box">
+        <img src="Images1/Women12.jpg" alt="UGG">
+        <h3>Hermes Slippers</h3>
+        <p class="price"><span class="old-price">3500 </span> <span class="new-price">2000 Lek</span></p>
+        <button onclick="redirectToOrderPage('Images1/Women12.jpg', 'Hermes Slippers', '2000 Lek', '3500 Lek')">Order Now</button>
+        <button onclick="addToCart('Images1/Women12.jpg', 'Hermes Slippers', '2000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+    <div class="product-box">
+        <img src="Images1/Women13.jpg" alt="UGG">
+        <h3>Hermes Slippers</h3>
+        <p class="price"><span class="old-price">3500 </span> <span class="new-price">2000 Lek</span></p>
+        <button onclick="redirectToOrderPage('Images1/Women13.jpg', 'Hermes Slippers', '2000 Lek', '3500 Lek')">Order Now</button>
+        <button onclick="addToCart('Images1/Women13.jpg', 'Hermes Slippers', '2000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+    <div class="product-box">
+        <img src="Images1/Women14.jpg" alt="UGG">
+        <h3>Hermes Slippers</h3>
+        <p class="price"><span class="old-price">3500 </span> <span class="new-price">2000 Lek</span></p>
+        <button onclick="redirectToOrderPage('Images1/Women14.jpg', 'Hermes Slippers', '2000 Lek', '3500 Lek')">Order Now</button>
+        <button onclick="addToCart('Images1/Women14.jpg', 'Hermes Slippers', '2000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+        <div class="product-box">
+        <img src="Images1/Women15.jpg" alt="Saint Glam Heels">
+        <h3>Saint Glam Heels</h3>
+        <p class="price">3500 Lek</p>
+        <button onclick="redirectToOrderPage('Images1/Women15.jpg', 'Saint Glam Heels', '3500 Lek', '3500 Lek')">Order Now</button>
+        <button onclick="addToCart('Images1/Women15.jpg', 'Saint Glam Heels', '3500 Lek')"> <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+    <div class="product-box">
+        <img src="Images1/Women16.jpg" alt="Saint Glam Heels">
+        <h3>Saint Glam Heels</h3>
+        <p class="price">3500 Lek</p>
+        <button onclick="redirectToOrderPage('Images1/Women16.jpg', 'Saint Glam Heels', '3500 Lek', '3500 Lek')">Order Now</button>
+        <button onclick="addToCart('Images1/Women16.jpg', 'Saint Glam Heels', '3500 Lek')"> <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+    <div class="product-box">
+        <img src="Images1/Women17.jpg" alt="Saint Glam Heels">
+        <h3>Saint Glam Heels</h3>
+        <p class="price">3500 Lek</p>
+        <button onclick="redirectToOrderPage('Images1/Women17.jpg', 'Saint Glam Heels', '3500 Lek', '3500 Lek')">Order Now</button>
+        <button onclick="addToCart('Images1/Women17.jpg', 'Saint Glam Heels', '3500 Lek')"> <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+
+    <div class="product-box">
+        <img src="Images1/Women1.jpg" alt="New Balance">
+        <h3>New Balance</h3>
+        <p class="price">3500 Lek</p>
+        <button onclick="redirectToOrderPage('Images1/Women1.jpg', 'New Balance', '3500 Lek', '3500 Lek')">Order Now</button>
+        <button onclick="addToCart('Images1/Women1.jpg', 'New Balance', '3500 Lek')"> <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+    <div class="product-box">
+        <img src="Images1/Women3.jpg" alt="Balenciaga">
+        <h3>Balenciaga</h3>
+        <p class="price">4000 Lek</p>
+        <button onclick="redirectToOrderPage('Images1/Women3.jpg', 'Balenciaga', '4000 Lek', '4000 Lek')">Order Now</button>
+        <button onclick="addToCart('Images1/Women3.jpg', 'Balenciaga', '4000 Lek')"> <i class="fas fa-shopping-cart"></i></button>
+    </div>
+
+
+</section>
+
+
+
+	<div class="switch-buttons">
+		
+		<button class="active-button" disabled>1</button>
+		<button class="switch-button" onclick="redirectToSecondPage()">2</button>
+	</div>
+
+	<br><br><br>
+	
+
+   <!-- Cart Section -->
+   <section class="cart" id="cartSection">
+    <h2>Your Cart</h2>
+    <div class="cart-items" id="cartItems">
+        <!-- Dynamically added cart items will appear here -->
+    </div>
+    <button class="order-button" onclick="window.location.href='checkout.html'">Checkout  <i class="fas fa-shopping-cart"></i></button>
+
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="social-links">
+        <a href="https://www.instagram.com/eboss_brand_al/" class="fa-brands fa-instagram"></a>
+        <a href="https://www.tiktok.com/@eboss_brand_al" class="fa-brands fa-tiktok"></a>
+        <a href="https://wa.me/+355686694729" class="fa-brands fa-whatsapp"></a>
+        <a href="#" class="fa-brands fa-facebook"></a>
+    </div>
+</footer>
+
+<script>
+// Add product to the cart
+function addToCart(imageSrc, name, price) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const product = { imageSrc, productName: name, productPrice: price };
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+}
+
+// Update the cart display (for cart page or when cart is opened)
+function updateCart() {
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    cartItemsContainer.innerHTML = '';  // Clear the cart container first
+
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <img src="${item.imageSrc}" alt="${item.productName}">
+            <h4>${item.productName}</h4>
+            <p>${item.productPrice}</p>
+            <button class="remove-btn" onclick="removeFromCart(${index})"><i class="fas fa-trash"></i></button> <!-- Bin icon -->
+        `;
+        cartItemsContainer.appendChild(cartItem);
+    });
+
+    // Update cart icon count
+    updateCartCount();
+}
+
+// Remove product from the cart
+function removeFromCart(index) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Remove the item at the given index
+    cart.splice(index, 1);
+
+    // Update the cart in localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Immediately update the cart display
+    updateCart();
+}
+
+// Update cart icon count
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = cart.length;
+    const cartIcon = document.querySelector('.cart-icon');
+    cartIcon.setAttribute('data-count', cartCount);
+}
+
+// Toggle the cart section visibility when clicking the cart icon
+function toggleCart(event) {
+    let cartSection = document.getElementById("cartSection");
+
+    cartSection.style.display = (cartSection.style.display === 'none' || cartSection.style.display === '') ? 'block' : 'none';
+
+    // Stop propagation to prevent closing when clicking the cart icon
+    event.stopPropagation();
+}
+
+// Ensure clicking outside the cart closes it, but clicking inside keeps it open
+document.addEventListener("click", function (event) {
+    let cart = document.getElementById("cartSection"); // The cart container
+    let cartIcon = document.querySelector(".cart-icon"); // The cart icon button
+
+    // Check if the clicked element is NOT inside the cart and is NOT the cart icon
+    if (!cart.contains(event.target) && !cartIcon.contains(event.target)) {
+        cart.style.display = "none";
+    }
+});
+
+// Prevent closing the cart when clicking inside it
+document.getElementById("cartSection").addEventListener("click", function (event) {
+    event.stopPropagation(); // Stops the event from reaching the document click listener
+});
+
+// Redirect to order page
+function redirectToOrderPage(imageSrc, name, price) {
+    const productInfo = { imageSrc, productName: name, productPrice: price };
+    localStorage.setItem('productInfo', JSON.stringify(productInfo));
+    window.location.href = 'order2.html';
+}
+
+// Redirect to second and third pages
+function redirectToSecondPage() {
+    window.location.href = 'women2.html';
+}
+
+
+
+// Toggle the navigation menu
+function toggleMenu() {
+    const navLinks = document.querySelector(".nav-links");
+    navLinks.classList.toggle("active");
+}
+
+// Call updateCart when the page loads to show cart contents
+document.addEventListener('DOMContentLoaded', updateCart);
+
+
+
+</script>
+
+</body>
+</html>

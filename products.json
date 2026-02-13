@@ -706,6 +706,70 @@
   "priceOld": "",
   "image": "women-c-img/wc10.jpeg",
   "category": "women-clothes"
+},
+{
+  "id": 90,
+  "name": "Hermes Slippers",
+  "priceNew": "2500",
+  "priceOld": "5000",
+  "image": "Images1/Women12.jpg",
+  "category": "ulje"
+},
+{
+  "id": 91,
+  "name": "Hermes Slippers",
+  "priceNew": "2500",
+  "priceOld": "5000",
+  "image": "images1/women14.jpg",
+  "category": "ulje"
+},
+{
+  "id": 92,
+  "name": "Ralph Lauren",
+  "priceNew": "1900",
+  "priceOld": "7900",
+  "image": "images1/ulje1.jpg",
+  "category": "ulje"
+},
+{
+  "id": 93,
+  "name": "Tommy Hilifiger",
+  "priceNew": "1500",
+  "priceOld": "5500",
+  "image": "images1/ulje2.jpg",
+  "category": "ulje"
+},
+{
+  "id": 94,
+  "name": "Kapele ALO",
+  "priceNew": "1900",
+  "priceOld": "4900",
+  "image": "images1/ulje 3.jpg",
+  "category": "ulje"
+},
+{
+  "id": 95,
+  "name": "Kapele ALO",
+  "priceNew": "1900",
+  "priceOld": "4900",
+  "image": "images1/ulje4.jpg",
+  "category": "ulje"
+},
+{
+  "id": 96,
+  "name": "Rrip YSL",
+  "priceNew": "2500",
+  "priceOld": "8000",
+  "image": "images1/ulje5.jpg",
+  "category": "ulje"
+},
+{
+  "id": 97,
+  "name": "Rrip Celine",
+  "priceNew": "2500",
+  "priceOld": "8000",
+  "image": "images1/ulje6.jpg",
+  "category": "ulje"
 }
 
 ]

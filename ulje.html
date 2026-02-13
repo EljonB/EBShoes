@@ -1,0 +1,615 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale - EBOSS BRAND</title>
+
+    <link rel="icon" href="Logo/Logo2.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Poppins",sans-serif;
+        }
+
+        body{
+            background:#ffffff;
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+        }
+
+        /* HEADER */
+        header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px 20px;
+            border-bottom:1px solid #eee;
+        }
+
+        .menu-icon{
+            font-size:26px;
+            cursor:pointer;
+        }
+
+        .logo{
+            font-size:28px;
+            font-weight:700;
+            cursor:pointer;
+        }
+
+        .cart-icon{
+            position:relative;
+            font-size:22px;
+            cursor:pointer;
+        }
+
+        .cart-icon::after{
+            content:attr(data-count);
+            position:absolute;
+            top:-8px;
+            right:-10px;
+            background:red;
+            color:#fff;
+            font-size:11px;
+            width:18px;
+            height:18px;
+            border-radius:50%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .cart-icon:not([data-count])::after{
+            display:none;
+        }
+
+        /* SIDE MENU */
+        .side-menu{
+            width:230px;
+            background:#222;
+            height:100%;
+            position:fixed;
+            left:-230px;
+            top:0;
+            padding-top:70px;
+            transition:0.3s;
+            z-index:9;
+        }
+
+        .side-menu.open{
+            left:0;
+        }
+
+        .side-menu a{
+            display:block;
+            color:#fff;
+            padding:14px 20px;
+            font-size:18px;
+            text-decoration:none;
+        }
+
+        .side-menu a:hover{
+            background:#333;
+        }
+
+        /* SORT BUTTON (si Intersport) */
+        .sort-wrapper{
+            position:relative;
+            margin-left:15px;
+            margin-top:10px;
+            width:150px;
+        }
+
+        .sort-default-btn{
+            width:100%;
+            padding:10px 14px;
+            border-radius:999px;
+            border:1px solid #ddd;
+            background:#fff;
+            cursor:pointer;
+
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+
+            font-size:14px;
+        }
+
+        .sort-label{
+            white-space:nowrap;
+        }
+
+        .sort-arrow{
+            font-size:11px;
+            transition:transform 0.25s ease;
+        }
+
+        .sort-default-btn.menu-open .sort-arrow{
+            transform:rotate(180deg);
+        }
+
+        .sort-menu{
+            display:none;
+            position:absolute;
+            top:48px;
+            left:0;
+            width:170px;
+            background:#fff;
+            border-radius:12px;
+            border:1px solid #ddd;
+            box-shadow:0 4px 12px rgba(0,0,0,0.12);
+            z-index:20;
+        }
+
+        .sort-menu div{
+            padding:10px 12px;
+            cursor:pointer;
+            font-size:14px;
+        }
+
+        .sort-menu div:hover{
+            background:#f3f3f3;
+        }
+
+        /* PRODUCTS GRID */
+        .products{
+            padding:15px 15px 100px;
+            display:grid;
+            grid-template-columns:repeat(auto-fill, minmax(165px,1fr));
+            gap:18px;
+        }
+
+        .product-box{
+            background:#f6f6f6;
+            border-radius:12px;
+            padding:12px;
+            cursor:pointer;
+            transition:0.2s ease;
+            box-shadow:0 3px 6px rgba(0,0,0,0.08);
+        }
+
+        .product-box:hover{
+            transform:scale(1.03);
+        }
+
+        .product-box img{
+            width:100%;
+            border-radius:10px;
+        }
+
+        .product-box h3{
+            font-size:15px;
+            margin:8px 0 4px;
+        }
+
+        .price{
+            font-size:14px;
+            margin-bottom:6px;
+        }
+
+        .old-price{
+            text-decoration:line-through;
+            color:#888;
+            margin-right:6px;
+        }
+
+        .new-price{
+            color:#e53935;
+            font-weight:600;
+        }
+
+        .cart-btn{
+            margin-top:5px;
+            width:100%;
+            padding:8px;
+            background:#000;
+            color:#fff;
+            border:none;
+            border-radius:5px;
+            font-size:14px;
+            cursor:pointer;
+        }
+
+        .cart-btn i{
+            margin-right:6px;
+        }
+
+        /* PAGINATION */
+        #pagination{
+            display:flex;
+            justify-content:center;
+            gap:10px;
+            margin:10px 0 40px;
+        }
+
+        .switch-button{
+            padding:8px 14px;
+            border-radius:20px;
+            border:1px solid #000;
+            background:#fff;
+            cursor:pointer;
+            font-size:14px;
+            text-decoration:none;
+            color:#000;
+        }
+
+        .active-button{
+            padding:8px 14px;
+            border-radius:20px;
+            border:1px solid #000;
+            background:#000;
+            color:#fff;
+            cursor:default;
+            text-decoration:none;
+        }
+
+        /* CART DROPDOWN */
+        .cart-section{
+            position:fixed;
+            right:10px;
+            top:70px;
+            width:280px;
+            max-height:60vh;
+            background:#fff;
+            border:1px solid #ddd;
+            border-radius:8px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.15);
+            padding:10px;
+            overflow-y:auto;
+            z-index:11;
+            display:none;
+        }
+
+        .cart-section h3{
+            font-size:18px;
+            text-align:center;
+            margin-bottom:10px;
+        }
+
+        .cart-item{
+            display:grid;
+            grid-template-columns:60px 1fr auto;
+            gap:10px;
+            align-items:center;
+            padding:6px 0;
+            border-bottom:1px solid #eee;
+        }
+
+        .cart-item img{
+            width:55px;
+            height:55px;
+            object-fit:cover;
+            border-radius:6px;
+        }
+
+        .remove-btn{
+            background:none;
+            border:none;
+            font-size:16px;
+            cursor:pointer;
+            color:#e53935;
+        }
+
+        .checkout-btn{
+            margin-top:10px;
+            width:100%;
+            padding:10px;
+            background:#000;
+            color:#fff;
+            border:none;
+            border-radius:6px;
+            font-size:14px;
+            cursor:pointer;
+        }
+
+        /* FOOTER */
+        footer{
+            margin-top:auto;
+            background:#111;
+            color:#ccc;
+            text-align:center;
+            padding:20px 10px;
+        }
+
+        footer .icons{
+            list-style:none;
+            display:flex;
+            justify-content:center;
+            gap:15px;
+        }
+
+        footer .icons li a{
+            color:#ccc;
+            font-size:22px;
+            text-decoration:none;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+
+    <div class="logo" onclick="window.location.href='index.html'">
+        eBOSS
+    </div>
+
+    <div class="cart-icon" onclick="toggleCart(event)">
+        <i class="fas fa-shopping-cart"></i>
+    </div>
+</header>
+
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+    <a href="index.html">Home</a>
+    <a href="index1men.html">Meshkuj</a>
+    <a href="index2women.html">Femra</a>
+    <a href="Sale.html">Oferta</a>
+</div>
+
+<!-- SORT BUTTON (si InterSport) -->
+<div class="sort-wrapper">
+    <button class="sort-default-btn" onclick="toggleSortMenu()">
+        <span id="currentSortLabel" class="sort-label">Default</span>
+        <i class="fas fa-chevron-down sort-arrow"></i>
+    </button>
+
+    <div id="sortMenu" class="sort-menu">
+        <div onclick="applySort('default')">Default</div>
+        <div onclick="applySort('low')">Price: Low to High</div>
+        <div onclick="applySort('high')">Price: High to Low</div>
+    </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products" id="productContainer"></section>
+
+<!-- PAGINATION -->
+<div id="pagination"></div>
+
+<!-- CART DROPDOWN -->
+<div id="cartSection" class="cart-section">
+    <h3>Your Cart</h3>
+    <div id="cartItems"></div>
+    <button class="checkout-btn" onclick="window.location.href='checkout.html'">
+        Checkout <i class="fas fa-shopping-cart"></i>
+    </button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <ul class="icons">
+        <li><a href="https://www.instagram.com/eboss_brand_al/" class="fab fa-instagram"></a></li>
+        <li><a href="https://www.tiktok.com/@eboss_brand_al" class="fab fa-tiktok"></a></li>
+        <li><a href="https://wa.me/+355686694729" class="fab fa-whatsapp"></a></li>
+        <li><a href="#" class="fab fa-facebook-f"></a></li>
+    </ul>
+    <p>&copy; 2025 EBOSS BRAND. All rights reserved.</p>
+</footer>
+
+<script>
+/* -------- GLOBAL VARS -------- */
+const PRODUCTS_PER_PAGE = 12;
+const urlParams = new URLSearchParams(window.location.search);
+let currentPage = parseInt(urlParams.get("page")) || 1;
+let currentSort = urlParams.get("sort") || "default";
+let fullList = [];
+
+/* -------- SORT DROPDOWN -------- */
+function toggleSortMenu(){
+    const menu = document.getElementById("sortMenu");
+    const btn = document.querySelector(".sort-default-btn");
+
+    if (menu.style.display === "block"){
+        menu.style.display = "none";
+        btn.classList.remove("menu-open");
+    } else{
+        menu.style.display = "block";
+        btn.classList.add("menu-open");
+    }
+}
+
+document.addEventListener("click", function(e){
+    const menu = document.getElementById("sortMenu");
+    const btn = document.querySelector(".sort-default-btn");
+    if (!menu.contains(e.target) && !btn.contains(e.target)){
+        menu.style.display = "none";
+        btn.classList.remove("menu-open");
+    }
+});
+
+/* kur zgjedh renditjen */
+function applySort(type){
+    window.location.href = `ulje.html?page=1&sort=${type}`;
+}
+
+/* -------- LOAD PRODUCTS FROM JSON -------- */
+function loadProducts(){
+    fetch("products.json")
+        .then(res => res.json())
+        .then(data => {
+            fullList = data.filter(p => p.category === "ulje");
+
+            /* label sipas sort-it aktual */
+            const labelEl = document.getElementById("currentSortLabel");
+            if (currentSort === "low") labelEl.textContent = "Low to High";
+            else if (currentSort === "high") labelEl.textContent = "High to Low";
+            else labelEl.textContent = "Default";
+
+            /* SORTING */
+            if (currentSort === "low"){
+                fullList.sort((a,b) => a.priceNew - b.priceNew);
+            } else if (currentSort === "high"){
+                fullList.sort((a,b) => b.priceNew - a.priceNew);
+            }
+
+            /* PAGINATION */
+            const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
+            const end = start + PRODUCTS_PER_PAGE;
+            const pageList = fullList.slice(start, end);
+
+            renderProducts(pageList);
+            renderPagination(fullList.length);
+        })
+        .catch(err => console.error("Error loading products.json:", err));
+}
+
+/* -------- RENDER PRODUCTS -------- */
+function renderProducts(list){
+    const container = document.getElementById("productContainer");
+    container.innerHTML = "";
+
+    list.forEach(p => {
+        const oldHTML = p.priceOld ? `<span class="old-price">${p.priceOld} Lek</span>` : "";
+
+        const card = `
+            <div class="product-box"
+                 onclick="redirectToOrderPage('${p.image}','${p.name}','${p.priceNew}','${p.priceOld || ""}')">
+
+                <img src="${p.image}" alt="${p.name}">
+                <h3>${p.name}</h3>
+
+                <p class="price">
+                    ${oldHTML}
+                    <span class="new-price">${p.priceNew} Lek</span>
+                </p>
+
+                <button class="cart-btn"
+                    onclick="event.stopPropagation(); addToCart('${p.image}','${p.name}','${p.priceNew} Lek')">
+                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+            </div>
+        `;
+        container.insertAdjacentHTML("beforeend", card);
+    });
+}
+
+/* -------- PAGINATION -------- */
+function renderPagination(total){
+    const totalPages = Math.ceil(total / PRODUCTS_PER_PAGE);
+    const pag = document.getElementById("pagination");
+    pag.innerHTML = "";
+
+    for (let i = 1; i <= totalPages; i++){
+        const cls = (i === currentPage) ? "active-button" : "switch-button";
+        pag.innerHTML += `
+            <a href="ulje.html?page=${i}&sort=${currentSort}" class="${cls}">
+                ${i}
+            </a>
+        `;
+    }
+}
+
+/* -------- CART SYSTEM -------- */
+function addToCart(imageSrc, name, price){
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({ imageSrc, productName:name, productPrice:price });
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+}
+
+function updateCart(){
+    const cartItemsContainer = document.getElementById('cartItems');
+    if (!cartItemsContainer) return;
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cartItemsContainer.innerHTML = '';
+
+    cart.forEach((item, index)=>{
+        const div = document.createElement('div');
+        div.classList.add('cart-item');
+        div.innerHTML = `
+            <img src="${item.imageSrc}">
+            <div>
+                <h4>${item.productName}</h4>
+                <p>${item.productPrice}</p>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${index})">
+                <i class="fas fa-trash"></i>
+            </button>
+        `;
+        cartItemsContainer.appendChild(div);
+    });
+
+    updateCartCount();
+}
+
+function removeFromCart(index){
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index,1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+}
+
+function updateCartCount(){
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartIcon = document.querySelector('.cart-icon');
+    if (!cartIcon) return;
+
+    if (cart.length === 0){
+        cartIcon.removeAttribute('data-count');
+    } else{
+        cartIcon.setAttribute('data-count', cart.length);
+    }
+}
+
+/* -------- CART DROPDOWN TOGGLE -------- */
+function toggleCart(event){
+    const cartSection = document.getElementById("cartSection");
+    if (!cartSection) return;
+
+    cartSection.style.display =
+        (cartSection.style.display === "block") ? "none" : "block";
+
+    event.stopPropagation();
+}
+
+document.addEventListener("click", function(event){
+    const cart = document.getElementById("cartSection");
+    const cartIcon = document.querySelector(".cart-icon");
+    if (!cart) return;
+
+    if (!cart.contains(event.target) && !cartIcon.contains(event.target)){
+        cart.style.display = "none";
+    }
+});
+
+/* -------- SIDE MENU -------- */
+function toggleMenu(){
+    document.getElementById("sideMenu").classList.toggle("open");
+}
+
+/* -------- REDIRECT TO ORDER PAGE -------- */
+function redirectToOrderPage(imageSrc, name, newPrice, oldPrice){
+    const productInfo = {
+        imageSrc,
+        productName:name,
+        productPrice:newPrice + " Lek",
+        oldPrice:oldPrice ? oldPrice + " Lek" : ""
+    };
+    localStorage.setItem('productInfo', JSON.stringify(productInfo));
+    window.location.href = 'order2.html';
+}
+
+/* -------- INIT -------- */
+document.addEventListener("DOMContentLoaded", ()=>{
+    const cart = document.getElementById("cartSection");
+    if (cart){
+        cart.addEventListener("click", e => e.stopPropagation());
+    }
+    updateCart();
+    loadProducts();
+});
+</script>
+
+</body>
+</html>
