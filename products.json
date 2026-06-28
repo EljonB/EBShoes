@@ -1,4 +1,4 @@
-[
+ [
   {
     "id": 1,
     "name": "Adidas Adilette",
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "name": "Adidas Adilette",
-    "priceNew": 30000,
+    "priceNew": 3000,
     "priceOld": 6500,
     "image": "Images1/Men18.jpg",
     "category": "mens-sneakers"
