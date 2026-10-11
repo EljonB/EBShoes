@@ -511,11 +511,11 @@
 
         .product-img-box {
             background-color: var(--card-bg);
-            aspect-ratio: 3 / 4; /* Formati 3:4 i kërkuar */
-            border-radius: 0px;  /* Pa qoshe të rrumbullakosura (qoshe të drejta) */
+            aspect-ratio: 3 / 4; /* Formati 3:4 */
+            border-radius: 0px;  /* Qoshe të drejta */
             overflow: hidden;
             margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); /* Hije e lehtë elegante */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); /* Hije e lehtë */
             transition: box-shadow 0.3s ease;
         }
 
@@ -544,6 +544,15 @@
         .product-price {
             font-size: 13px;
             color: var(--text-muted);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .product-price span.old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 12px;
         }
 
         /* Modal i Produktit / Add to Cart */
@@ -823,13 +832,8 @@
         <ul class="drawer-links">
             <li><a href="#" onclick="goHome(); toggleDrawer();">Home</a></li>
             <li><a href="#" onclick="openCatalog('all'); toggleDrawer();">All Products</a></li>
-            <li><a href="#" onclick="openCatalog('New Balance'); toggleDrawer();">New Balance</a></li>
-            <li><a href="#" onclick="openCatalog('Adidas'); toggleDrawer();">Adidas</a></li>
-            <li><a href="#" onclick="openCatalog('Nike'); toggleDrawer();">Nike</a></li>
-            <li><a href="#" onclick="openCatalog('Puma'); toggleDrawer();">Puma</a></li>
-            <li><a href="#" onclick="openCatalog('Asics'); toggleDrawer();">Asics</a></li>
-            <li><a href="#" onclick="openCatalog('MiuMiu'); toggleDrawer();">MiuMiu</a></li>
-            <li><a href="#" onclick="openCatalog('UGG'); toggleDrawer();">UGG</a></li>
+            <li><a href="#" onclick="openCatalog('women-sneakers'); toggleDrawer();">Women Sneakers</a></li>
+            <li><a href="#" onclick="openCatalog('mens-sneakers'); toggleDrawer();">Mens Sneakers</a></li>
         </ul>
     </div>
 
@@ -841,7 +845,7 @@
         </div>
         <div class="search-input-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Kërko produkt ose markë..." oninput="handleSearch(this.value)">
+            <input type="text" id="searchInput" placeholder="Kërko produkt..." oninput="handleSearch(this.value)">
         </div>
         <div class="search-results" id="searchResults">
             <p style="color: #888; text-align: center; margin-top: 30px; font-size: 14px;">Shkruani emrin e produktit për të kërkuar...</p>
@@ -887,7 +891,7 @@
             <div class="price-inputs">
                 <input type="number" id="minPrice" placeholder="Min (psh 500)">
                 <span>-</span>
-                <input type="number" id="maxPrice" placeholder="Max (psh 6000)">
+                <input type="number" id="maxPrice" placeholder="Max (psh 15000)">
             </div>
         </div>
 
@@ -904,67 +908,77 @@
 
         <div class="product-slider-container">
             <div class="product-slider" id="homeSlider">
-                <!-- Produkt UGG -->
-                <div class="product-card" data-brand="UGG" data-price="6000" onclick="openProductModal('Ugg Taz', 'ALL 6,000.00', 'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&q=80&w=800')">
+                <!-- Produktet e integruara direkt nga kategoria women-sneakers dhe te tjerat -->
+                <div class="product-card" data-brand="women-sneakers" data-price="13000" onclick="openProductModal('UGGs', 'ALL 13,000.00', 'Images1/Women12.jpeg')">
                     <div class="product-img-box">
-                        <img src="https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&q=80&w=800" alt="Ugg Taz">
+                        <img src="Images1/Women12.jpeg" alt="UGGs">
                     </div>
-                    <div class="product-name">Ugg Taz</div>
-                    <div class="product-price">ALL 6,000.00</div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 13,000.00 <span class="old-price">ALL 19,000.00</span></div>
                 </div>
 
-                <!-- Produkt Nike -->
-                <div class="product-card" data-brand="Nike" data-price="5000" onclick="openProductModal('On Cloud Sneaker', 'ALL 5,000.00', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-card" data-brand="women-sneakers" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/Women13.jpeg')">
                     <div class="product-img-box">
-                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800" alt="On Cloud">
+                        <img src="Images1/Women13.jpeg" alt="UGGs">
                     </div>
-                    <div class="product-name">On Cloud Sneaker</div>
-                    <div class="product-price">ALL 5,000.00</div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 9,000.00 <span class="old-price">ALL 12,000.00</span></div>
                 </div>
 
-                <!-- Produkt New Balance -->
-                <div class="product-card" data-brand="New Balance" data-price="5500" onclick="openProductModal('New Balance 530', 'ALL 5,500.00', 'https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-card" data-brand="women-sneakers" data-price="11000" onclick="openProductModal('UGGs', 'ALL 11,000.00', 'Images1/Women14.jpeg')">
                     <div class="product-img-box">
-                        <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?auto=format&fit=crop&q=80&w=800" alt="New Balance">
+                        <img src="Images1/Women14.jpeg" alt="UGGs">
                     </div>
-                    <div class="product-name">New Balance 530</div>
-                    <div class="product-price">ALL 5,500.00</div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 11,000.00 <span class="old-price">ALL 16,000.00</span></div>
                 </div>
 
-                <!-- Produkt Adidas -->
-                <div class="product-card" data-brand="Adidas" data-price="5200" onclick="openProductModal('Adidas Spezial', 'ALL 5,200.00', 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-card" data-brand="women-sneakers" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/Women15.jpeg')">
                     <div class="product-img-box">
-                        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=800" alt="Adidas">
+                        <img src="Images1/Women15.jpeg" alt="UGGs">
+                    </div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 9,000.00 <span class="old-price">ALL 12,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="women-sneakers" data-price="3500" onclick="openProductModal('Saint Glam Heels', 'ALL 3,500.00', 'Images1/Women16.jpg')">
+                    <div class="product-img-box">
+                        <img src="Images1/Women16.jpg" alt="Saint Glam Heels">
+                    </div>
+                    <div class="product-name">Saint Glam Heels</div>
+                    <div class="product-price">ALL 3,500.00</div>
+                </div>
+
+                <div class="product-card" data-brand="women-sneakers" data-price="3500" onclick="openProductModal('Saint Glam Heels', 'ALL 3,500.00', 'Images1/Women17.jpg')">
+                    <div class="product-img-box">
+                        <img src="Images1/Women17.jpg" alt="Saint Glam Heels">
+                    </div>
+                    <div class="product-name">Saint Glam Heels</div>
+                    <div class="product-price">ALL 3,500.00</div>
+                </div>
+
+                <div class="product-card" data-brand="women-sneakers" data-price="6000" onclick="openProductModal('New Balance', 'ALL 6,000.00', 'Images1/women18.jpg')">
+                    <div class="product-img-box">
+                        <img src="Images1/women18.jpg" alt="New Balance">
+                    </div>
+                    <div class="product-name">New Balance</div>
+                    <div class="product-price">ALL 6,000.00 <span class="old-price">ALL 9,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="women-sneakers" data-price="6500" onclick="openProductModal('Adidas Spezial', 'ALL 6,500.00', 'Images1/women24.jpg')">
+                    <div class="product-img-box">
+                        <img src="Images1/women24.jpg" alt="Adidas Spezial">
                     </div>
                     <div class="product-name">Adidas Spezial</div>
-                    <div class="product-price">ALL 5,200.00</div>
+                    <div class="product-price">ALL 6,500.00 <span class="old-price">ALL 12,000.00</span></div>
                 </div>
 
-                <!-- Produkt Puma -->
-                <div class="product-card" data-brand="Puma" data-price="4800" onclick="openProductModal('Puma Palermo', 'ALL 4,800.00', 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&q=80&w=800')">
+                <div class="product-card" data-brand="women-sneakers" data-price="4000" onclick="openProductModal('Adidas Gazelle', 'ALL 4,000.00', 'Images1/women25.jpg')">
                     <div class="product-img-box">
-                        <img src="https://images.unsplash.com/photo-1608231387042-66d1773070a5?auto=format&fit=crop&q=80&w=800" alt="Puma">
+                        <img src="Images1/women25.jpg" alt="Adidas Gazelle">
                     </div>
-                    <div class="product-name">Puma Palermo</div>
-                    <div class="product-price">ALL 4,800.00</div>
-                </div>
-
-                <!-- Produkt Asics -->
-                <div class="product-card" data-brand="Asics" data-price="5800" onclick="openProductModal('Asics Gel-Kayano', 'ALL 5,800.00', 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&q=80&w=800')">
-                    <div class="product-img-box">
-                        <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&q=80&w=800" alt="Asics">
-                    </div>
-                    <div class="product-name">Asics Gel-Kayano</div>
-                    <div class="product-price">ALL 5,800.00</div>
-                </div>
-
-                <!-- Produkt MiuMiu -->
-                <div class="product-card" data-brand="MiuMiu" data-price="6500" onclick="openProductModal('MiuMiu Leather Loafer', 'ALL 6,500.00', 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=800')">
-                    <div class="product-img-box">
-                        <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&q=80&w=800" alt="MiuMiu">
-                    </div>
-                    <div class="product-name">MiuMiu Leather Loafer</div>
-                    <div class="product-price">ALL 6,500.00</div>
+                    <div class="product-name">Adidas Gazelle</div>
+                    <div class="product-price">ALL 4,000.00 <span class="old-price">ALL 8,000.00</span></div>
                 </div>
             </div>
         </div>
@@ -1056,7 +1070,6 @@
         let currentBrand = localStorage.getItem('eboss_brand') || 'all';
         let currentView = localStorage.getItem('eboss_view') || 'home';
 
-        // Inicializimi i faqes në bazë të gjendjes së ruajtur
         window.addEventListener('DOMContentLoaded', () => {
             updateCartUI();
             if (currentView === 'catalog') {
@@ -1115,7 +1128,7 @@
             homeView.classList.remove('active');
             catalogView.classList.add('active');
 
-            let title = brand === 'all' ? 'All Products' : brand;
+            let title = brand === 'all' ? 'All Products' : (brand === 'women-sneakers' ? 'Women Sneakers' : brand);
             catalogTitle.innerText = title;
             breadcrumb.innerText = title;
 
