@@ -511,11 +511,11 @@
 
         .product-img-box {
             background-color: var(--card-bg);
-            aspect-ratio: 3 / 4; /* Formati 3:4 */
-            border-radius: 0px;  /* Qoshe të drejta */
+            aspect-ratio: 3 / 4;
+            border-radius: 0px;
             overflow: hidden;
             margin-bottom: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); /* Hije e lehtë */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
             transition: box-shadow 0.3s ease;
         }
 
@@ -823,7 +823,7 @@
         </div>
     </header>
 
-    <!-- Drawer Menu -->
+    <!-- Drawer Menu (Brandet origjinale) -->
     <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
     <div class="drawer" id="sideDrawer">
         <div class="drawer-header">
@@ -832,8 +832,13 @@
         <ul class="drawer-links">
             <li><a href="#" onclick="goHome(); toggleDrawer();">Home</a></li>
             <li><a href="#" onclick="openCatalog('all'); toggleDrawer();">All Products</a></li>
-            <li><a href="#" onclick="openCatalog('women-sneakers'); toggleDrawer();">Women Sneakers</a></li>
-            <li><a href="#" onclick="openCatalog('mens-sneakers'); toggleDrawer();">Mens Sneakers</a></li>
+            <li><a href="#" onclick="openCatalog('New Balance'); toggleDrawer();">New Balance</a></li>
+            <li><a href="#" onclick="openCatalog('Adidas'); toggleDrawer();">Adidas</a></li>
+            <li><a href="#" onclick="openCatalog('Nike'); toggleDrawer();">Nike</a></li>
+            <li><a href="#" onclick="openCatalog('Puma'); toggleDrawer();">Puma</a></li>
+            <li><a href="#" onclick="openCatalog('Asics'); toggleDrawer();">Asics</a></li>
+            <li><a href="#" onclick="openCatalog('MiuMiu'); toggleDrawer();">MiuMiu</a></li>
+            <li><a href="#" onclick="openCatalog('UGG'); toggleDrawer();">UGG</a></li>
         </ul>
     </div>
 
@@ -908,75 +913,123 @@
 
         <div class="product-slider-container">
             <div class="product-slider" id="homeSlider">
-                <!-- Produktet e integruara direkt nga kategoria women-sneakers dhe te tjerat -->
-                <div class="product-card" data-brand="women-sneakers" data-price="13000" onclick="openProductModal('UGGs', 'ALL 13,000.00', 'Images1/Women12.jpeg')">
-                    <div class="product-img-box">
-                        <img src="Images1/Women12.jpeg" alt="UGGs">
-                    </div>
+                <!-- Të gjitha produktet e men-sneakers dhe women-sneakers të integruara -->
+                <div class="product-card" data-brand="Adidas" data-price="3000" onclick="openProductModal('Adidas Adilette', 'ALL 3,000.00', 'Images1/Men17.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men17.jpg" alt="Adidas Adilette"></div>
+                    <div class="product-name">Adidas Adilette</div>
+                    <div class="product-price">ALL 3,000.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Adidas" data-price="3000" onclick="openProductModal('Adidas Adilette', 'ALL 3,000.00', 'Images1/Men18.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men18.jpg" alt="Adidas Adilette"></div>
+                    <div class="product-name">Adidas Adilette</div>
+                    <div class="product-price">ALL 3,000.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Adidas" data-price="3000" onclick="openProductModal('Yeezy Slide', 'ALL 3,000.00', 'Images1/Men11.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men11.jpg" alt="Yeezy Slide"></div>
+                    <div class="product-name">Yeezy Slide</div>
+                    <div class="product-price">ALL 3,000.00 <span class="old-price">ALL 7,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Adidas" data-price="3000" onclick="openProductModal('Yeezy Slide', 'ALL 3,000.00', 'Images1/Men19.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men19.jpg" alt="Yeezy Slide"></div>
+                    <div class="product-name">Yeezy Slide</div>
+                    <div class="product-price">ALL 3,000.00 <span class="old-price">ALL 7,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Adidas" data-price="12000" onclick="openProductModal('Adidas Yeezy', 'ALL 12,000.00', 'Images1/Men6.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men6.jpg" alt="Adidas Yeezy"></div>
+                    <div class="product-name">Adidas Yeezy</div>
+                    <div class="product-price">ALL 12,000.00 <span class="old-price">ALL 19,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Nike" data-price="8000" onclick="openProductModal('Nike Air Force 1', 'ALL 8,000.00', 'Images1/Men1.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men1.jpg" alt="Nike Air Force 1"></div>
+                    <div class="product-name">Nike Air Force 1</div>
+                    <div class="product-price">ALL 8,000.00</div>
+                </div>
+
+                <div class="product-card" data-brand="New Balance" data-price="11000" onclick="openProductModal('New Balance', 'ALL 11,000.00', 'Images1/Men4.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men4.jpg" alt="New Balance"></div>
+                    <div class="product-name">New Balance</div>
+                    <div class="product-price">ALL 11,000.00 <span class="old-price">ALL 19,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Nike" data-price="7500" onclick="openProductModal('Nike Air Max 720', 'ALL 7,500.00', 'Images1/Men10.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men10.jpg" alt="Nike Air Max 720"></div>
+                    <div class="product-name">Nike Air Max 720</div>
+                    <div class="product-price">ALL 7,500.00</div>
+                </div>
+
+                <div class="product-card" data-brand="Nike" data-price="6500" onclick="openProductModal('Air Jordan 4', 'ALL 6,500.00', 'Images1/Men7.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men7.jpg" alt="Air Jordan 4"></div>
+                    <div class="product-name">Air Jordan 4</div>
+                    <div class="product-price">ALL 6,500.00</div>
+                </div>
+
+                <div class="product-card" data-brand="Nike" data-price="7000" onclick="openProductModal('Nike Air More', 'ALL 7,000.00', 'Images1/Men8.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men8.jpg" alt="Nike Air More"></div>
+                    <div class="product-name">Nike Air More</div>
+                    <div class="product-price">ALL 7,000.00</div>
+                </div>
+
+                <div class="product-card" data-brand="Nike" data-price="5000" onclick="openProductModal('Nike Air Max TN', 'ALL 5,000.00', 'Images1/Women2.jpg')">
+                    <div class="product-img-box"><img src="Images1/Women2.jpg" alt="Nike Air Max TN"></div>
+                    <div class="product-name">Nike Air Max TN</div>
+                    <div class="product-price">ALL 5,000.00 <span class="old-price">ALL 9,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Nike" data-price="6000" onclick="openProductModal('Air Jordan One', 'ALL 6,000.00', 'Images1/Men12.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men12.jpg" alt="Air Jordan One"></div>
+                    <div class="product-name">Air Jordan One</div>
+                    <div class="product-price">ALL 6,000.00</div>
+                </div>
+
+                <div class="product-card" data-brand="Nike" data-price="7500" onclick="openProductModal('Nike Air Force', 'ALL 7,500.00', 'Images1/Men13.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men13.jpg" alt="Nike Air Force"></div>
+                    <div class="product-name">Nike Air Force</div>
+                    <div class="product-price">ALL 7,500.00</div>
+                </div>
+
+                <div class="product-card" data-brand="Nike" data-price="4000" onclick="openProductModal('Air Jordan Low', 'ALL 4,000.00', 'Images1/Men16.jpg')">
+                    <div class="product-img-box"><img src="Images1/Men16.jpg" alt="Air Jordan Low"></div>
+                    <div class="product-name">Air Jordan Low</div>
+                    <div class="product-price">ALL 4,000.00 <span class="old-price">ALL 8,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="13000" onclick="openProductModal('UGGs', 'ALL 13,000.00', 'Images1/Women12.jpeg')">
+                    <div class="product-img-box"><img src="Images1/Women12.jpeg" alt="UGGs"></div>
                     <div class="product-name">UGGs</div>
                     <div class="product-price">ALL 13,000.00 <span class="old-price">ALL 19,000.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="women-sneakers" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/Women13.jpeg')">
-                    <div class="product-img-box">
-                        <img src="Images1/Women13.jpeg" alt="UGGs">
-                    </div>
+                <div class="product-card" data-brand="UGG" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/Women13.jpeg')">
+                    <div class="product-img-box"><img src="Images1/Women13.jpeg" alt="UGGs"></div>
                     <div class="product-name">UGGs</div>
                     <div class="product-price">ALL 9,000.00 <span class="old-price">ALL 12,000.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="women-sneakers" data-price="11000" onclick="openProductModal('UGGs', 'ALL 11,000.00', 'Images1/Women14.jpeg')">
-                    <div class="product-img-box">
-                        <img src="Images1/Women14.jpeg" alt="UGGs">
-                    </div>
+                <div class="product-card" data-brand="UGG" data-price="11000" onclick="openProductModal('UGGs', 'ALL 11,000.00', 'Images1/Women14.jpeg')">
+                    <div class="product-img-box"><img src="Images1/Women14.jpeg" alt="UGGs"></div>
                     <div class="product-name">UGGs</div>
                     <div class="product-price">ALL 11,000.00 <span class="old-price">ALL 16,000.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="women-sneakers" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/Women15.jpeg')">
-                    <div class="product-img-box">
-                        <img src="Images1/Women15.jpeg" alt="UGGs">
-                    </div>
-                    <div class="product-name">UGGs</div>
-                    <div class="product-price">ALL 9,000.00 <span class="old-price">ALL 12,000.00</span></div>
-                </div>
-
-                <div class="product-card" data-brand="women-sneakers" data-price="3500" onclick="openProductModal('Saint Glam Heels', 'ALL 3,500.00', 'Images1/Women16.jpg')">
-                    <div class="product-img-box">
-                        <img src="Images1/Women16.jpg" alt="Saint Glam Heels">
-                    </div>
-                    <div class="product-name">Saint Glam Heels</div>
-                    <div class="product-price">ALL 3,500.00</div>
-                </div>
-
-                <div class="product-card" data-brand="women-sneakers" data-price="3500" onclick="openProductModal('Saint Glam Heels', 'ALL 3,500.00', 'Images1/Women17.jpg')">
-                    <div class="product-img-box">
-                        <img src="Images1/Women17.jpg" alt="Saint Glam Heels">
-                    </div>
-                    <div class="product-name">Saint Glam Heels</div>
-                    <div class="product-price">ALL 3,500.00</div>
-                </div>
-
-                <div class="product-card" data-brand="women-sneakers" data-price="6000" onclick="openProductModal('New Balance', 'ALL 6,000.00', 'Images1/women18.jpg')">
-                    <div class="product-img-box">
-                        <img src="Images1/women18.jpg" alt="New Balance">
-                    </div>
+                <div class="product-card" data-brand="New Balance" data-price="6000" onclick="openProductModal('New Balance', 'ALL 6,000.00', 'Images1/women18.jpg')">
+                    <div class="product-img-box"><img src="Images1/women18.jpg" alt="New Balance"></div>
                     <div class="product-name">New Balance</div>
                     <div class="product-price">ALL 6,000.00 <span class="old-price">ALL 9,000.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="women-sneakers" data-price="6500" onclick="openProductModal('Adidas Spezial', 'ALL 6,500.00', 'Images1/women24.jpg')">
-                    <div class="product-img-box">
-                        <img src="Images1/women24.jpg" alt="Adidas Spezial">
-                    </div>
+                <div class="product-card" data-brand="Adidas" data-price="6500" onclick="openProductModal('Adidas Spezial', 'ALL 6,500.00', 'Images1/women24.jpg')">
+                    <div class="product-img-box"><img src="Images1/women24.jpg" alt="Adidas Spezial"></div>
                     <div class="product-name">Adidas Spezial</div>
                     <div class="product-price">ALL 6,500.00 <span class="old-price">ALL 12,000.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="women-sneakers" data-price="4000" onclick="openProductModal('Adidas Gazelle', 'ALL 4,000.00', 'Images1/women25.jpg')">
-                    <div class="product-img-box">
-                        <img src="Images1/women25.jpg" alt="Adidas Gazelle">
-                    </div>
+                <div class="product-card" data-brand="Adidas" data-price="4000" onclick="openProductModal('Adidas Gazelle', 'ALL 4,000.00', 'Images1/women25.jpg')">
+                    <div class="product-img-box"><img src="Images1/women25.jpg" alt="Adidas Gazelle"></div>
                     <div class="product-name">Adidas Gazelle</div>
                     <div class="product-price">ALL 4,000.00 <span class="old-price">ALL 8,000.00</span></div>
                 </div>
@@ -1128,7 +1181,7 @@
             homeView.classList.remove('active');
             catalogView.classList.add('active');
 
-            let title = brand === 'all' ? 'All Products' : (brand === 'women-sneakers' ? 'Women Sneakers' : brand);
+            let title = brand === 'all' ? 'All Products' : brand;
             catalogTitle.innerText = title;
             breadcrumb.innerText = title;
 
