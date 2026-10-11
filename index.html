@@ -543,7 +543,7 @@
 
         .product-price {
             font-size: 13px;
-            color: var(--text-muted);
+            color: var(--text-main);
             display: flex;
             gap: 10px;
             align-items: center;
@@ -551,7 +551,7 @@
 
         .product-price span.old-price {
             text-decoration: line-through;
-            color: #999;
+            color: #999999;
             font-size: 12px;
         }
 
@@ -620,7 +620,7 @@
 
         .modal-title-price p {
             font-size: 15px;
-            color: var(--text-muted);
+            color: var(--text-main);
         }
 
         .form-group {
@@ -823,7 +823,7 @@
         </div>
     </header>
 
-    <!-- Drawer Menu (Brandet origjinale) -->
+    <!-- Drawer Menu -->
     <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
     <div class="drawer" id="sideDrawer">
         <div class="drawer-header">
@@ -913,7 +913,56 @@
 
         <div class="product-slider-container">
             <div class="product-slider" id="homeSlider">
-                <!-- Të gjitha produktet e men-sneakers dhe women-sneakers të integruara -->
+                <!-- Të gjitha modelet e UGG-ve -->
+                <div class="product-card" data-brand="UGG" data-price="13000" onclick="openProductModal('UGGs', 'ALL 13,000.00', 'Images1/Women12.jpeg')">
+                    <div class="product-img-box"><img src="Images1/Women12.jpeg" alt="UGGs"></div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 13,000.00 <span class="old-price">ALL 19,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/Women13.jpeg')">
+                    <div class="product-img-box"><img src="Images1/Women13.jpeg" alt="UGGs"></div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 9,000.00 <span class="old-price">ALL 12,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="11000" onclick="openProductModal('UGGs', 'ALL 11,000.00', 'Images1/Women14.jpeg')">
+                    <div class="product-img-box"><img src="Images1/Women14.jpeg" alt="UGGs"></div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 11,000.00 <span class="old-price">ALL 16,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/Women15.jpeg')">
+                    <div class="product-img-box"><img src="Images1/Women15.jpeg" alt="UGGs"></div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 9,000.00 <span class="old-price">ALL 12,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/Women1.jpg')">
+                    <div class="product-img-box"><img src="Images1/Women1.jpg" alt="UGGs"></div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 9,000.00 <span class="old-price">ALL 12,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/Women3.jpg')">
+                    <div class="product-img-box"><img src="Images1/Women3.jpg" alt="UGGs"></div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 9,000.00 <span class="old-price">ALL 12,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/women8.jpg')">
+                    <div class="product-img-box"><img src="Images1/women8.jpg" alt="UGGs"></div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 9,000.00 <span class="old-price">ALL 12,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/women7.jpg')">
+                    <div class="product-img-box"><img src="Images1/women7.jpg" alt="UGGs"></div>
+                    <div class="product-name">UGGs</div>
+                    <div class="product-price">ALL 9,000.00 <span class="old-price">ALL 12,000.00</span></div>
+                </div>
+
+                <!-- Produktet e tjera -->
                 <div class="product-card" data-brand="Adidas" data-price="3000" onclick="openProductModal('Adidas Adilette', 'ALL 3,000.00', 'Images1/Men17.jpg')">
                     <div class="product-img-box"><img src="Images1/Men17.jpg" alt="Adidas Adilette"></div>
                     <div class="product-name">Adidas Adilette</div>
@@ -996,24 +1045,6 @@
                     <div class="product-img-box"><img src="Images1/Men16.jpg" alt="Air Jordan Low"></div>
                     <div class="product-name">Air Jordan Low</div>
                     <div class="product-price">ALL 4,000.00 <span class="old-price">ALL 8,000.00</span></div>
-                </div>
-
-                <div class="product-card" data-brand="UGG" data-price="13000" onclick="openProductModal('UGGs', 'ALL 13,000.00', 'Images1/Women12.jpeg')">
-                    <div class="product-img-box"><img src="Images1/Women12.jpeg" alt="UGGs"></div>
-                    <div class="product-name">UGGs</div>
-                    <div class="product-price">ALL 13,000.00 <span class="old-price">ALL 19,000.00</span></div>
-                </div>
-
-                <div class="product-card" data-brand="UGG" data-price="9000" onclick="openProductModal('UGGs', 'ALL 9,000.00', 'Images1/Women13.jpeg')">
-                    <div class="product-img-box"><img src="Images1/Women13.jpeg" alt="UGGs"></div>
-                    <div class="product-name">UGGs</div>
-                    <div class="product-price">ALL 9,000.00 <span class="old-price">ALL 12,000.00</span></div>
-                </div>
-
-                <div class="product-card" data-brand="UGG" data-price="11000" onclick="openProductModal('UGGs', 'ALL 11,000.00', 'Images1/Women14.jpeg')">
-                    <div class="product-img-box"><img src="Images1/Women14.jpeg" alt="UGGs"></div>
-                    <div class="product-name">UGGs</div>
-                    <div class="product-price">ALL 11,000.00 <span class="old-price">ALL 16,000.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="New Balance" data-price="6000" onclick="openProductModal('New Balance', 'ALL 6,000.00', 'Images1/women18.jpg')">
@@ -1240,7 +1271,8 @@
             let html = '';
             allCards.forEach(card => {
                 const name = card.querySelector('.product-name').innerText;
-                const price = card.querySelector('.product-price').innerText;
+                const priceFull = card.querySelector('.product-price').innerText;
+                const price = priceFull.split(' ')[0] + ' ' + priceFull.split(' ')[1]; // Merr vetëm çmimin e ri
                 const img = card.querySelector('img').src;
                 const brand = card.getAttribute('data-brand');
 
@@ -1260,10 +1292,14 @@
             resultsContainer.innerHTML = html || '<p style="color: #888; text-align: center; margin-top: 30px; font-size: 14px;">Nuk u gjet asnjë produkt.</p>';
         }
 
-        function openProductModal(title, price, imgSrc) {
-            currentProduct = { title, price, imgSrc };
+        function openProductModal(title, priceFull, imgSrc) {
+            // Nxjerr vetëm çmimin e ri (p.sh. "ALL 9,000.00" nga "ALL 9,000.00 ALL 12,000.00")
+            const cleanPrice = priceFull.includes('ALL') ? priceFull.split('ALL')[1].trim() : priceFull;
+            const finalPriceFormatted = 'ALL ' + cleanPrice.split(' ')[0];
+
+            currentProduct = { title, price: finalPriceFormatted, imgSrc };
             document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalPrice').innerText = finalPriceFormatted;
             document.getElementById('modalImg').src = imgSrc;
             document.getElementById('qtyValue').innerText = '1';
             document.getElementById('sizeSelect').value = '';
