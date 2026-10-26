@@ -1,202 +1,1358 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EBOSS BRAND</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBOSS Brand</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --border-color: #e5e5e5;
+            --card-bg: #f8f8f8;
+        }
 
-  <link rel="icon" href="Logo/Logo2.png">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
 
-  <!-- Font Awesome Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        /* Top Bar */
+        .top-announcement {
+            background-color: #f4f1ea;
+            color: #333;
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 2px;
+            padding: 8px 15px;
+            text-transform: uppercase;
+        }
 
-    body, html {
-      width: 100%;
-      height: 100%;
-      font-family: Arial, sans-serif;
-    }
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 6%;
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-    .banner {
-      position: relative;
-      height: 100vh;
-      width: 100%;
-      overflow: hidden;
-    }
+        .menu-icon {
+            font-size: 20px;
+            cursor: pointer;
+        }
 
-    .bg-img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
+        .header-right {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+            align-items: center;
+        }
 
-    .overlay {
-      position: relative;
-      z-index: 1;
-      height: 100%;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      text-align: center;
-    }
+        .search-icon, .cart-icon {
+            cursor: pointer;
+            position: relative;
+        }
 
-    .logo {
-      color: #fff;
-      font-size: 36px;
-      font-weight: bold;
-      margin-bottom: 40px;
-    }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: #000;
+            color: #fff;
+            font-size: 10px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    .logo span {
-      font-size: 18px;
-      font-weight: normal;
-      margin-left: 10px;
-    }
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-main);
+        }
 
-    .button-group {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      max-width: 300px;
-      gap: 20px;
-    }
+        /* Slide-out Menu (Drawer) */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.3s ease;
+            z-index: 1000;
+        }
 
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 15px 0;
-      text-align: center;
-      font-size: 18px;
-      text-decoration: none;
-      border: 2px solid white;
-      color: white;
-      background-color: rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-      border-radius: 5px;
-    }
+        .drawer-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
 
-    .btn:hover {
-      background-color: white;
-      color: black;
-    }
+        .drawer {
+            position: fixed;
+            top: 0;
+            left: -320px;
+            width: 300px;
+            height: 100%;
+            background: #ffffff;
+            transition: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.05);
+        }
 
-    /* 🔥 OFFER BUTTON (Pulse Animation) */
-    .offer-btn {
-      background: red !important;
-      border-color: red !important;
-      color: white !important;
-      font-weight: bold;
-      animation: pulse 1.4s infinite ease-in-out;
-    }
+        .drawer.active {
+            left: 0;
+        }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-      100% { transform: scale(1); }
-    }
+        .drawer-header {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: flex-start;
+            border-bottom: 1px solid var(--border-color);
+        }
 
-    .offer-btn:hover {
-      background: #ff4d4d !important;
-      color: white !important;
-    }
+        .drawer-close {
+            font-size: 22px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
 
-    /* Footer */
-    #footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-    }
+        .drawer-links {
+            list-style: none;
+            overflow-y: auto;
+        }
 
-    #footer .icons {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      list-style: none;
-      padding: 0;
-      margin-top: 10px;
-    }
+        .drawer-links li a {
+            display: block;
+            padding: 18px 25px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 15px;
+            font-weight: 400;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.2s;
+        }
 
-    #footer .icons li a {
-      font-size: 26px;
-      color: white;
-      transition: 0.3s;
-    }
+        .drawer-links li a:hover {
+            background: var(--card-bg);
+        }
 
-    #footer .icons li a:hover {
-      color: #ffce00;
-    }
+        /* Search Overlay Modal */
+        .search-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 2500;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 8%;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+        }
 
-    @media (max-width: 500px) {
-      .logo {
-        font-size: 28px;
-      }
+        .search-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
 
-      .logo span {
-        font-size: 14px;
-      }
+        .search-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
 
-      .btn {
-        font-size: 16px;
-        padding: 12px 0;
-      }
+        .search-input-box {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+        }
 
-      #footer .icons li a {
-        font-size: 22px;
-      }
-    }
-  </style>
+        .search-input-box input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            font-size: 18px;
+            border: none;
+            border-bottom: 2px solid var(--text-main);
+            background: transparent;
+            outline: none;
+        }
+
+        .search-input-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: var(--text-muted);
+        }
+
+        .search-results {
+            max-width: 700px;
+            margin: 30px auto 0 auto;
+            width: 100%;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .search-result-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .search-result-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* Views management */
+        .page-view {
+            display: none;
+        }
+        .page-view.active {
+            display: block;
+        }
+
+        /* Hero Image 1 */
+        .hero-banner-img {
+            width: 100%;
+            height: 75vh;
+            min-height: 550px;
+            background: url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=1400') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-banner-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .shop-now-btn {
+            position: relative;
+            z-index: 2;
+            background: #ffffff;
+            color: #111111;
+            padding: 16px 36px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .shop-now-btn:hover {
+            background: #111111;
+            color: #ffffff;
+        }
+
+        /* Section Title */
+        .section-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin: 60px 0 35px 0;
+        }
+
+        /* Slider for Latest Collection */
+        .product-slider-container {
+            padding: 0 6% 60px 6%;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .product-slider-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product-slider {
+            display: flex;
+            gap: 30px;
+            width: max-content;
+        }
+
+        /* Brand Story Section */
+        .brand-story-section {
+            padding: 80px 10%;
+            text-align: center;
+            background: #fff;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .brand-story-section h2 {
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .brand-story-section h4 {
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .brand-story-section p {
+            font-size: 17px;
+            color: #444;
+            line-height: 1.8;
+            font-style: italic;
+            font-family: serif;
+        }
+
+        /* Hero Image 2 */
+        .hero-banner-img-2 {
+            width: 100%;
+            height: 650px;
+            background: url('https://images.unsplash.com/photo-1553284965-83fd3e82fa5a?auto=format&fit=crop&q=80&w=1200') center/cover no-repeat;
+            margin-bottom: 40px;
+        }
+
+        /* Catalog View Styles */
+        .catalog-container {
+            padding: 30px 6% 80px 6%;
+        }
+
+        .breadcrumb-path {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .breadcrumb-path a {
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .catalog-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .catalog-main-title {
+            font-size: 26px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .catalog-meta-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .filter-sort-btn {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-main);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        /* Filter & Sort Drawer */
+        .filter-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100%;
+            background: #fff;
+            z-index: 2200;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.08);
+            transition: 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+        }
+
+        .filter-drawer.active {
+            right: 0;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .filter-section {
+            margin-bottom: 25px;
+        }
+
+        .filter-section label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .filter-section select, .filter-section input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            background: #fff;
+        }
+
+        .price-inputs {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .apply-filter-btn {
+            width: 100%;
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        /* Grid 2 Columns - Format 3:4, Qoshe të drejta dhe Hije e lehtë */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+        }
+
+        .product-slider-container .product-card {
+            width: 280px;
+            scroll-snap-align: start;
+            flex-shrink: 0;
+        }
+
+        .product-img-box {
+            background-color: var(--card-bg);
+            aspect-ratio: 3 / 4;
+            border-radius: 0px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .product-card:hover .product-img-box {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img-box img {
+            transform: scale(1.03);
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 4px;
+            color: var(--text-main);
+        }
+
+        .product-price {
+            font-size: 13px;
+            color: var(--text-main);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .product-price span.old-price {
+            text-decoration: line-through;
+            color: #999999;
+            font-size: 12px;
+        }
+
+        /* Modal i Produktit / Add to Cart */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-box {
+            background: #ffffff;
+            width: 90%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            border-radius: 6px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 0px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+        }
+
+        .modal-title-price {
+            margin-bottom: 20px;
+        }
+
+        .modal-title-price h2 {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .modal-title-price p {
+            font-size: 15px;
+            color: var(--text-main);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .form-group select, .qty-container {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            background: #fff;
+            font-size: 14px;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .qty-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 130px;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0 8px;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #333;
+        }
+
+        /* Cart Drawer */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -380px;
+            width: 360px;
+            height: 100%;
+            background: #fff;
+            z-index: 1200;
+            box-shadow: -5px 0 25px rgba(0,0,0,0.05);
+            transition: 0.35s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-body {
+            padding: 20px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .cart-item-info h4 {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .cart-item-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background: #fafafa;
+        }
+
+        .whatsapp-checkout-btn {
+            display: block;
+            width: 100%;
+            background: #25D366;
+            color: #fff;
+            text-align: center;
+            padding: 14px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 6%;
+            text-align: center;
+            background: #fafafa;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 25px;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        .footer-socials a {
+            color: var(--text-main);
+            transition: color 0.2s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-banner-img {
+                height: 50vh;
+            }
+            .hero-banner-img-2 {
+                height: 400px;
+            }
+            .cart-drawer, .filter-drawer {
+                width: 100%;
+                right: -100%;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-  <!-- Banner -->
-  <div class="banner">
-    <img src="logo/banner.jpg" alt="EBOSS BRAND Banner" class="bg-img" />
-
-    <div class="overlay">
-      <div class="logo">EBOSS <span>BRAND</span></div>
-
-      <div class="button-group">
-        <a href="index1men.html" class="btn">MESHKUJ</a>
-        <a href="index2women.html" class="btn">FEMRA</a>
-
-        <!-- 🔥 NEW OFFER BUTTON -->
-        <a href="ulje.html" class="btn offer-btn">OFERTA 15–25 €</a>
-      </div>
+    <div class="top-announcement">
+        New Collection Available
     </div>
-  </div>
 
-  <!-- Footer -->
-  <footer id="footer">
-    <ul class="icons">
-      <li><a href="https://www.instagram.com/eboss_brand_al/" class="fab fa-instagram" target="_blank"></a></li>
-      <li><a href="https://www.tiktok.com/@eboss_brand_al" class="fab fa-tiktok" target="_blank"></a></li>
-      <li><a href="https://wa.me/+355686694729" class="fab fa-whatsapp" target="_blank"></a></li>
-      <li><a href="#" class="fab fa-facebook-f" target="_blank"></a></li>
-    </ul>
+    <!-- Header -->
+    <header>
+        <div class="menu-icon" onclick="toggleDrawer()">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <a href="#" class="logo" onclick="goHome(); return false;">eBOSS</a>
+        <div class="header-right">
+            <div class="search-icon" onclick="toggleSearch()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </div>
+        </div>
+    </header>
 
-    <p style="margin-top: 15px; color: #ccc; font-size: 14px;">
-      &copy; 2025 EBOSS BRAND. All rights reserved.
-    </p>
-  </footer>
+    <!-- Drawer Menu -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+    <div class="drawer" id="sideDrawer">
+        <div class="drawer-header">
+            <button class="drawer-close" onclick="toggleDrawer()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul class="drawer-links">
+            <li><a href="#" onclick="goHome(); toggleDrawer();">Home</a></li>
+            <li><a href="#" onclick="openCatalog('all'); toggleDrawer();">All Products</a></li>
+            <li><a href="#" onclick="openCatalog('New Balance'); toggleDrawer();">New Balance</a></li>
+            <li><a href="#" onclick="openCatalog('Adidas'); toggleDrawer();">Adidas</a></li>
+            <li><a href="#" onclick="openCatalog('Nike'); toggleDrawer();">Nike</a></li>
+            <li><a href="#" onclick="openCatalog('Jordan'); toggleDrawer();">Jordan</a></li>
+            <li><a href="#" onclick="openCatalog('Puma'); toggleDrawer();">Puma</a></li>
+            <li><a href="#" onclick="openCatalog('Asics'); toggleDrawer();">Asics</a></li>
+            <li><a href="#" onclick="openCatalog('MiuMiu'); toggleDrawer();">MiuMiu</a></li>
+            <li><a href="#" onclick="openCatalog('UGG'); toggleDrawer();">UGG</a></li>
+        </ul>
+    </div>
 
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-top">
+            <a href="#" class="logo" onclick="toggleSearch(); return false;">eBOSS</a>
+            <button class="drawer-close" onclick="toggleSearch()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="search-input-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Kërko produkt..." oninput="handleSearch(this.value)">
+        </div>
+        <div class="search-results" id="searchResults">
+            <p style="color: #888; text-align: center; margin-top: 30px; font-size: 14px;">Shkruani emrin e produktit për të kërkuar...</p>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="drawer-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Shporta Juaj</h3>
+            <button class="drawer-close" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <p style="color: #666; font-size: 13px; text-align: center; margin-top: 40px;">Shporta është boshe.</p>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display: none;">
+            <a href="#" id="whatsappBtn" class="whatsapp-checkout-btn" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i> Porosit në WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Filter & Sort Drawer -->
+    <div class="drawer-overlay" id="filterOverlay" onclick="toggleFilterDrawer()"></div>
+    <div class="filter-drawer" id="filterDrawer">
+        <div class="filter-header">
+            <h3>Filter & Sort</h3>
+            <button class="drawer-close" onclick="toggleFilterDrawer()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        
+        <div class="filter-section">
+            <label>Renditja (Sort By)</label>
+            <select id="sortSelect">
+                <option value="default">Zgjidh...</option>
+                <option value="low-high">Çmimi: I ulët në të lartë</option>
+                <option value="high-low">Çmimi: I lartë në të ulët</option>
+            </select>
+        </div>
+
+        <div class="filter-section">
+            <label>Çmimi (Price Range - ALL)</label>
+            <div class="price-inputs">
+                <input type="number" id="minPrice" placeholder="Min (psh 500)">
+                <span>-</span>
+                <input type="number" id="maxPrice" placeholder="Max (psh 15000)">
+            </div>
+        </div>
+
+        <button class="apply-filter-btn" onclick="applyFilters()">Apliko</button>
+    </div>
+
+    <!-- ================= 1. HOME VIEW ================= -->
+    <div id="homeView" class="page-view active">
+        <div class="hero-banner-img">
+            <a href="#" class="shop-now-btn" onclick="openCatalog('all'); return false;">Shop Now</a>
+        </div>
+
+        <div class="section-title">Latest Collection</div>
+
+        <div class="product-slider-container">
+            <div class="product-slider" id="homeSlider">
+                <!-- UGG Low të parat -->
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Low Brown', 'ALL 2,900.00', 'Images1/ugglow1.jpeg')">
+                    <div class="product-img-box"><img src="Images1/ugglow1.jpeg" alt="UGG Low 1"></div>
+                    <div class="product-name">UGG Low Brown</div>
+                    <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Low Dark Brown', 'ALL 2,900.00', 'Images1/ugglow2.jpeg')">
+                    <div class="product-img-box"><img src="Images1/ugglow2.jpeg" alt="UGG Low 2"></div>
+                    <div class="product-name">UGG Low Dark Brown</div>
+                    <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Low Beige', 'ALL 2,900.00', 'Images1/ugglow3.jpeg')">
+                    <div class="product-img-box"><img src="Images1/ugglow3.jpeg" alt="UGG Low 3"></div>
+                    <div class="product-name">UGG Low Beige</div>
+                    <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+
+                <!-- Produktet e tjera -->
+                <div class="product-card" data-brand="Nike" data-price="3900" onclick="openProductModal('Nike Dunk Burgunday', 'ALL 3,900.00', 'Images1/dunk2.jpeg')">
+                    <div class="product-img-box"><img src="Images1/dunk2.jpeg" alt="Nike Dunk 2"></div>
+                    <div class="product-name">Nike Dunk Burgunday</div>
+                    <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Adidas" data-price="4900" onclick="openProductModal('Adidas Spezial-Brown', 'ALL 4,900.00', 'Images1/adidas2.jpeg')">
+                    <div class="product-img-box"><img src="Images1/adidas2.jpeg" alt="Adidas 2"></div>
+                    <div class="product-name">Adidas Spezial-Brown</div>
+                    <div class="product-price">ALL 4,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Jordan" data-price="3900" onclick="openProductModal('Jordan 1- Black', 'ALL 3,900.00', 'Images1/Jordan2.jpeg')">
+                    <div class="product-img-box"><img src="Images1/Jordan2.jpeg" alt="Jordan 2"></div>
+                    <div class="product-name">Jordan 1- Black</div>
+                    <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG 3', 'ALL 2,900.00', 'Images1/ugg3.jpeg')">
+                    <div class="product-img-box"><img src="Images1/ugg3.jpeg" alt="UGG 3"></div>
+                    <div class="product-name">UGG Tazz - Dark Brown</div>
+                    <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="New Balance" data-price="4500" onclick="openProductModal('New Balance 1', 'ALL 4,500.00', 'Images1/newbalance2.jpeg')">
+                    <div class="product-img-box"><img src="Images1/newbalance2.jpeg" alt="New Balance 2"></div>
+                    <div class="product-name">New Balance 1</div>
+                    <div class="product-price">ALL 4,500.00 <span class="old-price">ALL 13,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Nike" data-price="2900" onclick="openProductModal('Nike AF1', 'ALL 2,900.00', 'Images1/nikeaf1.jpeg')">
+                    <div class="product-img-box"><img src="Images1/nikeaf1.jpeg" alt="Nike AF1"></div>
+                    <div class="product-name">Nike AF1</div>
+                    <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Adidas" data-price="4900" onclick="openProductModal('Adidas Spezial-Dark Blue', 'ALL 4,900.00', 'Images1/adidas1.jpeg')">
+                    <div class="product-img-box"><img src="Images1/adidas1.jpeg" alt="Adidas 1"></div>
+                    <div class="product-name">Adidas Spezial-Dark Blue</div>
+                    <div class="product-price">ALL 4,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG LI 1', 'ALL 2,900.00', 'Images1/uggll1.jpeg')">
+                    <div class="product-img-box"><img src="Images1/uggll1.jpeg" alt="UGG LI 1"></div>
+                    <div class="product-name">UGG Beige</div>
+                    <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Nike" data-price="3900" onclick="openProductModal('Nike Dunk 1', 'ALL 3,900.00', 'Images1/dunk1.jpeg')">
+                    <div class="product-img-box"><img src="Images1/dunk1.jpeg" alt="Nike Dunk 1"></div>
+                    <div class="product-name">Nike Dunk White</div>
+                    <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Jordan" data-price="3900" onclick="openProductModal('Jordan 1', 'ALL 3,900.00', 'Images1/Jordan1.jpeg')">
+                    <div class="product-img-box"><img src="Images1/Jordan1.jpeg" alt="Jordan 1"></div>
+                    <div class="product-name">Jordan 1-Skye Blue</div>
+                    <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG 1', 'ALL 2,900.00', 'Images1/ugg1.jpeg')">
+                    <div class="product-img-box"><img src="Images1/ugg1.jpeg" alt="UGG 1"></div>
+                    <div class="product-name">UGG Tazz -Dark Brown</div>
+                    <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Adidas" data-price="4900" onclick="openProductModal('Adidas Spezial-Red', 'ALL 4,900.00', 'Images1/adidas3.jpeg')">
+                    <div class="product-img-box"><img src="Images1/adidas3.jpeg" alt="Adidas 3"></div>
+                    <div class="product-name">Adidas Spezial-Red</div>
+                    <div class="product-price">ALL 4,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG LI 2', 'ALL 2,900.00', 'Images1/uggll2.jpeg')">
+                    <div class="product-img-box"><img src="Images1/uggll2.jpeg" alt="UGG LI 2"></div>
+                    <div class="product-name">UGG Brown</div>
+                    <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG 2', 'ALL 2,900.00', 'Images1/ugg2.jpeg')">
+                    <div class="product-img-box"><img src="Images1/ugg2.jpeg" alt="UGG 2"></div>
+                    <div class="product-name">UGG Tazz - Black</div>
+                    <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="Nike" data-price="3900" onclick="openProductModal('Nike Dunk 3', 'ALL 3,900.00', 'Images1/dunk3.jpeg')">
+                    <div class="product-img-box"><img src="Images1/dunk3.jpeg" alt="Nike Dunk 3"></div>
+                    <div class="product-name">Nike Dunk Pink</div>
+                    <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                </div>
+
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG 4', 'ALL 2,900.00', 'Images1/ugg4.jpeg')">
+                    <div class="product-img-box"><img src="Images1/ugg4.jpeg" alt="UGG 4"></div>
+                    <div class="product-name">UGG Tazz - Brown</div>
+                    <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
+                </div>
+            </div>
+        </div>
+             
+        <div class="brand-story-section">
+            <h2>eBOSS Brand</h2>
+            <h4>Designed for your everyday style</h4>
+            <p>eBOSS is built around carefully curated sneaker collections, designed for effortless everyday style and long-lasting comfort. Each pair is selected with attention to detail, quality and wearability. Our goal is to offer sneakers that feel as good as they look. We introduce new styles weekly, bringing you the latest releases and the most in-demand viral sneaker trends.</p>
+        </div>
+
+        <div class="hero-banner-img-2"></div>
+    </div>
+
+    <!-- ================= 2. CATALOG VIEW ================= -->
+    <div id="catalogView" class="page-view">
+        <div class="catalog-container">
+            <div class="breadcrumb-path">
+                <a href="#" onclick="goHome(); return false;">Home</a> > <span id="breadcrumbCategory">All Products</span>
+            </div>
+
+            <div class="catalog-header-top">
+                <div class="catalog-main-title" id="catalogTitle">All Products</div>
+            </div>
+
+            <div class="catalog-meta-bar">
+                <span id="productCount">0 products</span>
+                <button class="filter-sort-btn" onclick="toggleFilterDrawer()">Filter & Sort</button>
+            </div>
+
+            <div class="product-grid" id="catalogGrid"></div>
+        </div>
+    </div>
+
+    <!-- Modal i Produktit -->
+    <div class="modal-overlay" id="productModal" onclick="closeModalOutside(event)">
+        <div class="modal-box">
+            <button class="modal-close-btn" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
+            <img class="modal-img" id="modalImg" src="" alt="Product">
+            <div class="modal-title-price">
+                <h2 id="modalTitle">Emri</h2>
+                <p id="modalPrice">Çmimi</p>
+            </div>
+
+            <div class="form-group">
+                <label>Size. *</label>
+                <select id="sizeSelect">
+                    <option value="">Select</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Quantity *</label>
+                <div class="qty-container">
+                    <button class="qty-btn" onclick="decrementQty()">-</button>
+                    <span id="qtyValue">1</span>
+                    <button class="qty-btn" onclick="incrementQty()">+</button>
+                </div>
+            </div>
+
+            <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 All rights reserved to eBOSS brand</p>
+            <div class="footer-socials">
+                <a href="tel:+355686694729" title="Phone"><i class="fa-solid fa-phone"></i></a>
+                <a href="https://instagram.com/eboss_brand_al" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://wa.me/355686694729" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        let cart = JSON.parse(localStorage.getItem('eboss_cart')) || [];
+        let currentProduct = {};
+        let currentBrand = localStorage.getItem('eboss_brand') || 'all';
+        let currentView = localStorage.getItem('eboss_view') || 'home';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            updateCartUI();
+            if (currentView === 'catalog') {
+                openCatalog(currentBrand, false);
+            } else {
+                goHome(false);
+            }
+        });
+
+        function toggleDrawer() {
+            document.getElementById('sideDrawer').classList.toggle('active');
+            document.getElementById('drawerOverlay').classList.toggle('active');
+        }
+
+        function toggleCart() {
+            document.getElementById('cartDrawer').classList.toggle('active');
+            document.getElementById('cartOverlay').classList.toggle('active');
+        }
+
+        function toggleSearch() {
+            const modal = document.getElementById('searchModal');
+            modal.classList.toggle('active');
+            if(modal.classList.contains('active')) {
+                document.getElementById('searchInput').focus();
+            }
+        }
+
+        function toggleFilterDrawer() {
+            document.getElementById('filterDrawer').classList.toggle('active');
+            document.getElementById('filterOverlay').classList.toggle('active');
+        }
+
+        function goHome(smooth = true) {
+            currentView = 'home';
+            localStorage.setItem('eboss_view', 'home');
+            localStorage.setItem('eboss_brand', 'all');
+
+            document.getElementById('homeView').classList.add('active');
+            document.getElementById('catalogView').classList.remove('active');
+            if(smooth) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function openCatalog(brand, smooth = true) {
+            currentBrand = brand;
+            currentView = 'catalog';
+            localStorage.setItem('eboss_view', 'catalog');
+            localStorage.setItem('eboss_brand', brand);
+
+            const catalogView = document.getElementById('catalogView');
+            const homeView = document.getElementById('homeView');
+            const catalogTitle = document.getElementById('catalogTitle');
+            const breadcrumb = document.getElementById('breadcrumbCategory');
+
+            homeView.classList.remove('active');
+            catalogView.classList.add('active');
+
+            let title = brand === 'all' ? 'All Products' : brand;
+            catalogTitle.innerText = title;
+            breadcrumb.innerText = title;
+
+            renderCatalogProducts();
+            if(smooth) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function renderCatalogProducts() {
+            const catalogGrid = document.getElementById('catalogGrid');
+            const productCount = document.getElementById('productCount');
+            const allCards = Array.from(document.querySelectorAll('#homeSlider .product-card'));
+            
+            const sortVal = document.getElementById('sortSelect').value;
+            const minP = parseFloat(document.getElementById('minPrice').value) || 0;
+            const maxP = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+
+            let filtered = allCards.filter(card => {
+                let cardBrand = card.getAttribute('data-brand');
+                let cardPrice = parseFloat(card.getAttribute('data-price'));
+
+                let matchBrand = (currentBrand === 'all' || cardBrand === currentBrand);
+                let matchPrice = (cardPrice >= minP && cardPrice <= maxP);
+                return matchBrand && matchPrice;
+            });
+
+            if (sortVal === 'low-high') {
+                filtered.sort((a, b) => parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price')));
+            } else if (sortVal === 'high-low') {
+                filtered.sort((a, b) => parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price')));
+            }
+
+            catalogGrid.innerHTML = '';
+            filtered.forEach(card => {
+                catalogGrid.appendChild(card.cloneNode(true));
+            });
+
+            productCount.innerText = `${filtered.length} products`;
+        }
+
+        function applyFilters() {
+            renderCatalogProducts();
+            toggleFilterDrawer();
+        }
+
+        function handleSearch(query) {
+            const resultsContainer = document.getElementById('searchResults');
+            const allCards = document.querySelectorAll('#homeSlider .product-card');
+            
+            if(!query.trim()) {
+                resultsContainer.innerHTML = '<p style="color: #888; text-align: center; margin-top: 30px; font-size: 14px;">Shkruani emrin e produktit për të kërkuar...</p>';
+                return;
+            }
+
+            let html = '';
+            allCards.forEach(card => {
+                const name = card.querySelector('.product-name').innerText;
+                const priceFull = card.querySelector('.product-price').innerText;
+                const price = priceFull.split(' ')[0] + ' ' + priceFull.split(' ')[1];
+                const img = card.querySelector('img').src;
+                const brand = card.getAttribute('data-brand');
+
+                if(name.toLowerCase().includes(query.toLowerCase()) || brand.toLowerCase().includes(query.toLowerCase())) {
+                    html += `
+                        <div class="search-result-item" onclick="toggleSearch(); openProductModal('${name}', '${price}', '${img}')">
+                            <img src="${img}" alt="${name}">
+                            <div>
+                                <h4 style="font-size: 14px; font-weight: 500;">${name}</h4>
+                                <p style="font-size: 12px; color: #666;">${price}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            resultsContainer.innerHTML = html || '<p style="color: #888; text-align: center; margin-top: 30px; font-size: 14px;">Nuk u gjet asnjë produkt.</p>';
+        }
+
+        function openProductModal(title, priceFull, imgSrc) {
+            const cleanPrice = priceFull.includes('ALL') ? priceFull.split('ALL')[1].trim() : priceFull;
+            const finalPriceFormatted = 'ALL ' + cleanPrice.split(' ')[0];
+
+            currentProduct = { title, price: finalPriceFormatted, imgSrc };
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalPrice').innerText = finalPriceFormatted;
+            document.getElementById('modalImg').src = imgSrc;
+            document.getElementById('qtyValue').innerText = '1';
+            document.getElementById('sizeSelect').value = '';
+            document.getElementById('productModal').classList.add('active');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.remove('active');
+        }
+
+        function closeModalOutside(e) {
+            if (e.target.id === 'productModal') {
+                closeProductModal();
+            }
+        }
+
+        function incrementQty() {
+            let qty = document.getElementById('qtyValue');
+            qty.innerText = parseInt(qty.innerText) + 1;
+        }
+
+        function decrementQty() {
+            let qty = document.getElementById('qtyValue');
+            let current = parseInt(qty.innerText);
+            if (current > 1) {
+                qty.innerText = current - 1;
+            }
+        }
+
+        function addToCart() {
+            let size = document.getElementById('sizeSelect').value;
+            if (!size) {
+                alert('Ju lutemi zgjidhni masën (Size) para se të vazhdoni!');
+                return;
+            }
+            let quantity = parseInt(document.getElementById('qtyValue').innerText);
+
+            cart.push({
+                title: currentProduct.title,
+                price: currentProduct.price,
+                size: size,
+                quantity: quantity
+            });
+
+            localStorage.setItem('eboss_cart', JSON.stringify(cart));
+            updateCartUI();
+            closeProductModal();
+            toggleCart();
+        }
+
+        function updateCartUI() {
+            const cartBody = document.getElementById('cartBody');
+            const cartCount = document.getElementById('cartCount');
+            const cartFooter = document.getElementById('cartFooter');
+
+            cartCount.innerText = cart.length;
+
+            if (cart.length === 0) {
+                cartBody.innerHTML = '<p style="color: #666; font-size: 13px; text-align: center; margin-top: 40px;">Shporta është boshe.</p>';
+                cartFooter.style.display = 'none';
+                return;
+            }
+
+            let html = '';
+            let whatsappText = "Përshëndetje, dëshiroj të bëj këtë porosi nga eBOSS Brand:\n\n";
+
+            cart.forEach((item, index) => {
+                html += `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>${item.title}</h4>
+                            <p>Masa: ${item.size} | Sasia: ${item.quantity}</p>
+                            <p>${item.price}</p>
+                        </div>
+                        <i class="fa-solid fa-trash" style="cursor: pointer; color: #999; font-size: 14px;" onclick="removeFromCart(${index})"></i>
+                    </div>
+                `;
+                whatsappText += `- ${item.title} (Masa: ${item.size}, Sasia: ${item.quantity}) - ${item.price}\n`;
+            });
+
+            cartBody.innerHTML = html;
+            cartFooter.style.display = 'block';
+
+            let encodedMessage = encodeURIComponent(whatsappText);
+            document.getElementById('whatsappBtn').href = `https://wa.me/355686694729?text=${encodedMessage}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('eboss_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+    </script>
 </body>
 </html>
