@@ -752,6 +752,82 @@
             text-transform: uppercase;
         }
 
+        /* Wishlist / 10% Discount Section */
+        .wishlist-discount-section {
+            background-color: #f4f1ea;
+            padding: 60px 6%;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .wishlist-discount-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .wishlist-discount-section h2 {
+            font-size: 24px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .wishlist-discount-section p {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .wishlist-form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .wishlist-form input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            background: #ffffff;
+        }
+
+        .wishlist-form button {
+            background: #111111;
+            color: #ffffff;
+            border: none;
+            padding: 14px 24px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .wishlist-form button:hover {
+            background: #333333;
+        }
+
+        .wishlist-success-msg {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #e6f4ea;
+            color: #137333;
+            font-size: 14px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
         /* Footer */
         footer {
             border-top: 1px solid var(--border-color);
@@ -796,6 +872,9 @@
             .cart-drawer, .filter-drawer {
                 width: 100%;
                 right: -100%;
+            }
+            .wishlist-form {
+                flex-direction: column;
             }
         }
     </style>
@@ -916,50 +995,50 @@
             <div class="product-slider" id="homeSlider">
                 <!-- UGG Low të parat -->
                 <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Low Brown', 'ALL 2,900.00', 'Images1/ugglow1.jpeg')">
-                    <div class="product-img-box"><img src="Images1/ugglow1.jpeg" alt="UGG Low 1"></div>
+                    <div class="product-img-box"><img src="Images1/ugglow1.jpeg" alt="UGG Low Brown"></div>
                     <div class="product-name">UGG Low Brown</div>
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Low Dark Brown', 'ALL 2,900.00', 'Images1/ugglow2.jpeg')">
-                    <div class="product-img-box"><img src="Images1/ugglow2.jpeg" alt="UGG Low 2"></div>
+                    <div class="product-img-box"><img src="Images1/ugglow2.jpeg" alt="UGG Low Dark Brown"></div>
                     <div class="product-name">UGG Low Dark Brown</div>
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Low Beige', 'ALL 2,900.00', 'Images1/ugglow3.jpeg')">
-                    <div class="product-img-box"><img src="Images1/ugglow3.jpeg" alt="UGG Low 3"></div>
+                    <div class="product-img-box"><img src="Images1/ugglow3.jpeg" alt="UGG Low Beige"></div>
                     <div class="product-name">UGG Low Beige</div>
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <!-- Produktet e tjera -->
+                <!-- Produktet e tjera (emrat në onclick përputhen saktësisht me product-name) -->
                 <div class="product-card" data-brand="Nike" data-price="3900" onclick="openProductModal('Nike Dunk Burgunday', 'ALL 3,900.00', 'Images1/dunk2.jpeg')">
-                    <div class="product-img-box"><img src="Images1/dunk2.jpeg" alt="Nike Dunk 2"></div>
+                    <div class="product-img-box"><img src="Images1/dunk2.jpeg" alt="Nike Dunk Burgunday"></div>
                     <div class="product-name">Nike Dunk Burgunday</div>
                     <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="Adidas" data-price="4900" onclick="openProductModal('Adidas Spezial-Brown', 'ALL 4,900.00', 'Images1/adidas2.jpeg')">
-                    <div class="product-img-box"><img src="Images1/adidas2.jpeg" alt="Adidas 2"></div>
+                    <div class="product-img-box"><img src="Images1/adidas2.jpeg" alt="Adidas Spezial-Brown"></div>
                     <div class="product-name">Adidas Spezial-Brown</div>
                     <div class="product-price">ALL 4,900.00 <span class="old-price">ALL 9,000.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="Jordan" data-price="3900" onclick="openProductModal('Jordan 1- Black', 'ALL 3,900.00', 'Images1/Jordan2.jpeg')">
-                    <div class="product-img-box"><img src="Images1/Jordan2.jpeg" alt="Jordan 2"></div>
+                    <div class="product-img-box"><img src="Images1/Jordan2.jpeg" alt="Jordan 1- Black"></div>
                     <div class="product-name">Jordan 1- Black</div>
                     <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG 3', 'ALL 2,900.00', 'Images1/ugg3.jpeg')">
-                    <div class="product-img-box"><img src="Images1/ugg3.jpeg" alt="UGG 3"></div>
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Tazz - Dark Brown', 'ALL 2,900.00', 'Images1/ugg3.jpeg')">
+                    <div class="product-img-box"><img src="Images1/ugg3.jpeg" alt="UGG Tazz - Dark Brown"></div>
                     <div class="product-name">UGG Tazz - Dark Brown</div>
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="New Balance" data-price="4500" onclick="openProductModal('New Balance 1', 'ALL 4,500.00', 'Images1/newbalance2.jpeg')">
-                    <div class="product-img-box"><img src="Images1/newbalance2.jpeg" alt="New Balance 2"></div>
+                    <div class="product-img-box"><img src="Images1/newbalance2.jpeg" alt="New Balance 1"></div>
                     <div class="product-name">New Balance 1</div>
                     <div class="product-price">ALL 4,500.00 <span class="old-price">ALL 13,000.00</span></div>
                 </div>
@@ -971,61 +1050,61 @@
                 </div>
 
                 <div class="product-card" data-brand="Adidas" data-price="4900" onclick="openProductModal('Adidas Spezial-Dark Blue', 'ALL 4,900.00', 'Images1/adidas1.jpeg')">
-                    <div class="product-img-box"><img src="Images1/adidas1.jpeg" alt="Adidas 1"></div>
+                    <div class="product-img-box"><img src="Images1/adidas1.jpeg" alt="Adidas Spezial-Dark Blue"></div>
                     <div class="product-name">Adidas Spezial-Dark Blue</div>
                     <div class="product-price">ALL 4,900.00 <span class="old-price">ALL 9,000.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG LI 1', 'ALL 2,900.00', 'Images1/uggll1.jpeg')">
-                    <div class="product-img-box"><img src="Images1/uggll1.jpeg" alt="UGG LI 1"></div>
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Beige', 'ALL 2,900.00', 'Images1/uggll1.jpeg')">
+                    <div class="product-img-box"><img src="Images1/uggll1.jpeg" alt="UGG Beige"></div>
                     <div class="product-name">UGG Beige</div>
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Nike" data-price="3900" onclick="openProductModal('Nike Dunk 1', 'ALL 3,900.00', 'Images1/dunk1.jpeg')">
-                    <div class="product-img-box"><img src="Images1/dunk1.jpeg" alt="Nike Dunk 1"></div>
+                <div class="product-card" data-brand="Nike" data-price="3900" onclick="openProductModal('Nike Dunk White', 'ALL 3,900.00', 'Images1/dunk1.jpeg')">
+                    <div class="product-img-box"><img src="Images1/dunk1.jpeg" alt="Nike Dunk White"></div>
                     <div class="product-name">Nike Dunk White</div>
                     <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Jordan" data-price="3900" onclick="openProductModal('Jordan 1', 'ALL 3,900.00', 'Images1/Jordan1.jpeg')">
-                    <div class="product-img-box"><img src="Images1/Jordan1.jpeg" alt="Jordan 1"></div>
+                <div class="product-card" data-brand="Jordan" data-price="3900" onclick="openProductModal('Jordan 1-Skye Blue', 'ALL 3,900.00', 'Images1/Jordan1.jpeg')">
+                    <div class="product-img-box"><img src="Images1/Jordan1.jpeg" alt="Jordan 1-Skye Blue"></div>
                     <div class="product-name">Jordan 1-Skye Blue</div>
                     <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG 1', 'ALL 2,900.00', 'Images1/ugg1.jpeg')">
-                    <div class="product-img-box"><img src="Images1/ugg1.jpeg" alt="UGG 1"></div>
-                    <div class="product-name">UGG Tazz -Dark Brown</div>
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Tazz - Dark Brown', 'ALL 2,900.00', 'Images1/ugg1.jpeg')">
+                    <div class="product-img-box"><img src="Images1/ugg1.jpeg" alt="UGG Tazz - Dark Brown"></div>
+                    <div class="product-name">UGG Tazz - Dark Brown</div>
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="Adidas" data-price="4900" onclick="openProductModal('Adidas Spezial-Red', 'ALL 4,900.00', 'Images1/adidas3.jpeg')">
-                    <div class="product-img-box"><img src="Images1/adidas3.jpeg" alt="Adidas 3"></div>
+                    <div class="product-img-box"><img src="Images1/adidas3.jpeg" alt="Adidas Spezial-Red"></div>
                     <div class="product-name">Adidas Spezial-Red</div>
                     <div class="product-price">ALL 4,900.00 <span class="old-price">ALL 9,000.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG LI 2', 'ALL 2,900.00', 'Images1/uggll2.jpeg')">
-                    <div class="product-img-box"><img src="Images1/uggll2.jpeg" alt="UGG LI 2"></div>
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Brown', 'ALL 2,900.00', 'Images1/uggll2.jpeg')">
+                    <div class="product-img-box"><img src="Images1/uggll2.jpeg" alt="UGG Brown"></div>
                     <div class="product-name">UGG Brown</div>
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG 2', 'ALL 2,900.00', 'Images1/ugg2.jpeg')">
-                    <div class="product-img-box"><img src="Images1/ugg2.jpeg" alt="UGG 2"></div>
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Tazz - Black', 'ALL 2,900.00', 'Images1/ugg2.jpeg')">
+                    <div class="product-img-box"><img src="Images1/ugg2.jpeg" alt="UGG Tazz - Black"></div>
                     <div class="product-name">UGG Tazz - Black</div>
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Nike" data-price="3900" onclick="openProductModal('Nike Dunk 3', 'ALL 3,900.00', 'Images1/dunk3.jpeg')">
-                    <div class="product-img-box"><img src="Images1/dunk3.jpeg" alt="Nike Dunk 3"></div>
+                <div class="product-card" data-brand="Nike" data-price="3900" onclick="openProductModal('Nike Dunk Pink', 'ALL 3,900.00', 'Images1/dunk3.jpeg')">
+                    <div class="product-img-box"><img src="Images1/dunk3.jpeg" alt="Nike Dunk Pink"></div>
                     <div class="product-name">Nike Dunk Pink</div>
                     <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG 4', 'ALL 2,900.00', 'Images1/ugg4.jpeg')">
-                    <div class="product-img-box"><img src="Images1/ugg4.jpeg" alt="UGG 4"></div>
+                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Tazz - Brown', 'ALL 2,900.00', 'Images1/ugg4.jpeg')">
+                    <div class="product-img-box"><img src="Images1/ugg4.jpeg" alt="UGG Tazz - Brown"></div>
                     <div class="product-name">UGG Tazz - Brown</div>
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
@@ -1094,6 +1173,21 @@
             </div>
 
             <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Wishlist / 10% Discount Section (Përpara Footer-it) -->
+    <div class="wishlist-discount-section">
+        <div class="wishlist-discount-container">
+            <h2>Bashkohuni me eBOSS VIP</h2>
+            <p>Vendosni email-in tuaj për të shtuar produktet në Wishlist dhe për të përfituar <strong>10% ulje</strong> në porosinë tuaj të parë!</p>
+            <form class="wishlist-form" onsubmit="handleWishlistSubmit(event)">
+                <input type="email" id="wishlistEmail" placeholder="Vendosni email-in tuaj këtu..." required>
+                <button type="submit">Merr 10% Ulje</button>
+            </form>
+            <div id="wishlistSuccess" class="wishlist-success-msg" style="display: none;">
+                <i class="fa-solid fa-circle-check"></i> U regjistruat me sukses! Kodi juaj i uljes 10% është: <strong>EBOSS10</strong>
+            </div>
         </div>
     </div>
 
@@ -1352,6 +1446,15 @@
             cart.splice(index, 1);
             localStorage.setItem('eboss_cart', JSON.stringify(cart));
             updateCartUI();
+        }
+
+        function handleWishlistSubmit(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('wishlistEmail');
+            if (emailInput && emailInput.value) {
+                document.getElementById('wishlistSuccess').style.display = 'inline-block';
+                emailInput.value = '';
+            }
         }
     </script>
 </body>
