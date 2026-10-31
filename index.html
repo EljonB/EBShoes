@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="sq">
 <head>
@@ -491,7 +490,7 @@
             margin-top: 20px;
         }
 
-        /* Grid 2 Columns - Format 3:4, Qoshe të drejta dhe Hije e lehtë */
+        /* Grid 2 Columns */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -680,12 +679,12 @@
             background: #333;
         }
 
-        /* Cart Drawer */
+        /* Cart Drawer & Pricing Summary */
         .cart-drawer {
             position: fixed;
             top: 0;
-            right: -380px;
-            width: 360px;
+            right: -400px;
+            width: 380px;
             height: 100%;
             background: #fff;
             z-index: 1200;
@@ -738,6 +737,83 @@
             background: #fafafa;
         }
 
+        /* Cart Promo Code & Totals */
+        .coupon-box {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .coupon-box input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 13px;
+            text-transform: uppercase;
+            outline: none;
+        }
+
+        .coupon-box button {
+            background: #111;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .coupon-box button:hover {
+            background: #333;
+        }
+
+        .coupon-status-msg {
+            font-size: 12px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .coupon-status-msg.success {
+            color: #137333;
+        }
+
+        .coupon-status-msg.error {
+            color: #d93025;
+        }
+
+        .cart-summary {
+            border-top: 1px dashed var(--border-color);
+            padding-top: 12px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .cart-summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+        }
+
+        .cart-summary-row.discount-row {
+            color: #137333;
+            font-weight: 500;
+        }
+
+        .cart-summary-row.total-row {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+            border-top: 1px solid var(--border-color);
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+
         .whatsapp-checkout-btn {
             display: block;
             width: 100%;
@@ -747,10 +823,15 @@
             padding: 14px;
             border-radius: 4px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 13px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .whatsapp-checkout-btn:hover {
+            background: #1ebd59;
         }
 
         /* Wishlist / 10% Discount Section */
@@ -949,6 +1030,18 @@
             <p style="color: #666; font-size: 13px; text-align: center; margin-top: 40px;">Shporta është boshe.</p>
         </div>
         <div class="cart-footer" id="cartFooter" style="display: none;">
+            <!-- Kodi i Uljes -->
+            <div class="coupon-box">
+                <input type="text" id="couponInput" placeholder="Kodi i uljes (psh. EBOSS10)">
+                <button onclick="applyCoupon()">Apliko</button>
+            </div>
+            <div id="couponStatusMsg" class="coupon-status-msg"></div>
+
+            <!-- Përmbledhja e Çmimeve -->
+            <div class="cart-summary" id="cartSummary">
+                <!-- Pasqyrohen dinamikisht në JS -->
+            </div>
+
             <a href="#" id="whatsappBtn" class="whatsapp-checkout-btn" target="_blank">
                 <i class="fa-brands fa-whatsapp"></i> Porosit në WhatsApp
             </a>
@@ -1210,6 +1303,8 @@
         let currentProduct = {};
         let currentBrand = localStorage.getItem('eboss_brand') || 'all';
         let currentView = localStorage.getItem('eboss_view') || 'home';
+        let discountPercent = parseFloat(localStorage.getItem('eboss_discount')) || 0;
+        let appliedCouponCode = localStorage.getItem('eboss_coupon_code') || '';
 
         window.addEventListener('DOMContentLoaded', () => {
             updateCartUI();
@@ -1385,6 +1480,16 @@
             }
         }
 
+        function parsePriceValue(priceStr) {
+            if (typeof priceStr === 'number') return priceStr;
+            let cleaned = priceStr.replace(/,/g, '').replace(/[^0-9.]/g, '');
+            return parseFloat(cleaned) || 0;
+        }
+
+        function formatCurrency(amount) {
+            return 'ALL ' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
         function addToCart() {
             let size = document.getElementById('sizeSelect').value;
             if (!size) {
@@ -1406,12 +1511,40 @@
             toggleCart();
         }
 
+        function applyCoupon() {
+            const input = document.getElementById('couponInput');
+            const msgBox = document.getElementById('couponStatusMsg');
+            if (!input) return;
+
+            const code = input.value.trim().toUpperCase();
+            if (code === 'EBOSS10') {
+                discountPercent = 0.10;
+                appliedCouponCode = 'EBOSS10';
+                localStorage.setItem('eboss_discount', '0.10');
+                localStorage.setItem('eboss_coupon_code', 'EBOSS10');
+                
+                msgBox.className = 'coupon-status-msg success';
+                msgBox.style.display = 'block';
+                msgBox.innerText = 'Kodi EBOSS10 u aplikua! Perfituat 10% ulje.';
+            } else {
+                msgBox.className = 'coupon-status-msg error';
+                msgBox.style.display = 'block';
+                msgBox.innerText = 'Kodi i uljes nuk është i vlefshëm.';
+            }
+            updateCartUI();
+        }
+
         function updateCartUI() {
             const cartBody = document.getElementById('cartBody');
             const cartCount = document.getElementById('cartCount');
             const cartFooter = document.getElementById('cartFooter');
+            const cartSummary = document.getElementById('cartSummary');
+            const couponInput = document.getElementById('couponInput');
+            const couponMsg = document.getElementById('couponStatusMsg');
 
-            cartCount.innerText = cart.length;
+            let totalItemsCount = 0;
+            cart.forEach(item => totalItemsCount += item.quantity);
+            cartCount.innerText = totalItemsCount;
 
             if (cart.length === 0) {
                 cartBody.innerHTML = '<p style="color: #666; font-size: 13px; text-align: center; margin-top: 40px;">Shporta është boshe.</p>';
@@ -1420,9 +1553,13 @@
             }
 
             let html = '';
-            let whatsappText = "Përshëndetje, dëshiroj të bëj këtë porosi nga eBOSS Brand:\n\n";
+            let subtotal = 0;
 
             cart.forEach((item, index) => {
+                let itemPriceNum = parsePriceValue(item.price);
+                let itemTotal = itemPriceNum * item.quantity;
+                subtotal += itemTotal;
+
                 html += `
                     <div class="cart-item">
                         <div class="cart-item-info">
@@ -1433,11 +1570,88 @@
                         <i class="fa-solid fa-trash" style="cursor: pointer; color: #999; font-size: 14px;" onclick="removeFromCart(${index})"></i>
                     </div>
                 `;
-                whatsappText += `- ${item.title} (Masa: ${item.size}, Sasia: ${item.quantity}) - ${item.price}\n`;
             });
 
             cartBody.innerHTML = html;
             cartFooter.style.display = 'block';
+
+            // Llogaritja e Transportit dhe Uljes
+            // Transporti: 200 ALL për 1 produkt total, FALAS për 2 ose më shumë produkte
+            let shippingFee = (totalItemsCount === 1) ? 200 : 0;
+            let discountAmount = subtotal * discountPercent;
+            let grandTotal = subtotal - discountAmount + shippingFee;
+
+            if (appliedCouponCode && couponInput) {
+                couponInput.value = appliedCouponCode;
+                couponMsg.className = 'coupon-status-msg success';
+                couponMsg.style.display = 'block';
+                couponMsg.innerText = `Kodi ${appliedCouponCode} është aktiv (-10%).`;
+            }
+
+            // Përmbledhja vizuale në Cart
+            let summaryHtml = `
+                <div class="cart-summary-row">
+                    <span>Nëntotali:</span>
+                    <span>${formatCurrency(subtotal)}</span>
+                </div>
+            `;
+
+            if (discountAmount > 0) {
+                summaryHtml += `
+                    <div class="cart-summary-row discount-row">
+                        <span>Ulja (EBOSS10 -10%):</span>
+                        <span>-${formatCurrency(discountAmount)}</span>
+                    </div>
+                `;
+            }
+
+            if (totalItemsCount === 1) {
+                summaryHtml += `
+                    <div class="cart-summary-row">
+                        <span>Transporti (1 produkt):</span>
+                        <span>${formatCurrency(shippingFee)}</span>
+                    </div>
+                `;
+            } else {
+                summaryHtml += `
+                    <div class="cart-summary-row" style="color: #137333;">
+                        <span>Transporti (2+ produkte):</span>
+                        <span>FALAS</span>
+                    </div>
+                `;
+            }
+
+            summaryHtml += `
+                <div class="cart-summary-row total-row">
+                    <span>TOTALI:</span>
+                    <span>${formatCurrency(grandTotal)}</span>
+                </div>
+            `;
+
+            cartSummary.innerHTML = summaryHtml;
+
+            // Ndërtimi i mesazhit të WhatsApp
+            let whatsappText = "Përshëndetje, dëshiroj të bëj këtë porosi nga eBOSS Brand:\n\n";
+
+            cart.forEach((item) => {
+                whatsappText += `- ${item.title} (Masa: ${item.size}, Sasia: ${item.quantity}) - ${item.price}\n`;
+            });
+
+            whatsappText += `\n------------------------------\n`;
+            whatsappText += `Nëntotali: ${formatCurrency(subtotal)}\n`;
+            
+            if (discountAmount > 0) {
+                whatsappText += `Ulja (EBOSS10 -10%): -${formatCurrency(discountAmount)}\n`;
+            }
+
+            if (totalItemsCount === 1) {
+                whatsappText += `Transporti (1 produkt): ${formatCurrency(shippingFee)}\n`;
+            } else {
+                whatsappText += `Transporti (2+ produkte): FALAS\n`;
+            }
+
+            whatsappText += `------------------------------\n`;
+            whatsappText += `TOTALI PËRFUNDIMTAR: ${formatCurrency(grandTotal)}`;
 
             let encodedMessage = encodeURIComponent(whatsappText);
             document.getElementById('whatsappBtn').href = `https://wa.me/18194867873?text=${encodedMessage}`;
