@@ -1032,7 +1032,7 @@
         <div class="cart-footer" id="cartFooter" style="display: none;">
             <!-- Kodi i Uljes -->
             <div class="coupon-box">
-                <input type="text" id="couponInput" placeholder="Kodi i uljes (psh. EBOSS10)">
+                <input type="text" id="couponInput" placeholder="Vendos kodin e uljes">
                 <button onclick="applyCoupon()">Apliko</button>
             </div>
             <div id="couponStatusMsg" class="coupon-status-msg"></div>
@@ -1303,6 +1303,7 @@
         let currentProduct = {};
         let currentBrand = localStorage.getItem('eboss_brand') || 'all';
         let currentView = localStorage.getItem('eboss_view') || 'home';
+        
         let discountPercent = parseFloat(localStorage.getItem('eboss_discount')) || 0;
         let appliedCouponCode = localStorage.getItem('eboss_coupon_code') || '';
 
@@ -1517,6 +1518,8 @@
             if (!input) return;
 
             const code = input.value.trim().toUpperCase();
+
+            // Aplikohet ulja vetëm nëse vendoset saktësisht EBOSS10
             if (code === 'EBOSS10') {
                 discountPercent = 0.10;
                 appliedCouponCode = 'EBOSS10';
@@ -1525,12 +1528,19 @@
                 
                 msgBox.className = 'coupon-status-msg success';
                 msgBox.style.display = 'block';
-                msgBox.innerText = 'Kodi EBOSS10 u aplikua! Perfituat 10% ulje.';
+                msgBox.innerText = 'Kodi EBOSS10 u aplikua me sukses! (-10%)';
             } else {
+                // Nëse përdoruesi shkruan një kod tjetër, ulja nuk aplikohet dhe hiqet nga cart
+                discountPercent = 0;
+                appliedCouponCode = '';
+                localStorage.removeItem('eboss_discount');
+                localStorage.removeItem('eboss_coupon_code');
+
                 msgBox.className = 'coupon-status-msg error';
                 msgBox.style.display = 'block';
                 msgBox.innerText = 'Kodi i uljes nuk është i vlefshëm.';
             }
+
             updateCartUI();
         }
 
@@ -1575,17 +1585,23 @@
             cartBody.innerHTML = html;
             cartFooter.style.display = 'block';
 
-            // Llogaritja e Transportit dhe Uljes
             // Transporti: 200 ALL për 1 produkt total, FALAS për 2 ose më shumë produkte
             let shippingFee = (totalItemsCount === 1) ? 200 : 0;
             let discountAmount = subtotal * discountPercent;
             let grandTotal = subtotal - discountAmount + shippingFee;
 
-            if (appliedCouponCode && couponInput) {
-                couponInput.value = appliedCouponCode;
-                couponMsg.className = 'coupon-status-msg success';
-                couponMsg.style.display = 'block';
-                couponMsg.innerText = `Kodi ${appliedCouponCode} është aktiv (-10%).`;
+            // Përditësimi i pamjes së statusit të kodit
+            if (appliedCouponCode === 'EBOSS10') {
+                if (couponInput && !couponInput.value) couponInput.value = 'EBOSS10';
+                if (couponMsg) {
+                    couponMsg.className = 'coupon-status-msg success';
+                    couponMsg.style.display = 'block';
+                    couponMsg.innerText = 'Kodi EBOSS10 është aktiv (-10%).';
+                }
+            } else {
+                if (couponMsg && couponMsg.className !== 'coupon-status-msg error') {
+                    couponMsg.style.display = 'none';
+                }
             }
 
             // Përmbledhja vizuale në Cart
