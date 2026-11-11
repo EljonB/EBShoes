@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eBOSS Brand - Black Friday</title>
+    <title>eBOSS Brand - Black Friday Luxury Selection</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -32,17 +32,17 @@
             overflow-x: hidden;
         }
 
-        /* Top Bar - Clean Banner */
+        /* Top Bar - Luxury Banner */
         .top-announcement {
-            background: #16161a;
+            background: linear-gradient(90deg, #111114, #1a1a20, #111114);
             color: var(--accent-gold);
             text-align: center;
             font-size: 11px;
             font-weight: 700;
-            letter-spacing: 2px;
-            padding: 10px 15px;
+            letter-spacing: 2.5px;
+            padding: 12px 15px;
             text-transform: uppercase;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(229, 169, 60, 0.2);
         }
 
         /* Header */
@@ -67,7 +67,7 @@
         }
 
         .menu-icon:hover {
-            color: var(--accent-red);
+            color: var(--accent-gold);
         }
 
         .header-right {
@@ -85,7 +85,7 @@
         }
 
         .search-icon:hover, .cart-icon:hover {
-            color: var(--accent-red);
+            color: var(--accent-gold);
         }
 
         .cart-count {
@@ -124,7 +124,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(4px);
             visibility: hidden;
             opacity: 0;
@@ -173,7 +173,7 @@
         }
 
         .drawer-close:hover {
-            color: var(--accent-red);
+            color: var(--accent-gold);
         }
 
         .drawer-links {
@@ -194,7 +194,7 @@
 
         .drawer-links li a:hover {
             background: var(--card-bg);
-            color: var(--accent-red);
+            color: var(--accent-gold);
         }
 
         /* Search Overlay Modal */
@@ -238,7 +238,7 @@
             padding: 15px 20px 15px 50px;
             font-size: 16px;
             border: none;
-            border-bottom: 1px solid var(--accent-red);
+            border-bottom: 1px solid var(--accent-gold);
             background: transparent;
             color: var(--text-main);
             outline: none;
@@ -250,7 +250,7 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 18px;
-            color: var(--accent-red);
+            color: var(--accent-gold);
         }
 
         .search-results {
@@ -288,50 +288,64 @@
         /* Hero Image 1 */
         .hero-banner-img {
             width: 100%;
-            height: 70vh;
+            height: 75vh;
             min-height: 500px;
-            background: linear-gradient(to bottom, rgba(11,12,14,0.3), rgba(11,12,14,0.9)), url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=1400') center/cover no-repeat;
+            background: linear-gradient(to bottom, rgba(11,12,14,0.3), rgba(11,12,14,0.95)), url('https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&q=80&w=1400') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 15px;
+            text-align: center;
+            padding: 0 20px;
         }
 
         .hero-tag {
-            font-size: 11px;
-            letter-spacing: 3px;
+            font-size: 12px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--accent-gold);
-            font-weight: 600;
+            font-weight: 700;
+        }
+
+        .hero-title-main {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 5px;
         }
 
         .shop-now-btn {
             background: var(--accent-red);
             color: #fff;
-            padding: 15px 36px;
+            padding: 16px 40px;
             text-decoration: none;
             font-size: 12px;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
             border-radius: 4px;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(217, 4, 4, 0.4);
+            margin-top: 10px;
         }
 
         .shop-now-btn:hover {
-            background: #ffffff;
+            background: var(--accent-gold);
             color: #000;
+            box-shadow: 0 4px 25px rgba(229, 169, 60, 0.5);
         }
 
         /* Section Title */
         .section-title {
             text-align: center;
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 3.5px;
             text-transform: uppercase;
-            margin: 60px 0 35px 0;
+            margin: 70px 0 35px 0;
             color: var(--text-main);
         }
 
@@ -360,7 +374,7 @@
             text-align: center;
             background: #111114;
             max-width: 850px;
-            margin: 0 auto;
+            margin: 40px auto;
             border: 1px solid var(--border-color);
             border-radius: 6px;
         }
@@ -572,10 +586,11 @@
             border-radius: 2px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            box-shadow: 0 2px 8px rgba(217, 4, 4, 0.4);
         }
 
         .product-card:hover .product-img-box {
-            border-color: #383840;
+            border-color: var(--accent-gold);
         }
 
         .product-img-box img {
@@ -619,7 +634,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             backdrop-filter: blur(4px);
             display: flex;
             justify-content: center;
@@ -660,7 +675,7 @@
         }
 
         .modal-close-btn:hover {
-            color: var(--accent-red);
+            color: var(--accent-gold);
         }
 
         .modal-img {
@@ -907,87 +922,130 @@
             background: #1ebd59;
         }
 
-        /* Wishlist / 10% Discount Section */
-        .wishlist-discount-section {
-            background-color: #111114;
-            padding: 60px 6%;
+        /* Luxury VIP Club & Lead Generation Section */
+        .vip-discount-section {
+            background: linear-gradient(135deg, #141417 0%, #0d0e12 100%);
+            padding: 80px 6%;
             text-align: center;
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid rgba(229, 169, 60, 0.2);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
         }
 
-        .wishlist-discount-container {
-            max-width: 550px;
+        .vip-discount-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(229,169,60,0.15) 0%, transparent 70%);
+            z-index: 1;
+        }
+
+        .vip-discount-container {
+            max-width: 600px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
 
-        .wishlist-discount-section h2 {
-            font-size: 22px;
-            font-weight: 600;
+        .vip-badge-tag {
+            display: inline-block;
+            background: rgba(229, 169, 60, 0.1);
+            color: var(--accent-gold);
+            border: 1px solid rgba(229, 169, 60, 0.3);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .vip-discount-section h2 {
+            font-size: clamp(22px, 3.5vw, 30px);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
             color: var(--text-main);
         }
 
-        .wishlist-discount-section p {
-            font-size: 14px;
+        .vip-discount-section p {
+            font-size: 15px;
             color: var(--text-muted);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             line-height: 1.6;
         }
 
-        .wishlist-form {
+        .vip-form {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
-            max-width: 460px;
+            max-width: 500px;
             margin: 0 auto;
         }
 
-        .wishlist-form input {
+        .vip-form input {
             flex: 1;
-            padding: 12px 16px;
-            border: 1px solid var(--border-color);
+            padding: 14px 18px;
+            border: 1px solid rgba(229, 169, 60, 0.3);
             border-radius: 4px;
             font-size: 14px;
             outline: none;
             background: #0b0c0e;
             color: var(--text-main);
+            transition: border-color 0.2s;
         }
 
-        .wishlist-form button {
-            background: var(--accent-red);
-            color: #fff;
+        .vip-form input:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .vip-form button {
+            background: var(--accent-gold);
+            color: #0b0c0e;
             border: none;
-            padding: 12px 22px;
-            font-size: 11px;
+            padding: 14px 26px;
+            font-size: 12px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             border-radius: 4px;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
             white-space: nowrap;
         }
 
-        .wishlist-form button:hover {
-            background: var(--accent-hover);
+        .vip-form button:hover {
+            background: #fff;
+            box-shadow: 0 0 15px rgba(229,169,60,0.4);
         }
 
-        .wishlist-success-msg {
-            margin-top: 20px;
-            padding: 14px 18px;
-            background: rgba(229, 169, 60, 0.08);
-            border: 1px solid rgba(229, 169, 60, 0.2);
+        .vip-success-box {
+            margin-top: 25px;
+            padding: 18px;
+            background: rgba(74, 222, 128, 0.08);
+            border: 1px solid rgba(74, 222, 128, 0.3);
             color: var(--text-main);
-            font-size: 13px;
+            font-size: 14px;
             border-radius: 4px;
             display: inline-block;
+            animation: fadeIn 0.4s ease;
         }
 
-        .wishlist-success-msg strong {
-            color: var(--accent-gold);
+        .vip-success-box strong {
+            color: #4ade80;
             letter-spacing: 1px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Footer */
@@ -1010,7 +1068,7 @@
         .footer-socials {
             display: flex;
             gap: 25px;
-            font-size: 16px;
+            font-size: 18px;
             margin-top: 5px;
         }
 
@@ -1026,7 +1084,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero-banner-img {
-                height: 50vh;
+                height: 60vh;
             }
             .hero-banner-img-2 {
                 height: 380px;
@@ -1035,7 +1093,7 @@
                 width: 100%;
                 right: -100%;
             }
-            .wishlist-form {
+            .vip-form {
                 flex-direction: column;
             }
         }
@@ -1044,7 +1102,7 @@
 <body>
 
     <div class="top-announcement">
-        BLACK FRIDAY SELECTION — LIMITED TIME OFFERS
+        ✦ BLACK FRIDAY EXCLUSIVE EVENT — LIMITED TIME OFFERS ✦
     </div>
 
     <!-- Header -->
@@ -1160,15 +1218,16 @@
     <!-- ================= 1. HOME VIEW ================= -->
     <div id="homeView" class="page-view active">
         <div class="hero-banner-img">
-            <span class="hero-tag">BLACK FRIDAY COLLECTION</span>
-            <a href="#" class="shop-now-btn" onclick="openCatalog('all'); return false;">Shop Collection</a>
+            <span class="hero-tag">BLACK FRIDAY COLLECTION 2026</span>
+            <h1 class="hero-title-main">Elegancë & Stil</h1>
+            <a href="#" class="shop-now-btn" onclick="openCatalog('all'); returnfalse;">Shop Collection</a>
         </div>
 
         <div class="section-title">Black Friday Specials</div>
 
         <div class="product-slider-container">
             <div class="product-slider" id="homeSlider">
-                <!-- UGG Low të parat -->
+                <!-- UGGs (U majtën 2,900 ALL) -->
                 <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Low Brown', 'ALL 2,900.00', 'Images1/ugglow1.jpeg')">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
@@ -1196,32 +1255,42 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <!-- Produktet e tjera -->
-                <div class="product-card" data-brand="Nike" data-price="3900" onclick="openProductModal('Nike Dunk Burgunday', 'ALL 3,900.00', 'Images1/dunk2.jpeg')">
+                <!-- Nike Air Force (2,500 ALL) -->
+                <div class="product-card" data-brand="Nike" data-price="2500" onclick="openProductModal('Nike AF1', 'ALL 2,500.00', 'Images1/nikeaf1.jpeg')">
+                    <div class="product-img-box">
+                        <span class="bf-card-badge">BLACK FRIDAY</span>
+                        <img src="Images1/nikeaf1.jpeg" alt="Nike AF1">
+                    </div>
+                    <div class="product-name">Nike AF1</div>
+                    <div class="product-price">ALL 2,500.00 <span class="old-price">ALL 5,500.00</span></div>
+                </div>
+
+                <!-- Atlete të tjera (3,500 ALL) -->
+                <div class="product-card" data-brand="Nike" data-price="3500" onclick="openProductModal('Nike Dunk Burgunday', 'ALL 3,500.00', 'Images1/dunk2.jpeg')">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/dunk2.jpeg" alt="Nike Dunk Burgunday">
                     </div>
                     <div class="product-name">Nike Dunk Burgunday</div>
-                    <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                    <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Adidas" data-price="4900" onclick="openProductModal('Adidas Spezial-Brown', 'ALL 4,900.00', 'Images1/adidas2.jpeg')">
+                <div class="product-card" data-brand="Adidas" data-price="3500" onclick="openProductModal('Adidas Spezial-Brown', 'ALL 3,500.00', 'Images1/adidas2.jpeg')">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/adidas2.jpeg" alt="Adidas Spezial-Brown">
                     </div>
                     <div class="product-name">Adidas Spezial-Brown</div>
-                    <div class="product-price">ALL 4,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                    <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Jordan" data-price="3900" onclick="openProductModal('Jordan 1- Black', 'ALL 3,900.00', 'Images1/Jordan2.jpeg')">
+                <div class="product-card" data-brand="Jordan" data-price="3500" onclick="openProductModal('Jordan 1- Black', 'ALL 3,500.00', 'Images1/Jordan2.jpeg')">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/Jordan2.jpeg" alt="Jordan 1- Black">
                     </div>
                     <div class="product-name">Jordan 1- Black</div>
-                    <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                    <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Tazz - Dark Brown', 'ALL 2,900.00', 'Images1/ugg3.jpeg')">
@@ -1233,31 +1302,22 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="New Balance" data-price="4500" onclick="openProductModal('New Balance 1', 'ALL 4,500.00', 'Images1/newbalance2.jpeg')">
+                <div class="product-card" data-brand="New Balance" data-price="3500" onclick="openProductModal('New Balance 1', 'ALL 3,500.00', 'Images1/newbalance2.jpeg')">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/newbalance2.jpeg" alt="New Balance 1">
                     </div>
                     <div class="product-name">New Balance 1</div>
-                    <div class="product-price">ALL 4,500.00 <span class="old-price">ALL 13,000.00</span></div>
+                    <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 9,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Nike" data-price="2900" onclick="openProductModal('Nike AF1', 'ALL 2,900.00', 'Images1/nikeaf1.jpeg')">
-                    <div class="product-img-box">
-                        <span class="bf-card-badge">BLACK FRIDAY</span>
-                        <img src="Images1/nikeaf1.jpeg" alt="Nike AF1">
-                    </div>
-                    <div class="product-name">Nike AF1</div>
-                    <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
-                </div>
-
-                <div class="product-card" data-brand="Adidas" data-price="4900" onclick="openProductModal('Adidas Spezial-Dark Blue', 'ALL 4,900.00', 'Images1/adidas1.jpeg')">
+                <div class="product-card" data-brand="Adidas" data-price="3500" onclick="openProductModal('Adidas Spezial-Dark Blue', 'ALL 3,500.00', 'Images1/adidas1.jpeg')">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/adidas1.jpeg" alt="Adidas Spezial-Dark Blue">
                     </div>
                     <div class="product-name">Adidas Spezial-Dark Blue</div>
-                    <div class="product-price">ALL 4,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                    <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Beige', 'ALL 2,900.00', 'Images1/uggll1.jpeg')">
@@ -1269,22 +1329,22 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Nike" data-price="3900" onclick="openProductModal('Nike Dunk White', 'ALL 3,900.00', 'Images1/dunk1.jpeg')">
+                <div class="product-card" data-brand="Nike" data-price="3500" onclick="openProductModal('Nike Dunk White', 'ALL 3,500.00', 'Images1/dunk1.jpeg')">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/dunk1.jpeg" alt="Nike Dunk White">
                     </div>
                     <div class="product-name">Nike Dunk White</div>
-                    <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                    <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Jordan" data-price="3900" onclick="openProductModal('Jordan 1-Skye Blue', 'ALL 3,900.00', 'Images1/Jordan1.jpeg')">
+                <div class="product-card" data-brand="Jordan" data-price="3500" onclick="openProductModal('Jordan 1-Skye Blue', 'ALL 3,500.00', 'Images1/Jordan1.jpeg')">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/Jordan1.jpeg" alt="Jordan 1-Skye Blue">
                     </div>
                     <div class="product-name">Jordan 1-Skye Blue</div>
-                    <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                    <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Tazz - Dark Brown', 'ALL 2,900.00', 'Images1/ugg1.jpeg')">
@@ -1296,13 +1356,13 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Adidas" data-price="4900" onclick="openProductModal('Adidas Spezial-Red', 'ALL 4,900.00', 'Images1/adidas3.jpeg')">
+                <div class="product-card" data-brand="Adidas" data-price="3500" onclick="openProductModal('Adidas Spezial-Red', 'ALL 3,500.00', 'Images1/adidas3.jpeg')">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/adidas3.jpeg" alt="Adidas Spezial-Red">
                     </div>
                     <div class="product-name">Adidas Spezial-Red</div>
-                    <div class="product-price">ALL 4,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                    <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Brown', 'ALL 2,900.00', 'Images1/uggll2.jpeg')">
@@ -1323,13 +1383,13 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Nike" data-price="3900" onclick="openProductModal('Nike Dunk Pink', 'ALL 3,900.00', 'Images1/dunk3.jpeg')">
+                <div class="product-card" data-brand="Nike" data-price="3500" onclick="openProductModal('Nike Dunk Pink', 'ALL 3,500.00', 'Images1/dunk3.jpeg')">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/dunk3.jpeg" alt="Nike Dunk Pink">
                     </div>
                     <div class="product-name">Nike Dunk Pink</div>
-                    <div class="product-price">ALL 3,900.00 <span class="old-price">ALL 9,000.00</span></div>
+                    <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
                 <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Tazz - Brown', 'ALL 2,900.00', 'Images1/ugg4.jpeg')">
@@ -1383,7 +1443,7 @@
             </div>
 
             <div class="form-group">
-                <label>Size. *</label>
+                <label>Size *</label>
                 <select id="sizeSelect">
                     <option value="">Select</option>
                     <option value="36">36</option>
@@ -1408,16 +1468,17 @@
         </div>
     </div>
 
-    <!-- Wishlist / Black Friday VIP Section (Përpara Footer-it) -->
-    <div class="wishlist-discount-section">
-        <div class="wishlist-discount-container">
-            <h2>Bashkohuni me eBOSS VIP Club</h2>
-            <p>Shkruani email-in tuaj për të verifikuar uljen tuaj te veçantë të personalizuar për këtë Black Friday!</p>
-            <form class="wishlist-form" onsubmit="handleWishlistSubmit(event)">
-                <input type="email" id="wishlistEmail" placeholder="Vendosni email-in tuaj këtu..." required>
-                <button type="submit" id="wishlistBtn">Verifiko Uljen</button>
+    <!-- Luxury VIP Club & Lead Generation Section -->
+    <div class="vip-discount-section">
+        <div class="vip-discount-container">
+            <span class="vip-badge-tag"><i class="fa-solid fa-crown"></i> eBOSS VIP CLUB</span>
+            <h2>Zbuloni Kodin Tuaj -10% Off</h2>
+            <p>Bëhuni pjesë e klientëve tanë VIP për këtë Black Friday! Shkruani email-in tuaj për të marrë menjëherë kodin personal të uljes dhe ofertat ekskluzive të sezonit.</p>
+            <form class="vip-form" onsubmit="handleVipSubmit(event)">
+                <input type="email" id="vipEmail" placeholder="Adresa juaj e e-mailit..." required>
+                <button type="submit" id="vipBtn">Merr Kodin</button>
             </form>
-            <div id="wishlistSuccess" class="wishlist-success-msg" style="display: none;"></div>
+            <div id="vipSuccess" style="display: none;"></div>
         </div>
     </div>
 
@@ -1655,7 +1716,6 @@
 
             const code = input.value.trim().toUpperCase();
 
-            // Aplikohet ulja vetëm nëse vendoset saktësisht EBOSS10
             if (code === 'EBOSS10') {
                 discountPercent = 0.10;
                 appliedCouponCode = 'EBOSS10';
@@ -1666,7 +1726,6 @@
                 msgBox.style.display = 'block';
                 msgBox.innerText = 'Kodi EBOSS10 u aplikua me sukses! (-10%)';
             } else {
-                // Nëse përdoruesi shkruan një kod tjetër, ulja nuk aplikohet dhe hiqet nga cart
                 discountPercent = 0;
                 appliedCouponCode = '';
                 localStorage.removeItem('eboss_discount');
@@ -1721,12 +1780,11 @@
             cartBody.innerHTML = html;
             cartFooter.style.display = 'block';
 
-            // Transporti: 200 ALL për 1 produkt total, FALAS për 2 ose më shumë produkte
-            let shippingFee = (totalItemsCount === 1) ? 200 : 0;
+            // Transporti: FALAS për blerje mbi 10,000 ALL, përndryshe 200 ALL
+            let shippingFee = (subtotal >= 10000 || subtotal === 0) ? 0 : 200;
             let discountAmount = subtotal * discountPercent;
             let grandTotal = subtotal - discountAmount + shippingFee;
 
-            // Përditësimi i pamjes së statusit të kodit
             if (appliedCouponCode === 'EBOSS10') {
                 if (couponInput && !couponInput.value) couponInput.value = 'EBOSS10';
                 if (couponMsg) {
@@ -1740,7 +1798,6 @@
                 }
             }
 
-            // Përmbledhja vizuale në Cart
             let summaryHtml = `
                 <div class="cart-summary-row">
                     <span>Nëntotali:</span>
@@ -1757,18 +1814,18 @@
                 `;
             }
 
-            if (totalItemsCount === 1) {
+            if (subtotal >= 10000) {
                 summaryHtml += `
-                    <div class="cart-summary-row">
-                        <span>Transporti (1 produkt):</span>
-                        <span>${formatCurrency(shippingFee)}</span>
+                    <div class="cart-summary-row" style="color: #4ade80; font-weight: 500;">
+                        <span>Transporti (Blerje mbi 10,000 ALL):</span>
+                        <span>FALAS</span>
                     </div>
                 `;
             } else {
                 summaryHtml += `
-                    <div class="cart-summary-row" style="color: #4ade80;">
-                        <span>Transporti (2+ produkte):</span>
-                        <span>FALAS</span>
+                    <div class="cart-summary-row">
+                        <span>Transporti:</span>
+                        <span>${formatCurrency(shippingFee)}</span>
                     </div>
                 `;
             }
@@ -1782,7 +1839,7 @@
 
             cartSummary.innerHTML = summaryHtml;
 
-            // Ndërtimi i mesazhit të WhatsApp
+            // Mesazhi i WhatsApp
             let whatsappText = "Përshëndetje, dëshiroj të bëj këtë porosi nga eBOSS Brand:\n\n";
 
             cart.forEach((item) => {
@@ -1796,10 +1853,10 @@
                 whatsappText += `Ulja (EBOSS10 -10%): -${formatCurrency(discountAmount)}\n`;
             }
 
-            if (totalItemsCount === 1) {
-                whatsappText += `Transporti (1 produkt): ${formatCurrency(shippingFee)}\n`;
+            if (subtotal >= 10000) {
+                whatsappText += `Transporti: FALAS (Blerje mbi 10,000 ALL)\n`;
             } else {
-                whatsappText += `Transporti (2+ produkte): FALAS\n`;
+                whatsappText += `Transporti: ${formatCurrency(shippingFee)}\n`;
             }
 
             whatsappText += `------------------------------\n`;
@@ -1815,17 +1872,17 @@
             updateCartUI();
         }
 
-        function handleWishlistSubmit(e) {
+        function handleVipSubmit(e) {
             e.preventDefault();
-            const emailInput = document.getElementById('wishlistEmail');
-            const successBox = document.getElementById('wishlistSuccess');
+            const emailInput = document.getElementById('vipEmail');
+            const successBox = document.getElementById('vipSuccess');
 
             if (emailInput && emailInput.value) {
                 const userEmail = emailInput.value.trim();
                 
-                // Mesazh i pastër dhe elegant për klientin
-                successBox.style.display = 'inline-block';
-                successBox.innerHTML = `Për përdoruesin <strong>${userEmail}</strong> u caktua ulja vetjake <strong>10% OFF</strong>.<br>Kodi juaj i uljes është: <strong>EBOSS10</strong>`;
+                successBox.style.display = 'block';
+                successBox.className = 'vip-success-box';
+                successBox.innerHTML = `Urime <strong>${userEmail}</strong>! Ju u regjistruat me sukses në VIP Club.<br>Kodi juaj ekskluziv i uljes është: <strong>EBOSS10</strong> (-10%)`;
 
                 emailInput.value = '';
             }
