@@ -587,6 +587,29 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             box-shadow: 0 2px 8px rgba(217, 4, 4, 0.4);
+            z-index: 2;
+        }
+
+        /* Out of Stock Styling */
+        .oos-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #27272a;
+            color: #e4e4e7;
+            border: 1px solid #3f3f46;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .product-card.out-of-stock .product-img-box img {
+            opacity: 0.42;
+            filter: grayscale(40%);
         }
 
         .product-card:hover .product-img-box {
@@ -759,8 +782,14 @@
             margin-top: 10px;
         }
 
-        .add-to-cart-btn:hover {
+        .add-to-cart-btn:hover:not(:disabled) {
             background: var(--accent-hover);
+        }
+
+        .add-to-cart-btn:disabled {
+            background: #27272a;
+            color: #71717a;
+            cursor: not-allowed;
         }
 
         /* Cart Drawer & Pricing Summary */
@@ -1176,9 +1205,7 @@
             <div id="couponStatusMsg" class="coupon-status-msg"></div>
 
             <!-- Përmbledhja e Çmimeve -->
-            <div class="cart-summary" id="cartSummary">
-                <!-- Pasqyrohen dinamikisht në JS -->
-            </div>
+            <div class="cart-summary" id="cartSummary"></div>
 
             <a href="#" id="whatsappBtn" class="whatsapp-checkout-btn" target="_blank">
                 <i class="fa-brands fa-whatsapp"></i> Porosit në WhatsApp
@@ -1220,15 +1247,15 @@
         <div class="hero-banner-img">
             <span class="hero-tag">BLACK FRIDAY COLLECTION 2026</span>
             <h1 class="hero-title-main">Elegancë & Stil</h1>
-            <a href="#" class="shop-now-btn" onclick="openCatalog('all'); returnfalse;">Shop Collection</a>
+            <a href="#" class="shop-now-btn" onclick="openCatalog('all'); return false;">Shop Collection</a>
         </div>
 
         <div class="section-title">Black Friday Specials</div>
 
         <div class="product-slider-container">
             <div class="product-slider" id="homeSlider">
-                <!-- UGGs (U majtën 2,900 ALL) -->
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Low Brown', 'ALL 2,900.00', 'Images1/ugglow1.jpeg')">
+                <!-- UGGs -->
+                <div class="product-card" data-brand="UGG" data-price="2900" data-oos="false" onclick="openProductModal('UGG Low Brown', 'ALL 2,900.00', 'Images1/ugglow1.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/ugglow1.jpeg" alt="UGG Low Brown">
@@ -1237,7 +1264,7 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Low Dark Brown', 'ALL 2,900.00', 'Images1/ugglow2.jpeg')">
+                <div class="product-card" data-brand="UGG" data-price="2900" data-oos="false" onclick="openProductModal('UGG Low Dark Brown', 'ALL 2,900.00', 'Images1/ugglow2.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/ugglow2.jpeg" alt="UGG Low Dark Brown">
@@ -1246,9 +1273,11 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Low Beige', 'ALL 2,900.00', 'Images1/ugglow3.jpeg')">
+                <!-- UGG Low Beige (OUT OF STOCK) -->
+                <div class="product-card out-of-stock" data-brand="UGG" data-price="2900" data-oos="true" onclick="openProductModal('UGG Low Beige', 'ALL 2,900.00', 'Images1/ugglow3.jpeg', true)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
+                        <span class="oos-badge">OUT OF STOCK</span>
                         <img src="Images1/ugglow3.jpeg" alt="UGG Low Beige">
                     </div>
                     <div class="product-name">UGG Low Beige</div>
@@ -1256,7 +1285,7 @@
                 </div>
 
                 <!-- Nike Air Force (2,500 ALL) -->
-                <div class="product-card" data-brand="Nike" data-price="2500" onclick="openProductModal('Nike AF1', 'ALL 2,500.00', 'Images1/nikeaf1.jpeg')">
+                <div class="product-card" data-brand="Nike" data-price="2500" data-oos="false" onclick="openProductModal('Nike AF1', 'ALL 2,500.00', 'Images1/nikeaf1.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/nikeaf1.jpeg" alt="Nike AF1">
@@ -1265,8 +1294,8 @@
                     <div class="product-price">ALL 2,500.00 <span class="old-price">ALL 5,500.00</span></div>
                 </div>
 
-                <!-- Atlete të tjera (3,500 ALL) -->
-                <div class="product-card" data-brand="Nike" data-price="3500" onclick="openProductModal('Nike Dunk Burgunday', 'ALL 3,500.00', 'Images1/dunk2.jpeg')">
+                <!-- Atlete të tjera -->
+                <div class="product-card" data-brand="Nike" data-price="3500" data-oos="false" onclick="openProductModal('Nike Dunk Burgunday', 'ALL 3,500.00', 'Images1/dunk2.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/dunk2.jpeg" alt="Nike Dunk Burgunday">
@@ -1275,16 +1304,18 @@
                     <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Adidas" data-price="3500" onclick="openProductModal('Adidas Spezial-Brown', 'ALL 3,500.00', 'Images1/adidas2.jpeg')">
+                <!-- Adidas Spezial-Brown (OUT OF STOCK) -->
+                <div class="product-card out-of-stock" data-brand="Adidas" data-price="3500" data-oos="true" onclick="openProductModal('Adidas Spezial-Brown', 'ALL 3,500.00', 'Images1/adidas2.jpeg', true)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
+                        <span class="oos-badge">OUT OF STOCK</span>
                         <img src="Images1/adidas2.jpeg" alt="Adidas Spezial-Brown">
                     </div>
                     <div class="product-name">Adidas Spezial-Brown</div>
                     <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Jordan" data-price="3500" onclick="openProductModal('Jordan 1- Black', 'ALL 3,500.00', 'Images1/Jordan2.jpeg')">
+                <div class="product-card" data-brand="Jordan" data-price="3500" data-oos="false" onclick="openProductModal('Jordan 1- Black', 'ALL 3,500.00', 'Images1/Jordan2.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/Jordan2.jpeg" alt="Jordan 1- Black">
@@ -1293,7 +1324,7 @@
                     <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Tazz - Dark Brown', 'ALL 2,900.00', 'Images1/ugg3.jpeg')">
+                <div class="product-card" data-brand="UGG" data-price="2900" data-oos="false" onclick="openProductModal('UGG Tazz - Dark Brown', 'ALL 2,900.00', 'Images1/ugg3.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/ugg3.jpeg" alt="UGG Tazz - Dark Brown">
@@ -1302,7 +1333,7 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="New Balance" data-price="3500" onclick="openProductModal('New Balance 1', 'ALL 3,500.00', 'Images1/newbalance2.jpeg')">
+                <div class="product-card" data-brand="New Balance" data-price="3500" data-oos="false" onclick="openProductModal('New Balance 1', 'ALL 3,500.00', 'Images1/newbalance2.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/newbalance2.jpeg" alt="New Balance 1">
@@ -1311,16 +1342,18 @@
                     <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 9,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Adidas" data-price="3500" onclick="openProductModal('Adidas Spezial-Dark Blue', 'ALL 3,500.00', 'Images1/adidas1.jpeg')">
+                <!-- Adidas Spezial-Dark Blue (OUT OF STOCK) -->
+                <div class="product-card out-of-stock" data-brand="Adidas" data-price="3500" data-oos="true" onclick="openProductModal('Adidas Spezial-Dark Blue', 'ALL 3,500.00', 'Images1/adidas1.jpeg', true)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
+                        <span class="oos-badge">OUT OF STOCK</span>
                         <img src="Images1/adidas1.jpeg" alt="Adidas Spezial-Dark Blue">
                     </div>
                     <div class="product-name">Adidas Spezial-Dark Blue</div>
                     <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Beige', 'ALL 2,900.00', 'Images1/uggll1.jpeg')">
+                <div class="product-card" data-brand="UGG" data-price="2900" data-oos="false" onclick="openProductModal('UGG Beige', 'ALL 2,900.00', 'Images1/uggll1.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/uggll1.jpeg" alt="UGG Beige">
@@ -1329,7 +1362,7 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Nike" data-price="3500" onclick="openProductModal('Nike Dunk White', 'ALL 3,500.00', 'Images1/dunk1.jpeg')">
+                <div class="product-card" data-brand="Nike" data-price="3500" data-oos="false" onclick="openProductModal('Nike Dunk White', 'ALL 3,500.00', 'Images1/dunk1.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/dunk1.jpeg" alt="Nike Dunk White">
@@ -1338,7 +1371,7 @@
                     <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Jordan" data-price="3500" onclick="openProductModal('Jordan 1-Skye Blue', 'ALL 3,500.00', 'Images1/Jordan1.jpeg')">
+                <div class="product-card" data-brand="Jordan" data-price="3500" data-oos="false" onclick="openProductModal('Jordan 1-Skye Blue', 'ALL 3,500.00', 'Images1/Jordan1.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/Jordan1.jpeg" alt="Jordan 1-Skye Blue">
@@ -1347,7 +1380,7 @@
                     <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Tazz - Dark Brown', 'ALL 2,900.00', 'Images1/ugg1.jpeg')">
+                <div class="product-card" data-brand="UGG" data-price="2900" data-oos="false" onclick="openProductModal('UGG Tazz - Dark Brown', 'ALL 2,900.00', 'Images1/ugg1.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/ugg1.jpeg" alt="UGG Tazz - Dark Brown">
@@ -1356,16 +1389,18 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Adidas" data-price="3500" onclick="openProductModal('Adidas Spezial-Red', 'ALL 3,500.00', 'Images1/adidas3.jpeg')">
+                <!-- Adidas Spezial-Red (OUT OF STOCK) -->
+                <div class="product-card out-of-stock" data-brand="Adidas" data-price="3500" data-oos="true" onclick="openProductModal('Adidas Spezial-Red', 'ALL 3,500.00', 'Images1/adidas3.jpeg', true)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
+                        <span class="oos-badge">OUT OF STOCK</span>
                         <img src="Images1/adidas3.jpeg" alt="Adidas Spezial-Red">
                     </div>
                     <div class="product-name">Adidas Spezial-Red</div>
                     <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Brown', 'ALL 2,900.00', 'Images1/uggll2.jpeg')">
+                <div class="product-card" data-brand="UGG" data-price="2900" data-oos="false" onclick="openProductModal('UGG Brown', 'ALL 2,900.00', 'Images1/uggll2.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/uggll2.jpeg" alt="UGG Brown">
@@ -1374,7 +1409,7 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Tazz - Black', 'ALL 2,900.00', 'Images1/ugg2.jpeg')">
+                <div class="product-card" data-brand="UGG" data-price="2900" data-oos="false" onclick="openProductModal('UGG Tazz - Black', 'ALL 2,900.00', 'Images1/ugg2.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/ugg2.jpeg" alt="UGG Tazz - Black">
@@ -1383,7 +1418,7 @@
                     <div class="product-price">ALL 2,900.00 <span class="old-price">ALL 6,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="Nike" data-price="3500" onclick="openProductModal('Nike Dunk Pink', 'ALL 3,500.00', 'Images1/dunk3.jpeg')">
+                <div class="product-card" data-brand="Nike" data-price="3500" data-oos="false" onclick="openProductModal('Nike Dunk Pink', 'ALL 3,500.00', 'Images1/dunk3.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/dunk3.jpeg" alt="Nike Dunk Pink">
@@ -1392,7 +1427,7 @@
                     <div class="product-price">ALL 3,500.00 <span class="old-price">ALL 8,500.00</span></div>
                 </div>
 
-                <div class="product-card" data-brand="UGG" data-price="2900" onclick="openProductModal('UGG Tazz - Brown', 'ALL 2,900.00', 'Images1/ugg4.jpeg')">
+                <div class="product-card" data-brand="UGG" data-price="2900" data-oos="false" onclick="openProductModal('UGG Tazz - Brown', 'ALL 2,900.00', 'Images1/ugg4.jpeg', false)">
                     <div class="product-img-box">
                         <span class="bf-card-badge">BLACK FRIDAY</span>
                         <img src="Images1/ugg4.jpeg" alt="UGG Tazz - Brown">
@@ -1464,7 +1499,7 @@
                 </div>
             </div>
 
-            <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+            <button class="add-to-cart-btn" id="modalAddBtn" onclick="addToCart()">Add to Cart</button>
         </div>
     </div>
 
@@ -1625,13 +1660,14 @@
                 const price = priceFull.split(' ')[0] + ' ' + priceFull.split(' ')[1];
                 const img = card.querySelector('img').src;
                 const brand = card.getAttribute('data-brand');
+                const isOos = card.getAttribute('data-oos') === 'true';
 
                 if(name.toLowerCase().includes(query.toLowerCase()) || brand.toLowerCase().includes(query.toLowerCase())) {
                     html += `
-                        <div class="search-result-item" onclick="toggleSearch(); openProductModal('${name}', '${price}', '${img}')">
-                            <img src="${img}" alt="${name}">
+                        <div class="search-result-item" onclick="toggleSearch(); openProductModal('${name}', '${price}', '${img}', ${isOos})">
+                            <img src="${img}" alt="${name}" style="${isOos ? 'opacity: 0.45;' : ''}">
                             <div>
-                                <h4 style="font-size: 14px; font-weight: 500;">${name}</h4>
+                                <h4 style="font-size: 14px; font-weight: 500;">${name} ${isOos ? '<span style="color:#f87171; font-size:11px; margin-left:6px;">(Out of Stock)</span>' : ''}</h4>
                                 <p style="font-size: 12px; color: var(--accent-gold);">${price}</p>
                             </div>
                         </div>
@@ -1642,16 +1678,30 @@
             resultsContainer.innerHTML = html || '<p style="color: #888; text-align: center; margin-top: 30px; font-size: 14px;">Nuk u gjet asnjë produkt.</p>';
         }
 
-        function openProductModal(title, priceFull, imgSrc) {
+        function openProductModal(title, priceFull, imgSrc, isOutOfStock = false) {
             const cleanPrice = priceFull.includes('ALL') ? priceFull.split('ALL')[1].trim() : priceFull;
             const finalPriceFormatted = 'ALL ' + cleanPrice.split(' ')[0];
 
-            currentProduct = { title, price: finalPriceFormatted, imgSrc };
+            currentProduct = { title, price: finalPriceFormatted, imgSrc, isOutOfStock };
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalPrice').innerText = finalPriceFormatted;
             document.getElementById('modalImg').src = imgSrc;
             document.getElementById('qtyValue').innerText = '1';
             document.getElementById('sizeSelect').value = '';
+
+            const addBtn = document.getElementById('modalAddBtn');
+            const sizeSelect = document.getElementById('sizeSelect');
+
+            if (isOutOfStock) {
+                addBtn.disabled = true;
+                addBtn.innerText = 'Out of Stock';
+                sizeSelect.disabled = true;
+            } else {
+                addBtn.disabled = false;
+                addBtn.innerText = 'Add to Cart';
+                sizeSelect.disabled = false;
+            }
+
             document.getElementById('productModal').classList.add('active');
         }
 
@@ -1666,11 +1716,13 @@
         }
 
         function incrementQty() {
+            if (currentProduct.isOutOfStock) return;
             let qty = document.getElementById('qtyValue');
             qty.innerText = parseInt(qty.innerText) + 1;
         }
 
         function decrementQty() {
+            if (currentProduct.isOutOfStock) return;
             let qty = document.getElementById('qtyValue');
             let current = parseInt(qty.innerText);
             if (current > 1) {
@@ -1689,6 +1741,8 @@
         }
 
         function addToCart() {
+            if (currentProduct.isOutOfStock) return;
+
             let size = document.getElementById('sizeSelect').value;
             if (!size) {
                 alert('Ju lutemi zgjidhni masën (Size) para se të vazhdoni!');
